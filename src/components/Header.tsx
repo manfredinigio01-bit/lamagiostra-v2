@@ -19,7 +19,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
   const activeSection = (p: NavPage) => page === p;
 
   const navLinkClass = (p: NavPage) =>
-    `relative font-medium transition-colors hover:text-emerald-700 after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:rounded-full ${
+    `relative whitespace-nowrap font-medium transition-colors hover:text-emerald-700 after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:rounded-full ${
       activeSection(p) ? 'text-emerald-800 after:bg-emerald-700' : 'text-stone-600 after:bg-transparent'
     }`;
 
@@ -64,14 +64,14 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
             </div>
             <div className="text-left">
               <p className="font-display text-lg sm:text-2xl font-bold leading-tight text-emerald-900">La Magiostra</p>
-              <p className="text-stone-500 text-xs sm:text-sm">
+              <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block md:hidden xl:block">
                 {it ? 'Negozio di alimentari dal 1987' : 'Grocery store since 1987'}
               </p>
             </div>
           </a>
 
           <div className="flex items-center gap-4">
-            <nav className="hidden md:flex gap-6 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
+            <nav className="hidden md:flex gap-4 lg:gap-6 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
               {navItems.map((p) => (
                 <a
                   key={p}
@@ -115,7 +115,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               href={whatsappLink(language)}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-2 bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-800 transition-colors"
+              className="hidden xl:inline-flex items-center gap-2 bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-800 transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               {it ? 'Ordina' : 'Order'}

@@ -1,0 +1,21 @@
+# Controllo automatico su ogni pull request: se la build, i tipi o il lint si rompono, la richiesta
+# mostra una X rossa e NON va unita. Evita che un aggiornamento automatico (es. Dependabot) rompa il sito.
+name: Controllo build
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
