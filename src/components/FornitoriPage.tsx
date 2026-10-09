@@ -1,4 +1,4 @@
-import { Package } from 'lucide-react';
+import { Leaf, Package } from 'lucide-react';
 import { fornitori } from '../data/team';
 
 interface Props {
@@ -36,13 +36,19 @@ export default function FornitoriPage({ language }: Props) {
               className="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
             >
               <div className="aspect-square overflow-hidden bg-stone-100">
-                <img
-                  src={f.photo}
-                  alt={f.name}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                {f.photo ? (
+                  <img
+                    src={f.photo}
+                    alt={f.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-emerald-50" aria-hidden="true">
+                    <Leaf className="w-12 h-12 sm:w-16 sm:h-16 text-emerald-300" />
+                  </div>
+                )}
               </div>
               <div className="p-3 text-center">
                 <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>

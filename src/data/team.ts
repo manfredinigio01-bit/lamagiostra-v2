@@ -11,7 +11,8 @@ export interface StaffMember {
 
 export interface Fornitore {
   name: string;
-  photo: string;
+  /** Facoltativa: senza foto la pagina mostra una scheda con solo il nome. */
+  photo?: string;
 }
 
 export const staff: StaffMember[] = [
@@ -25,6 +26,8 @@ export const staff: StaffMember[] = [
 ];
 
 export const fornitori: Fornitore[] = [
-  { name: 'Azienda agricola Fattoria della Valle', photo: '/fornitori/azienda-agricola-fattoria-della-valle.webp' },
+  { name: 'Luna nel Pozzo' },
   { name: 'Bio-Pan', photo: '/fornitori/bio-pan.webp' },
+  { name: 'Cascina Marasco' },
+  { name: 'Daniele' },
 ];
