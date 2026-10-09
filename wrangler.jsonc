@@ -1,12 +1,12 @@
 {
-  // Configurazione Cloudflare Workers (file statici) per la VERSIONE DI PROVA (v2).
-  // Il nome deve coincidere con il progetto creato su Cloudflare. Non usa il dominio lamagiostra.it.
+  // Configurazione Cloudflare Workers (file statici) del sito pubblicato su www.lamagiostra.it.
+  // Il nome deve coincidere con il progetto creato su Cloudflare (lamagiostra-v2).
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "lamagiostra-v2",
   "compatibility_date": "2026-10-01",
-  // Indirizzo pubblico di prova: lamagiostra-v2.<tuo-account>.workers.dev
-  "workers_dev": true,
-  "preview_urls": true,
+  // Il sito risponde solo da lamagiostra.it: niente indirizzi pubblici *.workers.dev (né di produzione né di anteprima).
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "directory": "./dist",
     // Ogni indirizzo (es. /fornitori) apre l'app; la pagina "non trovata" la mostra l'app stessa.
