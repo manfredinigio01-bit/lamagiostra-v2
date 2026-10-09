@@ -353,7 +353,7 @@ function App() {
                     onClick={(e) => { e.preventDefault(); navigate('classici'); }}
                     className="block bg-white rounded-2xl border border-emerald-900/10 overflow-hidden hover:border-emerald-700/40 transition-colors"
                   >
-                    <OptimizedImage src="/banco_gastronomia.webp" alt="I Nostri Classici" className="w-full h-56 sm:h-72" />
+                    <OptimizedImage src="/banco_gastronomia.webp" alt={language === 'it' ? 'I Nostri Classici' : 'Our Classics'} className="w-full h-56 sm:h-72" />
                     <div className="p-5">
                       <h3 className="flex items-center gap-2 text-xl font-bold text-emerald-900 mb-2">
                         <ShoppingBasket className="w-5 h-5 text-emerald-700" />
@@ -371,7 +371,7 @@ function App() {
                   </a>
 
                   <div className="bg-white rounded-2xl border border-emerald-900/10 overflow-hidden">
-                    <OptimizedImage src="/corso_cucina.webp" alt="Corsi di Cucina" className="w-full h-56 sm:h-72" />
+                    <OptimizedImage src="/corso_cucina.webp" alt={t.cookingCourses} className="w-full h-56 sm:h-72" />
                     <div className="p-5">
                       <h3 className="flex items-center gap-2 text-xl font-bold text-emerald-900 mb-2">
                         <ChefHat className="w-5 h-5 text-emerald-700" />
@@ -382,7 +382,7 @@ function App() {
                   </div>
 
                   <div className="bg-white rounded-2xl border border-emerald-900/10 overflow-hidden">
-                    <OptimizedImage src="/catering_fuori_porta.webp" alt="Catering Fuori Porta" className="w-full h-56 sm:h-72" />
+                    <OptimizedImage src="/catering_fuori_porta.webp" alt={t.catering} className="w-full h-56 sm:h-72" />
                     <div className="p-5">
                       <h3 className="text-xl font-bold text-emerald-900 mb-2">{t.catering}</h3>
                       <p className="text-stone-600 text-sm leading-relaxed">{t.cateringDesc}</p>

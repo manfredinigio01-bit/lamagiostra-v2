@@ -37,7 +37,7 @@ export default function StaffPage({ language }: Props) {
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <h3 className="text-white font-bold text-xl leading-tight drop-shadow">{member.name}</h3>
-                  <p className="text-emerald-200 text-sm mt-0.5 drop-shadow">{member.role}</p>
+                  <p className="text-emerald-200 text-sm mt-0.5 drop-shadow">{language === 'it' ? member.role : member.role_en}</p>
                 </div>
               </div>
             </div>

@@ -26,9 +26,12 @@ export const COMPANY = {
   },
 } as const;
 
-export function whatsappLink(language: string): string {
-  const text =
-    language === 'it'
+export function whatsappLink(language: string, custom?: { it: string; en: string }): string {
+  const text = custom
+    ? language === 'it'
+      ? custom.it
+      : custom.en
+    : language === 'it'
       ? 'Ciao! Vorrei ordinare alcuni prodotti da La Magiostra.'
       : 'Hi! I would like to place an order at La Magiostra.';
   return `https://wa.me/${COMPANY.mobile.whatsapp}?text=${encodeURIComponent(text)}`;

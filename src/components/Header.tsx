@@ -103,10 +103,10 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
                 <Users className="w-4 h-4" />
                 <span>Staff</span>
               </a>
-              <button onClick={() => onLanguageChange('it')} aria-pressed={language === 'it'} className={langClass(language === 'it')}>
+              <button onClick={() => onLanguageChange('it')} aria-pressed={language === 'it'} aria-label="Italiano" lang="it" className={langClass(language === 'it')}>
                 IT
               </button>
-              <button onClick={() => onLanguageChange('en')} aria-pressed={language === 'en'} className={langClass(language === 'en')}>
+              <button onClick={() => onLanguageChange('en')} aria-pressed={language === 'en'} aria-label="English" lang="en" className={langClass(language === 'en')}>
                 EN
               </button>
             </div>
@@ -154,6 +154,8 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
             <button
               onClick={() => { onLanguageChange('it'); setMobileOpen(false); }}
               aria-pressed={language === 'it'}
+              aria-label="Italiano"
+              lang="it"
               className={langClass(language === 'it')}
             >
               IT
@@ -161,6 +163,8 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
             <button
               onClick={() => { onLanguageChange('en'); setMobileOpen(false); }}
               aria-pressed={language === 'en'}
+              aria-label="English"
+              lang="en"
               className={langClass(language === 'en')}
             >
               EN

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { COMPANY } from '../lib/company';
+import { COMPANY, whatsappLink } from '../lib/company';
 import { Gift, Cake, Package, CreditCard, Sparkles, Phone } from 'lucide-react';
 
 interface Props {
@@ -12,7 +12,7 @@ const serviziSpeciali = [
     titolo: 'Torte di Compleanno Vegane',
     titolo_en: 'Vegan Birthday Cakes',
     desc: 'Ogni torta racconta una storia. Le nostre torte vegane, preparate a mano nel nostro laboratorio, rendono speciale ogni compleanno e ogni festa. Prenotala almeno 48 ore in anticipo.',
-    desc_en: 'Every birthday deserves a special cake. We make completely vegan birthday cakes, without eggs or dairy, but full of flavor and beauty. Customizable in decoration, flavor, and size.',
+    desc_en: 'Every cake tells a story. Our vegan cakes, handmade in our workshop, make every birthday and every party special. Order at least 48 hours in advance.',
     dettagli: [
       'Impasti 100% vegetali',
       'Decorazioni personalizzate su richiesta',
@@ -29,7 +29,7 @@ const serviziSpeciali = [
     titolo: 'Cesti e Pacchi Regalo',
     titolo_en: 'Gift Baskets & Hampers',
     desc: 'Regala qualcosa di autentico e artigianale. Componiamo cesti e pacchi regalo personalizzati con i migliori prodotti della nostra bottega: conserve, mieli, pasta artigianale, dolci e molto altro.',
-    desc_en: 'Give something authentic and artisanal. We compose personalized gift baskets with the best products from our shop: preserves, honey, artisan pasta, sweets, and much more.',
+    desc_en: 'Give something authentic and handcrafted. We put together personalised gift baskets and hampers with the best products from our shop: preserves, honey, artisan pasta, sweets and much more.',
     dettagli: [
       'Composizione personalizzata in base al budget',
       'Prodotti artigianali selezionati dalla bottega',
@@ -46,7 +46,7 @@ const serviziSpeciali = [
     titolo: 'Gift Card',
     titolo_en: 'Gift Cards',
     desc: 'Non sai cosa regalare? La gift card de La Magiostra è il regalo perfetto per chi ama il buon cibo artigianale. Spendibile in bottega su tutti i nostri prodotti e servizi.',
-    desc_en: 'Not sure what to give? La Magiostra gift card is the perfect gift for lovers of artisan food. Redeemable in store on all our products and services.',
+    desc_en: 'Not sure what to give? The La Magiostra gift card is the perfect gift for anyone who loves good artisan food. Redeemable in the shop on all our products and services.',
     dettagli: [
       'Importo libero a scelta del donatore',
       'Valida per tutti i prodotti e servizi in bottega',
@@ -60,8 +60,14 @@ const serviziSpeciali = [
   },
 ];
 
+const WHATSAPP_RICORRENZE = {
+  it: 'Ciao! Vorrei informazioni su una ricorrenza (torta, cesto regalo o gift card).',
+  en: 'Hi! I would like information about a special occasion (cake, gift basket or gift card).',
+};
+
 export default function RicorrenzePage({ language }: Props) {
   const [expandedServizio, setExpandedServizio] = useState<number | null>(null);
+  const whatsappHref = whatsappLink(language, WHATSAPP_RICORRENZE);
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -123,21 +129,29 @@ export default function RicorrenzePage({ language }: Props) {
                   {isExpanded && (
                     <div className="mt-2">
                       <a
-                        href={`https://wa.me/${COMPANY.mobile.whatsapp}`}
+                        href={whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={e => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 bg-emerald-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-emerald-500 transition text-sm"
+                        className="inline-flex items-center gap-2 bg-emerald-700 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-emerald-800 transition text-sm"
                       >
                         {language === 'it' ? 'Contattaci su WhatsApp' : 'Contact us on WhatsApp'}
                       </a>
                     </div>
                   )}
-                  <div className={`flex items-center gap-1 text-xs font-semibold mt-3 ${isExpanded ? 'text-stone-400' : 'text-emerald-600'}`}>
+                  <button
+                    type="button"
+                    aria-expanded={isExpanded}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpandedServizio(isExpanded ? null : i);
+                    }}
+                    className={`flex items-center gap-1 text-xs font-semibold mt-3 ${isExpanded ? 'text-stone-600' : 'text-emerald-700'}`}
+                  >
                     {isExpanded
                       ? (language === 'it' ? 'Chiudi' : 'Close')
                       : (language === 'it' ? 'Scopri di più' : 'Learn more')}
-                  </div>
+                  </button>
                 </div>
               </div>
             );
@@ -156,19 +170,19 @@ export default function RicorrenzePage({ language }: Props) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={`https://wa.me/${COMPANY.mobile.whatsapp}`}
+              href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-green-500 transition shadow-lg text-sm sm:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-white text-emerald-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-emerald-50 transition shadow-lg text-sm sm:text-base"
             >
               WhatsApp
             </a>
             <a
               href={`tel:${COMPANY.mobile.tel}`}
-              className="inline-flex items-center justify-center gap-2 bg-emerald-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-emerald-400 transition text-sm sm:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-emerald-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-emerald-950 transition text-sm sm:text-base"
             >
               <Phone className="w-5 h-5" />
-              +39 320 2254238
+              {COMPANY.mobile.display}
             </a>
           </div>
         </div>

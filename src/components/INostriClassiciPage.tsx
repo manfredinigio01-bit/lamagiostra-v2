@@ -1,4 +1,4 @@
-import { COMPANY } from '../lib/company';
+import { whatsappLink } from '../lib/company';
 import { ShoppingBasket, Clock, Star, Utensils, CalendarDays, RefreshCw } from 'lucide-react';
 
 interface Props {
@@ -8,16 +8,22 @@ interface Props {
 const classiciHero = [
   {
     nome: 'Frutta e Verdura di stagione',
+    nome_en: 'Seasonal fruit and vegetables',
     desc: 'Frutta e verdura fresca di stagione, scelta ogni giorno con cura tra i prodotti dei nostri fornitori di fiducia.',
+    desc_en: 'Fresh seasonal fruit and vegetables, carefully chosen every day from the products of our trusted suppliers.',
     img: '/bancone_frutta_e_verdura.webp',
     tag: 'Ogni giorno',
-    tagColore: 'bg-green-600',
+    tag_en: 'Every day',
+    tagColore: 'bg-emerald-700',
   },
   {
     nome: 'Gastronomia vegetariana o vegana',
+    nome_en: 'Vegetarian or vegan deli',
     desc: 'Il nostro banco gastronomia è il cuore della bottega. Piatti pronti preparati ogni giorno con ingredienti freschi e selezionati.',
+    desc_en: 'Our deli counter is the heart of the shop. Ready-made dishes prepared every day with fresh, carefully selected ingredients.',
     img: '/banco_gastronomia.webp',
     tag: 'Martedì - Sabato',
+    tag_en: 'Tuesday - Saturday',
     tagColore: 'bg-emerald-600',
   },
 ];
@@ -25,23 +31,32 @@ const classiciHero = [
 const classici = [
   {
     nome: 'Pane fresco di forno',
+    nome_en: 'Fresh bakery bread',
     desc: 'Quattro fornitori locali diversi consegnano ogni mattina. Integrale, di farro, con semi, al grano antico — ogni giorno una selezione fresca.',
+    desc_en: 'Four different local suppliers deliver every morning. Wholemeal, spelt, seeded, ancient grain — a fresh selection every day.',
     img: '/foto_pane.webp',
     tag: 'Ogni mattina',
-    tagColore: 'bg-amber-500',
+    tag_en: 'Every morning',
+    tagColore: 'bg-amber-700',
   },
   {
     nome: 'Cassetta del Venerdì',
+    nome_en: 'The Friday Box',
     desc: 'Ogni venerdì una cassetta di frutta e verdura: 6 tipi di verdura e 2 varietà di frutta. Prodotti di stagione scelti da produttori locali di fiducia, al prezzo di 20€. Prenotala entro mercoledì sera.',
+    desc_en: 'Every Friday a box of fruit and vegetables: 6 kinds of vegetables and 2 varieties of fruit. Seasonal products chosen from trusted local producers, for €20. Order it by Wednesday evening.',
     img: '/cassetta.webp',
     tag: 'Ogni venerdì',
-    tagColore: 'bg-orange-500',
+    tag_en: 'Every Friday',
+    tagColore: 'bg-orange-700',
   },
   {
     nome: 'Tavolini per il pranzo',
+    nome_en: 'Lunch tables',
     desc: 'Vieni a pranzare da noi! I nostri tavolini sono disponibili per gustare in tranquillità i piatti caldi o freddi del banco gastronomia.',
+    desc_en: 'Come and have lunch with us! Our tables are available to enjoy the hot or cold dishes from the deli counter in peace.',
     img: '/tavoli_pranzo_mobile.webp',
     tag: 'Martedì - Sabato',
+    tag_en: 'Tuesday - Saturday',
     tagColore: 'bg-blue-600',
   },
 ];
@@ -160,18 +175,18 @@ export default function INostriClassiciPage({ language }: Props) {
                 <div className="relative h-72 sm:h-[28rem] overflow-hidden">
                   <img
                     src={c.img}
-                    alt={c.nome}
+                    alt={language === 'it' ? c.nome : c.nome_en}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/20 to-transparent" />
                   <span className={`absolute top-4 left-4 ${c.tagColore} text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow`}>
-                    {c.tag}
+                    {language === 'it' ? c.tag : c.tag_en}
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-2xl font-bold text-white mb-2 drop-shadow">{c.nome}</h3>
-                    <p className="text-stone-200 text-xs sm:text-sm leading-relaxed">{c.desc}</p>
+                    <h3 className="text-lg sm:text-2xl font-bold text-white mb-2 drop-shadow">{language === 'it' ? c.nome : c.nome_en}</h3>
+                    <p className="text-stone-200 text-xs sm:text-sm leading-relaxed">{language === 'it' ? c.desc : c.desc_en}</p>
                   </div>
                 </div>
               </div>
@@ -184,19 +199,19 @@ export default function INostriClassiciPage({ language }: Props) {
                 <div className="relative h-52 sm:h-64 overflow-hidden">
                   <img
                     src={c.img}
-                    alt={c.nome}
+                    alt={language === 'it' ? c.nome : c.nome_en}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
                   <span className={`absolute top-4 left-4 ${c.tagColore} text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider`}>
-                    {c.tag}
+                    {language === 'it' ? c.tag : c.tag_en}
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-emerald-800 mb-2">{c.nome}</h3>
-                  <p className="text-stone-600 text-sm leading-relaxed">{c.desc}</p>
+                  <h3 className="text-lg font-bold text-emerald-800 mb-2">{language === 'it' ? c.nome : c.nome_en}</h3>
+                  <p className="text-stone-600 text-sm leading-relaxed">{language === 'it' ? c.desc : c.desc_en}</p>
                 </div>
               </div>
             ))}
@@ -214,10 +229,10 @@ export default function INostriClassiciPage({ language }: Props) {
               : 'Contact us on WhatsApp to order your favourite products or pre-book the Friday box.'}
           </p>
           <a
-            href={`https://wa.me/${COMPANY.mobile.whatsapp}`}
+            href={whatsappLink(language)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-green-500 transition shadow-lg text-sm sm:text-base"
+            className="inline-flex items-center justify-center gap-2 bg-emerald-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-emerald-800 transition shadow-lg text-sm sm:text-base"
           >
             {language === 'it' ? 'Ordina su WhatsApp' : 'Order on WhatsApp'}
           </a>
