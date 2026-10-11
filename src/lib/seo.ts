@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { COMPANY } from './company';
-import { pathFor, type Page } from './routes';
+import { pathFor, type Page, type StaticPage } from './routes';
 import { IS_PROVA } from './ambiente';
 
 const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/+$/, '') ?? '';
@@ -11,7 +11,7 @@ interface Meta {
   noindex?: boolean;
 }
 
-const META: Record<Page, { it: Meta; en: Meta }> = {
+const META: Record<Exclude<Page, 'persona' | 'produttore'>, { it: Meta; en: Meta }> = {
   home: {
     it: {
       title: 'La Magiostra – Alimentari e gastronomia vegetariana e vegana a Cremona',
@@ -106,11 +106,19 @@ function metaTag(name: string, content: string, property = false) {
   );
 }
 
+/** Titolo e descrizione di una pagina di approfondimento (persona o produttore). */
+export interface DetailMeta {
+  path: string;
+  it: Meta;
+  en: Meta;
+}
+
 /** Aggiorna titolo, descrizione, lingua della pagina e indicazioni per i motori di ricerca. */
-export function usePageMeta(page: Page, language: string) {
+export function usePageMeta(page: Page, language: string, detail?: DetailMeta) {
   useEffect(() => {
     const lang = language === 'en' ? 'en' : 'it';
-    const meta = META[page][lang];
+    const isDetail = page === 'persona' || page === 'produttore';
+    const meta = isDetail ? (detail ? detail[lang] : META['not-found'][lang]) : META[page][lang];
     document.documentElement.lang = lang;
     document.title = meta.title;
     metaTag('description', meta.description);
@@ -119,8 +127,9 @@ export function usePageMeta(page: Page, language: string) {
     metaTag('og:description', meta.description, true);
     metaTag('og:locale', lang === 'it' ? 'it_IT' : 'en_GB', true);
     metaTag('og:site_name', COMPANY.brand, true);
-    if (SITE_URL && page !== 'not-found') {
-      const url = SITE_URL + pathFor(page);
+    const path = isDetail ? detail?.path : page === 'not-found' ? undefined : pathFor(page as StaticPage);
+    if (SITE_URL && path) {
+      const url = SITE_URL + path;
       metaTag('og:url', url, true);
       setMeta(
         'link[rel="canonical"]',
@@ -133,7 +142,7 @@ export function usePageMeta(page: Page, language: string) {
         url,
       );
     }
-  }, [page, language]);
+  }, [page, language, detail]);
 }
 
 /** Dati strutturati (schema.org) per Google: nome, indirizzo, telefono e orari dell'attività. */

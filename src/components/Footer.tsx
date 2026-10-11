@@ -1,10 +1,10 @@
 import { COMPANY } from '../lib/company';
-import { pathFor, type Page } from '../lib/routes';
+import { pathFor, type StaticPage } from '../lib/routes';
 
 interface Props {
   language: string;
   tagline: string;
-  onNavigate: (page: Page) => void;
+  onNavigate: (page: StaticPage) => void;
 }
 
 export default function Footer({ language, tagline, onNavigate }: Props) {

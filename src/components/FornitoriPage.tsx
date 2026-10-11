@@ -1,11 +1,13 @@
-import { Leaf, Package } from 'lucide-react';
+import { ArrowRight, Leaf, Package } from 'lucide-react';
 import { fornitori } from '../data/team';
+import { produttorePath } from '../lib/routes';
 
 interface Props {
   language: string;
+  onOpen: (path: string) => void;
 }
 
-export default function FornitoriPage({ language }: Props) {
+export default function FornitoriPage({ language, onOpen }: Props) {
   const it = language === 'it';
 
   return (
@@ -31,9 +33,15 @@ export default function FornitoriPage({ language }: Props) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
           {fornitori.map((f) => (
-            <div
-              key={f.name}
-              className="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+            <a
+              key={f.slug}
+              href={produttorePath(f.slug)}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
+                onOpen(produttorePath(f.slug));
+              }}
+              className="group block bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
             >
               <div className="aspect-square overflow-hidden bg-stone-100">
                 {f.photo ? (
@@ -52,8 +60,12 @@ export default function FornitoriPage({ language }: Props) {
               </div>
               <div className="p-3 text-center">
                 <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
+                <p className="mt-1 inline-flex items-center gap-1 text-emerald-700 text-xs font-semibold">
+                  {it ? 'Scopri di più' : 'Learn more'}
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>
