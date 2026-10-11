@@ -1,4 +1,5 @@
 import { whatsappLink } from '../lib/company';
+import InstagramPost from './InstagramPost';
 import { ShoppingBasket, Clock, Star, Utensils, CalendarDays, RefreshCw } from 'lucide-react';
 
 interface Props {
@@ -151,6 +152,29 @@ export default function INostriClassiciPage({ language }: Props) {
             </div>
           </div>
 
+          <div id="questa-settimana" className="grid md:grid-cols-2 gap-6 mb-8 scroll-mt-24">
+            <InstagramPost
+              tipo="menu"
+              language={language}
+              titolo={language === 'it' ? 'Il menu di questa settimana' : "This week's menu"}
+              riserva={
+                language === 'it'
+                  ? 'Il menu cambia ogni settimana: lo pubblichiamo ogni volta su Instagram e su WhatsApp.'
+                  : 'The menu changes every week: we post it each time on Instagram and WhatsApp.'
+              }
+            />
+            <InstagramPost
+              tipo="cassetta"
+              language={language}
+              titolo={language === 'it' ? 'Nella cassetta di questa settimana' : "In this week's Friday box"}
+              riserva={
+                language === 'it'
+                  ? 'Il contenuto della cassetta del venerdì cambia ogni settimana: lo pubblichiamo su Instagram.'
+                  : 'The contents of the Friday box change every week: we post them on Instagram.'
+              }
+            />
+          </div>
+
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-6 py-4 flex items-start gap-3">
             <Star className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
             <p className="text-emerald-800 text-sm leading-relaxed">
@@ -212,6 +236,11 @@ export default function INostriClassiciPage({ language }: Props) {
                 <div className="p-5">
                   <h3 className="text-lg font-bold text-emerald-800 mb-2">{language === 'it' ? c.nome : c.nome_en}</h3>
                   <p className="text-stone-600 text-sm leading-relaxed">{language === 'it' ? c.desc : c.desc_en}</p>
+                  {c.img === '/cassetta.webp' && (
+                    <a href="#questa-settimana" className="mt-3 inline-block text-emerald-700 font-semibold text-sm hover:underline">
+                      {language === 'it' ? 'Cosa c’è questa settimana ↑' : 'What’s in it this week ↑'}
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
