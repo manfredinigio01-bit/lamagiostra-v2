@@ -43,7 +43,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
 
   const labels: Record<'classici' | 'ricorrenze' | 'fornitori', string> = {
     classici: it ? 'I Nostri Classici' : 'Our Classics',
-    ricorrenze: it ? 'Ricorrenze' : 'Special Occasions',
+    ricorrenze: it ? 'Ricorrenze' : 'Celebrations',
     fornitori: it ? 'Fornitori' : 'Suppliers',
   };
   const navItems: NavPage[] = ['home', 'classici', 'ricorrenze', 'fornitori'];

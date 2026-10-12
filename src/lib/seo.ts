@@ -43,9 +43,9 @@ const META: Record<Page, { it: Meta; en: Meta }> = {
         'Torte di compleanno vegane su ordinazione, cesti e pacchi regalo, gift card: le idee de La Magiostra per le tue ricorrenze a Cremona.',
     },
     en: {
-      title: 'Special occasions: vegan cakes, gift baskets and gift cards – La Magiostra, Cremona',
+      title: 'Celebrations: vegan cakes, gift baskets and gift cards – La Magiostra, Cremona',
       description:
-        'Vegan birthday cakes to order, gift baskets and hampers, gift cards: La Magiostra ideas for your special occasions in Cremona.',
+        'Vegan birthday cakes to order, gift baskets and hampers, gift cards: made to order by La Magiostra in Cremona.',
     },
   },
   fornitori: {
