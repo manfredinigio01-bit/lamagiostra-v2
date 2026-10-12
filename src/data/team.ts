@@ -16,13 +16,13 @@ export interface Fornitore {
 }
 
 export const staff: StaffMember[] = [
-  { name: 'Chiara Aquilino', role: 'Titolare', role_en: 'Owner', photo: '/staff/chiara-aquilino.webp' },
-  { name: 'Giovanni Manfredini', role: 'Supporto Cucina e Negozio', role_en: 'Kitchen and shop support', photo: '/staff/giovanni-manfredini.webp' },
-  { name: 'Fiore', role: 'Addetta al banco e alla cassa', role_en: 'Counter and till assistant', photo: '/staff/fiore.webp' },
-  { name: 'Mabel Kodua', role: 'Commessa', role_en: 'Shop assistant', photo: '/staff/mabel-kodua.webp' },
-  { name: 'Laura Tallarini', role: 'Chef', role_en: 'Chef', photo: '/staff/laura-tallarini.webp' },
-  { name: 'Nicola Paolini', role: 'Cuoco', role_en: 'Cook', photo: '/staff/nicola-paolini.webp' },
-  { name: 'Piergiorgio Manfredini', role: 'Tuttofare', role_en: 'All-round helper', photo: '/staff/piergiorgio-manfredini.webp' },
+  { name: 'Chiara', role: 'Bottega e cucina', role_en: 'Shop and kitchen', photo: '/staff/chiara-aquilino.webp' },
+  { name: 'Giovanni', role: 'Bottega e cucina', role_en: 'Shop and kitchen', photo: '/staff/giovanni-manfredini.webp' },
+  { name: 'Fiore', role: 'Bottega', role_en: 'Shop', photo: '/staff/fiore.webp' },
+  { name: 'Mabel', role: 'Bottega', role_en: 'Shop', photo: '/staff/mabel-kodua.webp' },
+  { name: 'Laura', role: 'Cucina', role_en: 'Kitchen', photo: '/staff/laura-tallarini.webp' },
+  { name: 'Nicola', role: 'Cucina', role_en: 'Kitchen', photo: '/staff/nicola-paolini.webp' },
+  { name: 'Piergiorgio', role: 'Bottega', role_en: 'Shop', photo: '/staff/piergiorgio-manfredini.webp' },
 ];
 
 export const fornitori: Fornitore[] = [
