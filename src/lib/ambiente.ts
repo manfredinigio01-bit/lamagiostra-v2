@@ -1,5 +1,6 @@
 // Sito di prova (v3): impostato dalla variabile di build VITE_AMBIENTE=prova su Cloudflare.
 // Per sicurezza vale anche se il sito viene aperto da un indirizzo *.workers.dev.
+// (Il ?. serve perché questo file viene letto anche durante il build, fuori dal browser.)
 export const IS_PROVA =
-  import.meta.env.VITE_AMBIENTE === 'prova' ||
+  import.meta.env?.VITE_AMBIENTE === 'prova' ||
   (typeof window !== 'undefined' && window.location.hostname.endsWith('.workers.dev'));

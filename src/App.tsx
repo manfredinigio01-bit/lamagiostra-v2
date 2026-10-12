@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { ShoppingBasket, Phone, Mail, MapPin, Clock, MessageCircle, Instagram, Facebook, ChefHat } from 'lucide-react';
 import OptimizedImage from './components/OptimizedImage';
 import Header from './components/Header';
@@ -10,10 +10,13 @@ import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import CookiePolicyPage from './components/CookiePolicyPage';
 import Footer from './components/Footer';
 import NotFoundPage from './components/NotFoundPage';
+import PersonaPage from './components/PersonaPage';
+import ProduttorePage from './components/ProduttorePage';
+import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
 import { COMPANY, whatsappLink } from './lib/company';
-import { pageFromPath, pathFor, type Page } from './lib/routes';
-import { usePageMeta, useStructuredData } from './lib/seo';
+import { pageFromPath, pathFor, slugFromPath, type StaticPage } from './lib/routes';
+import { usePageMeta, useStructuredData, type DetailMeta } from './lib/seo';
 
 const translations = {
   it: {
@@ -142,27 +145,56 @@ function scrollToHashOrTop() {
 
 function App() {
   const [language, setLanguage] = useState('it');
-  const [page, setPage] = useState<Page>(() => pageFromPath(window.location.pathname));
+  // L'indirizzo nella barra decide quale pagina mostrare.
+  const [path, setPath] = useState(() => window.location.pathname);
+  const page = pageFromPath(path);
+  const slug = slugFromPath(path);
+  const member = page === 'persona' ? staff.find((s) => s.slug === slug) : undefined;
+  const fornitore = page === 'produttore' ? fornitori.find((f) => f.slug === slug) : undefined;
   const t = translations[language as keyof typeof translations];
 
-  usePageMeta(page, language);
+  const detailMeta = useMemo<DetailMeta | undefined>(() => {
+    if (member) {
+      return {
+        path: window.location.pathname,
+        it: { title: `${member.name} – Il nostro team – La Magiostra`, description: member.descrizione?.it ?? `${member.name}, ${member.role.toLowerCase()} a La Magiostra, Cremona.` },
+        en: { title: `${member.name} – Our team – La Magiostra`, description: member.descrizione?.en ?? `${member.name}, ${member.role_en.toLowerCase()} at La Magiostra, Cremona.` },
+      };
+    }
+    if (fornitore) {
+      return {
+        path: window.location.pathname,
+        it: { title: `${fornitore.name} – I nostri fornitori – La Magiostra`, description: fornitore.descrizione?.it ?? `${fornitore.name}, uno dei produttori che riforniscono La Magiostra a Cremona.` },
+        en: { title: `${fornitore.name} – Our suppliers – La Magiostra`, description: fornitore.descrizione?.en ?? `${fornitore.name}, one of the producers supplying La Magiostra in Cremona.` },
+      };
+    }
+    return undefined;
+  }, [member, fornitore]);
+
+  usePageMeta(page, language, detailMeta);
   useStructuredData();
 
   // Vai a una pagina cambiando l'indirizzo nella barra (senza ricaricare il sito).
-  const navigate = useCallback((target: Page, anchor?: string) => {
-    if (target === 'not-found') return;
+  const navigate = useCallback((target: StaticPage, anchor?: string) => {
     const url = pathFor(target) + (anchor ? `#${anchor}` : '');
     if (url !== window.location.pathname + window.location.hash) {
       window.history.pushState({}, '', url);
     }
-    setPage(target);
+    setPath(pathFor(target));
+    scrollToHashOrTop();
+  }, []);
+
+  // Apre un indirizzo qualsiasi del sito (usato dalle pagine di approfondimento).
+  const openPath = useCallback((url: string) => {
+    if (url !== window.location.pathname) window.history.pushState({}, '', url);
+    setPath(url);
     scrollToHashOrTop();
   }, []);
 
   // Pulsanti "indietro/avanti" del browser
   useEffect(() => {
     const onPop = () => {
-      setPage(pageFromPath(window.location.pathname));
+      setPath(window.location.pathname);
       scrollToHashOrTop();
     };
     window.addEventListener('popstate', onPop);
@@ -179,13 +211,17 @@ function App() {
   function renderPage() {
     switch (page) {
       case 'staff':
-        return <StaffPage language={language} />;
+        return <StaffPage language={language} onOpen={openPath} />;
       case 'ricorrenze':
         return <RicorrenzePage language={language} />;
       case 'classici':
         return <INostriClassiciPage language={language} />;
       case 'fornitori':
-        return <FornitoriPage language={language} />;
+        return <FornitoriPage language={language} onOpen={openPath} />;
+      case 'persona':
+        return member ? <PersonaPage language={language} member={member} onBack={() => navigate('staff')} /> : null;
+      case 'produttore':
+        return fornitore ? <ProduttorePage language={language} fornitore={fornitore} onBack={() => navigate('fornitori')} /> : null;
       case 'privacy':
         return <PrivacyPolicyPage language={language} />;
       case 'cookie':

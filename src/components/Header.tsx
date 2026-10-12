@@ -1,22 +1,24 @@
 import { Users, Menu, X, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
-import { pathFor, type Page } from '../lib/routes';
+import { pathFor, type Page, type StaticPage } from '../lib/routes';
 import { whatsappLink } from '../lib/company';
 
 interface Props {
   language: string;
   page: Page;
-  onNavigate: (page: Page, anchor?: string) => void;
+  onNavigate: (page: StaticPage, anchor?: string) => void;
   onLanguageChange: (lang: string) => void;
 }
 
-type NavPage = Exclude<Page, 'not-found'>;
+type NavPage = StaticPage;
 
 export default function Header({ language, page, onNavigate, onLanguageChange }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const it = language === 'it';
 
-  const activeSection = (p: NavPage) => page === p;
+  // Le pagine di approfondimento evidenziano la sezione da cui si arriva.
+  const activeSection = (p: NavPage) =>
+    page === p || (p === 'staff' && page === 'persona') || (p === 'fornitori' && page === 'produttore');
 
   const navLinkClass = (p: NavPage) =>
     `relative whitespace-nowrap font-medium transition-colors hover:text-emerald-700 after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:rounded-full ${
