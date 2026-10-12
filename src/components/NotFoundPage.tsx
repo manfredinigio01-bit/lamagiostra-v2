@@ -1,8 +1,8 @@
-import { pathFor, type Page } from '../lib/routes';
+import { pathFor, type StaticPage } from '../lib/routes';
 
 interface Props {
   language: string;
-  onNavigate: (page: Page) => void;
+  onNavigate: (page: StaticPage) => void;
 }
 
 export default function NotFoundPage({ language, onNavigate }: Props) {
