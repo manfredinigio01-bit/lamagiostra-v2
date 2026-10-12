@@ -5,7 +5,8 @@
 // e aggiungi una voce qui sotto. "slug" è la parte finale dell'indirizzo: minuscole, senza spazi
 // né accenti (es. 'cascina-marasco').
 //
-// I campi facoltativi compaiono sul sito solo se compilati. Le persone hanno solo la descrizione;
+// I campi facoltativi compaiono sul sito solo se compilati. Le persone hanno solo la descrizione,
+// e senza descrizione la loro scheda non si apre (nessuna pagina /staff/<slug>);
 // i fornitori anche dettagli e link.
 // Sul sito di prova (v3) i campi vuoti sono segnalati come "da completare".
 
@@ -60,6 +61,11 @@ export const fornitori: Fornitore[] = [
   { slug: 'cascina-marasco', name: 'Cascina Marasco' },
   { slug: 'daniele', name: 'Daniele' },
 ];
+
+/** Una persona ha la pagina di approfondimento solo se ha una descrizione. */
+export function haScheda(m: StaffMember): boolean {
+  return Boolean(m.descrizione);
+}
 
 /** Campi suggeriti per i fornitori, mostrati come promemoria solo sul sito di prova quando i dettagli sono vuoti. */
 export const SUGGERIMENTI_FORNITORI: Testo[] = [

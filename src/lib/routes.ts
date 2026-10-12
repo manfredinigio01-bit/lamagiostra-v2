@@ -1,6 +1,6 @@
 // Percorsi del sito. Ogni pagina ha un indirizzo vero (es. /fornitori), così
 // funzionano i link condivisi, il pulsante "indietro" e i motori di ricerca.
-import { fornitori, staff } from '../data/team';
+import { fornitori, haScheda, staff } from '../data/team';
 
 export type Page =
   | 'home'
@@ -42,7 +42,7 @@ export function allPublicPaths(): string[] {
   return [
     ...PUBLIC_PAGES.map(pathFor),
     ...fornitori.map((f) => produttorePath(f.slug)),
-    ...staff.map((s) => personaPath(s.slug)),
+    ...staff.filter(haScheda).map((s) => personaPath(s.slug)),
   ];
 }
 
@@ -63,7 +63,7 @@ export function pageFromPath(pathname: string): Page {
   const m = path.match(DETTAGLIO);
   if (m) {
     const slug = decodeURIComponent(m[2]);
-    if (m[1] === 'staff') return staff.some((s) => s.slug === slug) ? 'persona' : 'not-found';
+    if (m[1] === 'staff') return staff.some((s) => s.slug === slug && haScheda(s)) ? 'persona' : 'not-found';
     return fornitori.some((f) => f.slug === slug) ? 'produttore' : 'not-found';
   }
   const entry = (Object.entries(PAGE_PATHS) as [StaticPage, string][]).find(([, p]) => p === path);
