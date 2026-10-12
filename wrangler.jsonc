@@ -11,5 +11,14 @@
     "directory": "./dist",
     // Ogni indirizzo (es. /fornitori) apre l'app; la pagina "non trovata" la mostra l'app stessa.
     "not_found_handling": "single-page-application"
+  },
+  // Sito di prova v3 (ramo "v3"): progetto Cloudflare "lamagiostra-v3", indirizzo *.workers.dev.
+  // Su Cloudflare il comando di pubblicazione è: npx wrangler deploy --env v3
+  "env": {
+    "v3": {
+      "name": "lamagiostra-v3",
+      "workers_dev": true,
+      "preview_urls": false
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { COMPANY } from './company';
 import { pathFor, type Page } from './routes';
+import { IS_PROVA } from './ambiente';
 
 const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/+$/, '') ?? '';
 
@@ -113,7 +114,7 @@ export function usePageMeta(page: Page, language: string) {
     document.documentElement.lang = lang;
     document.title = meta.title;
     metaTag('description', meta.description);
-    metaTag('robots', meta.noindex ? 'noindex, nofollow' : 'index, follow');
+    metaTag('robots', meta.noindex || IS_PROVA ? 'noindex, nofollow' : 'index, follow');
     metaTag('og:title', meta.title, true);
     metaTag('og:description', meta.description, true);
     metaTag('og:locale', lang === 'it' ? 'it_IT' : 'en_GB', true);

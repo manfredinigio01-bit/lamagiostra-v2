@@ -10,6 +10,7 @@ import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import CookiePolicyPage from './components/CookiePolicyPage';
 import Footer from './components/Footer';
 import NotFoundPage from './components/NotFoundPage';
+import BannerProva from './components/BannerProva';
 import { COMPANY, whatsappLink } from './lib/company';
 import { pageFromPath, pathFor, type Page } from './lib/routes';
 import { usePageMeta, useStructuredData } from './lib/seo';
@@ -473,6 +474,7 @@ function App() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-emerald-900 focus:px-4 focus:py-2 focus:rounded-lg">
         {language === 'it' ? 'Vai al contenuto' : 'Skip to content'}
       </a>
+      <BannerProva />
       <Header
         language={language}
         page={page}
