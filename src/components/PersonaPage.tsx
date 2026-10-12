@@ -1,5 +1,4 @@
 import type { StaffMember } from '../data/team';
-import { SUGGERIMENTI_STAFF } from '../data/team';
 import { pathFor } from '../lib/routes';
 import DettaglioLayout from './DettaglioLayout';
 
@@ -29,8 +28,6 @@ export default function PersonaPage({ language, member, onBack }: Props) {
       kicker={it ? member.role : member.role_en}
       title={member.name}
       descrizione={member.descrizione}
-      dettagli={member.dettagli}
-      suggerimenti={SUGGERIMENTI_STAFF}
     />
   );
 }

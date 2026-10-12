@@ -5,7 +5,8 @@
 // e aggiungi una voce qui sotto. "slug" è la parte finale dell'indirizzo: minuscole, senza spazi
 // né accenti (es. 'cascina-marasco').
 //
-// I campi facoltativi (descrizione, dettagli, link) compaiono sul sito solo se compilati.
+// I campi facoltativi compaiono sul sito solo se compilati. Le persone hanno solo la descrizione;
+// i fornitori anche dettagli e link.
 // Sul sito di prova (v3) i campi vuoti sono segnalati come "da completare".
 
 /** Un testo nelle due lingue del sito. */
@@ -26,9 +27,9 @@ export interface StaffMember {
   role: string;
   role_en: string;
   photo: string;
-  /** Presentazione di 2–4 frasi. Per andare a capo tra un paragrafo e l'altro usa una riga vuota (\n\n). */
+  /** Presentazione di 2–4 frasi: è l'unico testo della pagina della persona.
+   *  Per andare a capo tra un paragrafo e l'altro usa una riga vuota (\n\n). */
   descrizione?: Testo;
-  dettagli?: Dettaglio[];
 }
 
 export interface Fornitore {
@@ -60,13 +61,7 @@ export const fornitori: Fornitore[] = [
   { slug: 'daniele', name: 'Daniele' },
 ];
 
-/** Campi suggeriti, mostrati come promemoria solo sul sito di prova quando i dettagli sono vuoti. */
-export const SUGGERIMENTI_STAFF: Testo[] = [
-  { it: 'Di cosa si occupa', en: 'What they do' },
-  { it: 'Chiedetegli di…', en: 'Ask them about…' },
-  { it: 'Il piatto o prodotto preferito', en: 'Favourite dish or product' },
-];
-
+/** Campi suggeriti per i fornitori, mostrati come promemoria solo sul sito di prova quando i dettagli sono vuoti. */
 export const SUGGERIMENTI_FORNITORI: Testo[] = [
   { it: 'Dove si trova', en: 'Where they are' },
   { it: 'Cosa ci porta', en: 'What they supply' },

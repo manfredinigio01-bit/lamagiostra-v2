@@ -13,7 +13,8 @@ interface Props {
   title: string;
   descrizione?: Testo;
   dettagli?: Dettaglio[];
-  suggerimenti: Testo[];
+  /** Senza suggerimenti la pagina mostra solo la descrizione (nessuna riga di dettagli). */
+  suggerimenti?: Testo[];
   children?: ReactNode;
 }
 
@@ -79,7 +80,7 @@ export default function DettaglioLayout({
               </DaCompletare>
             )}
 
-            {righe.length > 0 ? (
+            {!suggerimenti ? null : righe.length > 0 ? (
               <dl className="divide-y divide-stone-200 border-y border-stone-200">
                 {righe.map((d, i) => (
                   <div key={i} className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
