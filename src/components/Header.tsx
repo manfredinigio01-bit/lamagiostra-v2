@@ -43,12 +43,13 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
     setMobileOpen(false);
   }
 
-  const labels: Record<'classici' | 'ricorrenze' | 'fornitori', string> = {
+  const labels: Record<'classici' | 'ricorrenze' | 'fornitori' | 'dove', string> = {
     classici: it ? 'I Nostri Classici' : 'Our Classics',
     ricorrenze: it ? 'Ricorrenze' : 'Celebrations',
     fornitori: it ? 'Fornitori' : 'Suppliers',
+    dove: it ? 'Come arrivare' : 'Find us',
   };
-  const navItems: NavPage[] = ['home', 'classici', 'ricorrenze', 'fornitori'];
+  const navItems: NavPage[] = ['home', 'classici', 'ricorrenze', 'fornitori', 'dove'];
   const labelFor = (p: NavPage) => (p === 'home' ? 'Home' : labels[p as keyof typeof labels]);
 
   return (
@@ -65,15 +66,15 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               />
             </div>
             <div className="text-left">
-              <p className="font-display text-lg sm:text-2xl font-bold leading-tight text-emerald-900">La Magiostra</p>
-              <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block md:hidden xl:block">
+              <p className="font-display text-lg sm:text-2xl font-bold leading-tight text-emerald-900 whitespace-nowrap">La Magiostra</p>
+              <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block lg:hidden xl:block">
                 {it ? 'Negozio di alimentari dal 1987' : 'Grocery store since 1987'}
               </p>
             </div>
           </a>
 
           <div className="flex items-center gap-4">
-            <nav className="hidden md:flex gap-4 lg:gap-6 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
+            <nav className="hidden lg:flex gap-5 xl:gap-6 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
               {navItems.map((p) => (
                 <a
                   key={p}
@@ -94,7 +95,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               </a>
             </nav>
 
-            <div className="hidden md:flex gap-1 items-center">
+            <div className="hidden lg:flex gap-1 items-center">
               <a
                 href={pathFor('staff')}
                 onClick={(e) => go(e, 'staff')}
@@ -124,7 +125,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
             </a>
 
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Menu"
               aria-expanded={mobileOpen}
@@ -136,7 +137,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-cream border-t border-emerald-900/10 px-4 py-4 space-y-1">
+        <div className="lg:hidden bg-cream border-t border-emerald-900/10 px-4 py-4 space-y-1">
           {navItems.map((p) => (
             <a key={p} href={pathFor(p)} onClick={(e) => go(e, p)} className={mobileLinkClass(p)}>
               {labelFor(p)}
