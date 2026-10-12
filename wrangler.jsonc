@@ -8,6 +8,9 @@
   "main": "worker/index.ts",
   // Ogni giorno alle 4: rinnova il token di Instagram (vale 60 giorni).
   "triggers": { "crons": ["0 4 * * *"] },
+  // ID della pagina Facebook di La Magiostra (non è un segreto). La chiave FB_TOKEN invece è un
+  // segreto e si imposta solo su Cloudflare: Settings → Variables and secrets.
+  "vars": { "FB_PAGE_ID": "839044889466106" },
   // Il sito risponde solo da lamagiostra.it: niente indirizzi pubblici *.workers.dev (né di produzione né di anteprima).
   "workers_dev": false,
   "preview_urls": false,
@@ -27,7 +30,7 @@
       "workers_dev": true,
       "preview_urls": false,
       // Senza collegamento a Instagram, il sito di prova mostra un testo di esempio.
-      "vars": { "AMBIENTE": "prova" }
+      "vars": { "AMBIENTE": "prova", "FB_PAGE_ID": "839044889466106" }
     }
   }
 }

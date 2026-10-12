@@ -5,7 +5,7 @@
 // - Tutto il resto: i file del sito, come prima.
 //
 // Configurazione su Cloudflare (Settings → Variables and secrets). Basta UNA delle due fonti:
-// - Facebook (consigliata): FB_PAGE_ID (variabile, l'ID numerico della pagina) e
+// - Facebook (consigliata): FB_PAGE_ID (l'ID numerico della pagina, in wrangler.jsonc) e
 //   FB_TOKEN (segreto, token di accesso della pagina: quello ottenuto da un token utente
 //   a lungo termine non scade).
 // - Instagram: IG_TOKEN (segreto), token a lungo termine dell'account professionale (60 giorni).
@@ -36,7 +36,7 @@ const CACHE_SECONDI = 60 * 60; // un'ora
 const API = 'https://graph.instagram.com';
 // Le versioni dell'API di Facebook restano valide circa due anni: se un giorno smette di
 // funzionare, la prima cosa da provare è aggiornare questo numero.
-const FB_API = 'https://graph.facebook.com/v23.0';
+const FB_API = 'https://graph.facebook.com/v26.0';
 
 interface PostFacebook {
   id: string;
