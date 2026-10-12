@@ -1,4 +1,4 @@
-// Riconosce, tra gli ultimi post di Instagram, quello del menu della settimana e quello
+// Riconosce, tra gli ultimi post della pagina Facebook (o di Instagram), quello del menu della settimana e quello
 // della cassetta del venerdì, in base alla frase con cui inizia il testo del post.
 //
 // Per cambiare le frasi riconosciute basta modificare gli elenchi qui sotto: il confronto
@@ -29,6 +29,8 @@ export interface PostSito {
 export interface Risposta {
   menu: PostSito | null;
   cassetta: PostSito | null;
+  /** Da dove arrivano i post: la pagina Facebook (consigliato) o l'account Instagram. */
+  fonte?: 'facebook' | 'instagram';
   /** true se i contenuti sono di esempio (solo sul sito di prova, senza collegamento a Instagram). */
   esempio?: boolean;
 }

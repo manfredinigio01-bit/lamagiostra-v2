@@ -159,8 +159,8 @@ export default function INostriClassiciPage({ language }: Props) {
               titolo={language === 'it' ? 'Il menu di questa settimana' : "This week's menu"}
               riserva={
                 language === 'it'
-                  ? 'Il menu cambia ogni settimana: lo pubblichiamo ogni volta su Instagram e su WhatsApp.'
-                  : 'The menu changes every week: we post it each time on Instagram and WhatsApp.'
+                  ? 'Il menu cambia ogni settimana: lo pubblichiamo ogni volta su Facebook, Instagram e WhatsApp.'
+                  : 'The menu changes every week: we post it each time on Facebook, Instagram and WhatsApp.'
               }
             />
             <InstagramPost
@@ -169,8 +169,8 @@ export default function INostriClassiciPage({ language }: Props) {
               titolo={language === 'it' ? 'Nella cassetta di questa settimana' : "In this week's Friday box"}
               riserva={
                 language === 'it'
-                  ? 'Il contenuto della cassetta del venerdì cambia ogni settimana: lo pubblichiamo su Instagram.'
-                  : 'The contents of the Friday box change every week: we post them on Instagram.'
+                  ? 'Il contenuto della cassetta del venerdì cambia ogni settimana: lo pubblichiamo su Facebook e Instagram.'
+                  : 'The contents of the Friday box change every week: we post them on Facebook and Instagram.'
               }
             />
           </div>

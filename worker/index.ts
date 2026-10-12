@@ -1,13 +1,16 @@
 // Piccolo programma che gira su Cloudflare accanto al sito.
-// - /api/instagram: restituisce l'ultimo post del menu e della cassetta, letti dall'API
-//   ufficiale di Instagram. È il server a parlare con Instagram, non il browser dei
-//   visitatori: nessun cookie o tracciamento di Meta sul sito.
+// - /api/social (e il vecchio /api/instagram): l'ultimo post del menu e della cassetta, letti
+//   dall'API ufficiale di Meta. È il server a parlare con Meta, non il browser dei visitatori:
+//   nessun cookie o tracciamento di Meta sul sito.
 // - Tutto il resto: i file del sito, come prima.
 //
-// Configurazione su Cloudflare (Settings → Variables and secrets):
-// - IG_TOKEN (segreto): token di accesso a lungo termine dell'account Instagram professionale.
-// - Facoltativo, spazio KV "IG" (binding): conserva il token rinnovato e l'ultima risposta valida.
-//   Senza KV funziona lo stesso, ma il token va rinnovato a mano ogni 60 giorni.
+// Configurazione su Cloudflare (Settings → Variables and secrets). Basta UNA delle due fonti:
+// - Facebook (consigliata): FB_PAGE_ID (variabile, l'ID numerico della pagina) e
+//   FB_TOKEN (segreto, token di accesso della pagina: quello ottenuto da un token utente
+//   a lungo termine non scade).
+// - Instagram: IG_TOKEN (segreto), token a lungo termine dell'account professionale (60 giorni).
+// - Facoltativo, spazio KV "IG" (binding): conserva l'ultima risposta valida e il token Instagram
+//   rinnovato ogni giorno.
 
 import { esempio, scegliPost, type PostInstagram, type Risposta } from './instagram';
 
@@ -18,6 +21,8 @@ interface KV {
 
 interface Env {
   ASSETS: { fetch(request: Request): Promise<Response> };
+  FB_PAGE_ID?: string;
+  FB_TOKEN?: string;
   IG_TOKEN?: string;
   IG?: KV;
   AMBIENTE?: string;
@@ -29,6 +34,31 @@ interface ExecutionContext {
 
 const CACHE_SECONDI = 60 * 60; // un'ora
 const API = 'https://graph.instagram.com';
+// Le versioni dell'API di Facebook restano valide circa due anni: se un giorno smette di
+// funzionare, la prima cosa da provare è aggiornare questo numero.
+const FB_API = 'https://graph.facebook.com/v23.0';
+
+interface PostFacebook {
+  id: string;
+  message?: string;
+  permalink_url?: string;
+  created_time: string;
+}
+
+async function leggiFacebook(env: Env): Promise<Risposta | null> {
+  if (!env.FB_PAGE_ID || !env.FB_TOKEN) return null;
+  const url = `${FB_API}/${encodeURIComponent(env.FB_PAGE_ID)}/posts?fields=id,message,permalink_url,created_time&limit=30&access_token=${encodeURIComponent(env.FB_TOKEN)}`;
+  const res = await fetch(url, { headers: { Accept: 'application/json' } });
+  if (!res.ok) throw new Error(`Facebook ha risposto ${res.status}`);
+  const json = (await res.json()) as { data?: PostFacebook[] };
+  const posts: PostInstagram[] = (json.data ?? []).map((p) => ({
+    id: p.id,
+    caption: p.message,
+    permalink: p.permalink_url ?? `https://www.facebook.com/${p.id}`,
+    timestamp: p.created_time,
+  }));
+  return { ...scegliPost(posts), fonte: 'facebook' };
+}
 
 async function token(env: Env): Promise<string | undefined> {
   return (await env.IG?.get('token')) || env.IG_TOKEN || undefined;
@@ -41,7 +71,12 @@ async function leggiInstagram(env: Env): Promise<Risposta | null> {
   const res = await fetch(url, { headers: { Accept: 'application/json' } });
   if (!res.ok) throw new Error(`Instagram ha risposto ${res.status}`);
   const json = (await res.json()) as { data?: PostInstagram[] };
-  return scegliPost(json.data ?? []);
+  return { ...scegliPost(json.data ?? []), fonte: 'instagram' };
+}
+
+/** Facebook se configurato, altrimenti Instagram. */
+async function leggiPost(env: Env): Promise<Risposta | null> {
+  return (await leggiFacebook(env)) ?? (await leggiInstagram(env));
 }
 
 function json(body: unknown, maxAge: number): Response {
@@ -54,18 +89,18 @@ function json(body: unknown, maxAge: number): Response {
   });
 }
 
-async function apiInstagram(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+async function apiSocial(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
   const cache = (caches as unknown as { default: Cache }).default;
-  const chiave = new Request(new URL('/api/instagram', request.url).toString());
+  const chiave = new Request(new URL('/api/social', request.url).toString());
   const inCache = await cache.match(chiave);
   if (inCache) return inCache;
 
   let risposta: Risposta | null = null;
   try {
-    risposta = await leggiInstagram(env);
+    risposta = await leggiPost(env);
     if (risposta && env.IG) ctx.waitUntil(env.IG.put('ultima', JSON.stringify(risposta)));
   } catch {
-    // Instagram non risponde: usa l'ultima risposta valida, se c'è.
+    // Meta non risponde: usa l'ultima risposta valida, se c'è.
     const ultima = await env.IG?.get('ultima');
     if (ultima) risposta = JSON.parse(ultima) as Risposta;
   }
@@ -84,6 +119,7 @@ async function apiInstagram(request: Request, env: Env, ctx: ExecutionContext): 
 
 /** Ogni giorno: rinnova il token (vale 60 giorni) e lo salva nello spazio KV, se configurato. */
 async function rinnovaToken(env: Env): Promise<void> {
+  if (env.FB_TOKEN) return; // il token della pagina Facebook non scade
   const t = await token(env);
   if (!t || !env.IG) return;
   const res = await fetch(`${API}/refresh_access_token?grant_type=ig_refresh_token&access_token=${encodeURIComponent(t)}`);
@@ -95,9 +131,9 @@ async function rinnovaToken(env: Env): Promise<void> {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const { pathname } = new URL(request.url);
-    if (pathname === '/api/instagram') {
+    if (pathname === '/api/social' || pathname === '/api/instagram') {
       if (request.method !== 'GET' && request.method !== 'HEAD') return new Response(null, { status: 405 });
-      return apiInstagram(request, env, ctx);
+      return apiSocial(request, env, ctx);
     }
     if (pathname.startsWith('/api/')) return new Response('Not found', { status: 404 });
     return env.ASSETS.fetch(request);

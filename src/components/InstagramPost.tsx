@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Instagram } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import { COMPANY } from '../lib/company';
 
 interface PostSito {
@@ -12,13 +12,14 @@ interface Risposta {
   menu: PostSito | null;
   cassetta: PostSito | null;
   esempio?: boolean;
+  fonte?: 'facebook' | 'instagram';
 }
 
 // Una sola richiesta per pagina anche se il riquadro compare più volte.
 let richiesta: Promise<Risposta | null> | null = null;
 function caricaPost(): Promise<Risposta | null> {
   if (!richiesta) {
-    richiesta = fetch('/api/instagram', { headers: { Accept: 'application/json' } })
+    richiesta = fetch('/api/social', { headers: { Accept: 'application/json' } })
       .then((r) => (r.ok ? (r.json() as Promise<Risposta>) : null))
       .catch(() => null);
   }
@@ -33,12 +34,13 @@ interface Props {
   riserva: string;
 }
 
-/** L'ultimo post Instagram del menu o della cassetta, aggiornato da solo. */
+/** L'ultimo post (Facebook o Instagram) del menu o della cassetta, aggiornato da solo. */
 export default function InstagramPost({ tipo, language, titolo, riserva }: Props) {
   const it = language === 'it';
   const [stato, setStato] = useState<'carica' | 'pronto'>('carica');
   const [post, setPost] = useState<PostSito | null>(null);
   const [esempio, setEsempio] = useState(false);
+  const [fonte, setFonte] = useState<'facebook' | 'instagram'>('facebook');
 
   useEffect(() => {
     let attivo = true;
@@ -46,6 +48,7 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
       if (!attivo) return;
       setPost(r ? r[tipo] : null);
       setEsempio(Boolean(r?.esempio));
+      if (r?.fonte) setFonte(r.fonte);
       setStato('pronto');
     });
     return () => {
@@ -61,7 +64,11 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
     <section className="bg-white rounded-2xl border border-emerald-900/10 shadow-sm p-6 sm:p-7" aria-live="polite">
       <div className="flex items-start justify-between gap-3 mb-4">
         <h3 className="font-bold text-emerald-900 text-lg sm:text-xl">{titolo}</h3>
-        <Instagram className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-1" aria-hidden="true" />
+        {fonte === 'instagram' ? (
+          <Instagram className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-1" aria-hidden="true" />
+        ) : (
+          <Facebook className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-1" aria-hidden="true" />
+        )}
       </div>
 
       {stato === 'carica' ? (
@@ -74,14 +81,16 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
         <>
           {esempio && (
             <p className="mb-3 inline-block bg-amber-100 text-amber-900 text-xs font-semibold px-2 py-1 rounded">
-              Esempio: Instagram non ancora collegato
+              Esempio: Facebook non ancora collegato
             </p>
           )}
           <p className="text-stone-700 text-sm sm:text-base leading-relaxed whitespace-pre-line">{post.testo}</p>
           <p className="mt-4 text-sm text-stone-500">
             {it ? 'Pubblicato il' : 'Posted on'} {data} ·{' '}
             <a href={post.link} target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold hover:underline">
-              {it ? 'Apri su Instagram' : 'Open on Instagram'}
+              {fonte === 'instagram'
+                ? it ? 'Apri su Instagram' : 'Open on Instagram'
+                : it ? 'Apri su Facebook' : 'Open on Facebook'}
             </a>
           </p>
         </>
@@ -89,13 +98,13 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
         <>
           <p className="text-stone-700 text-sm sm:text-base leading-relaxed">{riserva}</p>
           <a
-            href={COMPANY.instagram}
+            href={COMPANY.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex items-center gap-2 text-emerald-700 font-semibold text-sm hover:underline"
           >
-            <Instagram className="w-4 h-4" aria-hidden="true" />
-            {it ? 'Seguici su Instagram' : 'Follow us on Instagram'}
+            <Facebook className="w-4 h-4" aria-hidden="true" />
+            {it ? 'Seguici su Facebook' : 'Follow us on Facebook'}
           </a>
         </>
       )}
