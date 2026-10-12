@@ -58,8 +58,8 @@ export default function PrivacyPolicyPage({ language }: Props) {
           <h3 className="font-semibold text-stone-800 mb-1">{it ? 'c) Foto e nomi di staff e fornitori' : 'c) Photos and names of staff and suppliers'}</h3>
           <p>
             {it
-              ? 'Le pagine "Staff" e "Fornitori" pubblicano nome, ruolo e fotografia delle persone che lavorano in negozio e delle aziende fornitrici. Per le persone la pubblicazione avviene solo con il loro consenso, che può essere revocato in qualsiasi momento scrivendoci: la foto sarà rimossa dal sito.'
-              : 'The "Staff" and "Suppliers" pages publish the name, role and photograph of the people working in the shop and of supplier businesses. For individuals, publication takes place only with their consent, which can be withdrawn at any time by writing to us: the photo will be removed from the site.'}
+              ? 'Le pagine "Staff" e "Fornitori" pubblicano il nome, il reparto e la fotografia delle persone che lavorano in negozio e delle aziende fornitrici. Per le persone la pubblicazione avviene solo con il loro consenso, che può essere revocato in qualsiasi momento scrivendoci: la foto sarà rimossa dal sito.'
+              : 'The "Staff" and "Suppliers" pages publish the first name, department and photograph of the people working in the shop and of supplier businesses. For individuals, publication takes place only with their consent, which can be withdrawn at any time by writing to us: the photo will be removed from the site.'}
           </p>
         </div>
       </LegalSection>

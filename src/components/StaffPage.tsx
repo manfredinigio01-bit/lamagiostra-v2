@@ -16,8 +16,8 @@ export default function StaffPage({ language }: Props) {
           </h1>
           <p className="text-emerald-200 text-base sm:text-lg max-w-xl mx-auto">
             {language === 'it'
-              ? 'Le persone che ogni giorno rendono La Magiostra un posto speciale.'
-              : 'The people who make La Magiostra a special place every day.'}
+              ? 'Le persone che ogni giorno lavorano in bottega e in cucina.'
+              : 'The people who work in the shop and kitchen every day.'}
           </p>
         </div>
       </div>
