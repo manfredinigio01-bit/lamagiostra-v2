@@ -141,12 +141,12 @@ export default function INostriClassiciPage({ language }: Props) {
                   {language === 'it' ? 'Ogni sabato' : 'Every Saturday'}
                 </div>
                 <h3 className="font-bold text-emerald-800 text-lg mb-2">
-                  {language === 'it' ? 'Menu speciale del sabato' : 'Saturday special menu'}
+                  {language === 'it' ? 'Il menu del sabato' : 'The Saturday menu'}
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">
                   {language === 'it'
-                    ? 'Il sabato è il giorno speciale della settimana: proponiamo un menu dedicato, con preparazioni più elaborate e una selezione più ricca rispetto ai giorni feriali.'
-                    : 'Saturday is the special day of the week: we offer a dedicated menu, with more elaborate preparations and a richer selection than on weekdays.'}
+                    ? 'Il sabato proponiamo un menu dedicato, con preparazioni più elaborate e una scelta più ricca rispetto agli altri giorni.'
+                    : 'On Saturdays we offer a dedicated menu, with more elaborate dishes and a wider choice than on other days.'}
                 </p>
               </div>
             </div>

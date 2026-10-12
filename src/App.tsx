@@ -70,7 +70,7 @@ const translations = {
     cookingCourses: 'Corsi di Cucina in Bottega',
     cookingCoursesDesc: 'Impara a cucinare direttamente nella nostra bottega con Chiara e il nostro staff. Corsi pratici e conviviali dedicati alla cucina vegetariana e vegana, con ingredienti freschi selezionati da noi. Un\'esperienza unica da condividere con amici e familiari.',
     catering: 'Catering Fuori Porta',
-    cateringDesc: 'Portiamo la nostra cucina dove vuoi tu. Organizziamo piccoli catering per eventi privati, aziendali e ricorrenze speciali. Menu su misura con i nostri piatti vegetariani e vegani, preparati con cura e passione per ogni occasione.',
+    cateringDesc: 'Portiamo la nostra cucina dove vuoi tu. Organizziamo piccoli catering per eventi privati, aziendali e ricorrenze. Menu su misura con i nostri piatti vegetariani e vegani, preparati con cura e passione per ogni occasione.',
   },
   en: {
     home: 'Home',
@@ -126,7 +126,7 @@ const translations = {
     cookingCourses: 'Cooking Courses in Store',
     cookingCoursesDesc: 'Learn to cook directly in our store with Chiara and our staff. Hands-on and convivial courses dedicated to vegetarian and vegan cuisine, using fresh ingredients selected by us. A unique experience to share with friends and family.',
     catering: 'Outside Catering',
-    cateringDesc: 'We bring our kitchen to you. We organise small catering events for private, corporate and special occasions. Bespoke menus with our vegetarian and vegan dishes, prepared with care and passion for every event.',
+    cateringDesc: 'We bring our kitchen to you. We organise small catering events for private, corporate and family occasions. Bespoke menus with our vegetarian and vegan dishes, prepared with care and passion for every event.',
   }
 };
 
