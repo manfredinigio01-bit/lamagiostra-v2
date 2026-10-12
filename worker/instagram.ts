@@ -4,7 +4,13 @@
 // Per cambiare le frasi riconosciute basta modificare gli elenchi qui sotto: il confronto
 // ignora maiuscole, accenti, emoji e punteggiatura, quindi "🥕 MENÙ della settimana!" va bene.
 
-export const FRASI_MENU = ['menu della settimana', 'il menu della settimana', 'menu settimanale'];
+export const FRASI_MENU = [
+  'la proposta della gastronomia',
+  'le proposte della gastronomia',
+  'la proposte della gastronomia',
+  'menu della settimana',
+  'il menu della settimana',
+]; // i post iniziano con "La PROPOSTE della GASTRONOMIA"
 export const FRASI_CASSETTA = ['cassetta del venerdi', 'la cassetta del venerdi', 'cassetta della settimana'];
 
 export interface PostInstagram {
@@ -69,7 +75,7 @@ export function esempio(): Risposta {
     esempio: true,
     menu: {
       testo:
-        'Menù della settimana\n\nTESTO DI ESEMPIO: qui comparirà il testo del vostro ultimo post che inizia con "Menù della settimana".\n\nOgni riga del post resta su una riga, come su Instagram.',
+        'La proposta della gastronomia\n\nTESTO DI ESEMPIO: qui comparirà il testo del vostro ultimo post che inizia con "La proposta della gastronomia".\n\nOgni riga del post resta su una riga, come su Instagram.',
       link: 'https://www.instagram.com/lamagiostra/',
       data: oggi,
     },
