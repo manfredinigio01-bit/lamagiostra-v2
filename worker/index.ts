@@ -49,7 +49,17 @@ async function leggiFacebook(env: Env): Promise<Risposta | null> {
   if (!env.FB_PAGE_ID || !env.FB_TOKEN) return null;
   const url = `${FB_API}/${encodeURIComponent(env.FB_PAGE_ID)}/posts?fields=id,message,permalink_url,created_time&limit=30&access_token=${encodeURIComponent(env.FB_TOKEN)}`;
   const res = await fetch(url, { headers: { Accept: 'application/json' } });
-  if (!res.ok) throw new Error(`Facebook ha risposto ${res.status}`);
+  if (!res.ok) {
+    // Il messaggio di errore di Facebook (mai il token) aiuta a capire cosa non va.
+    let dettaglio = '';
+    try {
+      const e = (await res.json()) as { error?: { message?: string; code?: number } };
+      dettaglio = e.error ? ` (${e.error.code}: ${e.error.message})` : '';
+    } catch {
+      /* risposta non JSON */
+    }
+    throw new Error(`Facebook ha risposto ${res.status}${dettaglio}`);
+  }
   const json = (await res.json()) as { data?: PostFacebook[] };
   const posts: PostInstagram[] = (json.data ?? []).map((p) => ({
     id: p.id,
@@ -96,10 +106,13 @@ async function apiSocial(request: Request, env: Env, ctx: ExecutionContext): Pro
   if (inCache) return inCache;
 
   let risposta: Risposta | null = null;
+  let diagnosi = '';
   try {
     risposta = await leggiPost(env);
+    if (!risposta) diagnosi = `non configurato: FB_PAGE_ID ${env.FB_PAGE_ID ? 'presente' : 'mancante'}, FB_TOKEN ${env.FB_TOKEN ? 'presente' : 'mancante'}`;
     if (risposta && env.IG) ctx.waitUntil(env.IG.put('ultima', JSON.stringify(risposta)));
-  } catch {
+  } catch (e) {
+    diagnosi = e instanceof Error ? e.message : 'errore sconosciuto';
     // Meta non risponde: usa l'ultima risposta valida, se c'è.
     const ultima = await env.IG?.get('ultima');
     if (ultima) risposta = JSON.parse(ultima) as Risposta;
@@ -109,6 +122,8 @@ async function apiSocial(request: Request, env: Env, ctx: ExecutionContext): Pro
     // Non collegato (o nessun dato): sul sito di prova un esempio, sul sito vero il testo fisso.
     risposta = env.AMBIENTE === 'prova' ? esempio() : { menu: null, cassetta: null };
   }
+  // Solo sul sito di prova: perché non ci sono post veri (aiuta a configurare il collegamento).
+  if (env.AMBIENTE === 'prova' && diagnosi) risposta = { ...risposta, diagnosi };
 
   // Post veri: un'ora. Esempio o nessun post: un minuto, così un collegamento nuovo si vede subito.
   const veri = !risposta.esempio && (risposta.menu || risposta.cassetta);

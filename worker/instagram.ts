@@ -33,6 +33,8 @@ export interface Risposta {
   fonte?: 'facebook' | 'instagram';
   /** true se i contenuti sono di esempio (solo sul sito di prova, senza collegamento a Instagram). */
   esempio?: boolean;
+  /** Solo sul sito di prova: perché non ci sono post veri. */
+  diagnosi?: string;
 }
 
 /** Minuscole, senza accenti, emoji e punteggiatura, spazi singoli. */
