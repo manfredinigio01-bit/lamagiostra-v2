@@ -1,6 +1,6 @@
 import { ArrowRight, Leaf, Package } from 'lucide-react';
-import { fornitori } from '../data/team';
-import { produttorePath } from '../lib/routes';
+import { fornitori, type Fornitore } from '../data/team';
+import { fornitoreApribile, produttorePath } from '../lib/routes';
 
 interface Props {
   language: string;
@@ -32,43 +32,60 @@ export default function FornitoriPage({ language, onOpen }: Props) {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
-          {fornitori.map((f) => (
-            <a
-              key={f.slug}
-              href={produttorePath(f.slug)}
-              onClick={(e) => {
-                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-                e.preventDefault();
-                onOpen(produttorePath(f.slug));
-              }}
-              className="group block bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="aspect-square overflow-hidden bg-stone-100">
-                {f.photo ? (
-                  <img
-                    src={f.photo}
-                    alt={f.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-emerald-50" aria-hidden="true">
-                    <Leaf className="w-12 h-12 sm:w-16 sm:h-16 text-emerald-300" />
-                  </div>
-                )}
+          {fornitori.map((f) =>
+            fornitoreApribile(f) ? (
+              <a
+                key={f.slug}
+                href={produttorePath(f.slug)}
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                  e.preventDefault();
+                  onOpen(produttorePath(f.slug));
+                }}
+                className="group block bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+              >
+                <Scheda f={f} it={it} apribile />
+              </a>
+            ) : (
+              <div key={f.slug} className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden">
+                <Scheda f={f} it={it} apribile={false} />
               </div>
-              <div className="p-3 text-center">
-                <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
-                <p className="mt-1 inline-flex items-center gap-1 text-emerald-700 text-xs font-semibold">
-                  {it ? 'Scopri di più' : 'Learn more'}
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </p>
-              </div>
-            </a>
-          ))}
+            ),
+          )}
         </div>
       </section>
     </div>
+  );
+}
+
+/** Foto (o icona) e nome; "Scopri di più" solo se la scheda si apre. */
+function Scheda({ f, it, apribile }: { f: Fornitore; it: boolean; apribile: boolean }) {
+  return (
+    <>
+      <div className="aspect-square overflow-hidden bg-stone-100">
+        {f.photo ? (
+          <img
+            src={f.photo}
+            alt={f.name}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-emerald-50" aria-hidden="true">
+            <Leaf className="w-12 h-12 sm:w-16 sm:h-16 text-emerald-300" />
+          </div>
+        )}
+      </div>
+      <div className="p-3 text-center">
+        <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
+        {apribile && (
+          <p className="mt-1 inline-flex items-center gap-1 text-emerald-700 text-xs font-semibold">
+            {it ? 'Scopri di più' : 'Learn more'}
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </p>
+        )}
+      </div>
+    </>
   );
 }

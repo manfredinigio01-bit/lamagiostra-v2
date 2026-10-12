@@ -1,6 +1,13 @@
 // Percorsi del sito. Ogni pagina ha un indirizzo vero (es. /fornitori), così
 // funzionano i link condivisi, il pulsante "indietro" e i motori di ricerca.
-import { fornitori, haScheda, staff } from '../data/team';
+import { fornitori, haScheda, staff, type Fornitore } from '../data/team';
+import { IS_PROVA } from './ambiente';
+
+/** Un produttore ha la pagina di approfondimento quando ha una descrizione.
+ *  Sul sito di prova si aprono tutti, per vedere dove vanno i contenuti. */
+export function fornitoreApribile(f: Fornitore): boolean {
+  return Boolean(f.descrizione) || IS_PROVA;
+}
 
 export type Page =
   | 'home'
@@ -41,7 +48,7 @@ export const produttorePath = (slug: string) => `/fornitori/${slug}`;
 export function allPublicPaths(): string[] {
   return [
     ...PUBLIC_PAGES.map(pathFor),
-    ...fornitori.map((f) => produttorePath(f.slug)),
+    ...fornitori.filter((f) => Boolean(f.descrizione)).map((f) => produttorePath(f.slug)),
     ...staff.filter(haScheda).map((s) => personaPath(s.slug)),
   ];
 }
@@ -64,7 +71,7 @@ export function pageFromPath(pathname: string): Page {
   if (m) {
     const slug = decodeURIComponent(m[2]);
     if (m[1] === 'staff') return staff.some((s) => s.slug === slug && haScheda(s)) ? 'persona' : 'not-found';
-    return fornitori.some((f) => f.slug === slug) ? 'produttore' : 'not-found';
+    return fornitori.some((f) => f.slug === slug && fornitoreApribile(f)) ? 'produttore' : 'not-found';
   }
   const entry = (Object.entries(PAGE_PATHS) as [StaticPage, string][]).find(([, p]) => p === path);
   return entry ? entry[0] : 'not-found';
