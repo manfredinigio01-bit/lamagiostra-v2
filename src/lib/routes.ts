@@ -15,6 +15,7 @@ export type Page =
   | 'ricorrenze'
   | 'fornitori'
   | 'staff'
+  | 'dove'
   | 'privacy'
   | 'cookie'
   | 'persona'
@@ -30,12 +31,13 @@ export const PAGE_PATHS: Record<StaticPage, string> = {
   ricorrenze: '/ricorrenze',
   fornitori: '/fornitori',
   staff: '/staff',
+  dove: '/come-arrivare',
   privacy: '/privacy',
   cookie: '/cookie',
 };
 
 /** Pagine fisse da inserire nella sitemap. */
-export const PUBLIC_PAGES: StaticPage[] = ['home', 'classici', 'ricorrenze', 'fornitori', 'staff', 'privacy', 'cookie'];
+export const PUBLIC_PAGES: StaticPage[] = ['home', 'classici', 'ricorrenze', 'fornitori', 'staff', 'dove', 'privacy', 'cookie'];
 
 export function pathFor(page: StaticPage): string {
   return PAGE_PATHS[page];

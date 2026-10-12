@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Facebook, Instagram } from 'lucide-react';
+import { ChevronDown, ChevronUp, Facebook, Instagram } from 'lucide-react';
 import { COMPANY } from '../lib/company';
 
 interface PostSito {
@@ -41,6 +41,7 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
   const [post, setPost] = useState<PostSito | null>(null);
   const [esempio, setEsempio] = useState(false);
   const [fonte, setFonte] = useState<'facebook' | 'instagram'>('facebook');
+  const [aperto, setAperto] = useState(false);
 
   useEffect(() => {
     let attivo = true;
@@ -55,6 +56,9 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
       attivo = false;
     };
   }, [tipo]);
+
+  // Sul telefono i post lunghi (come il menu) si accorciano a 10 righe, con "Mostra tutto".
+  const lungo = Boolean(post && (post.testo.split('\n').length > 10 || post.testo.length > 450));
 
   const data = post
     ? new Date(post.data).toLocaleDateString(it ? 'it-IT' : 'en-GB', { day: 'numeric', month: 'long' })
@@ -84,7 +88,26 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
               Esempio: Facebook non ancora collegato
             </p>
           )}
-          <p className="text-stone-700 text-sm sm:text-base leading-relaxed whitespace-pre-line">{post.testo}</p>
+          <p
+            id={`post-${tipo}`}
+            className={`text-stone-700 text-sm sm:text-base leading-relaxed whitespace-pre-line ${
+              lungo && !aperto ? 'line-clamp-[10] sm:line-clamp-none' : ''
+            }`}
+          >
+            {post.testo}
+          </p>
+          {lungo && (
+            <button
+              type="button"
+              onClick={() => setAperto((a) => !a)}
+              aria-expanded={aperto}
+              aria-controls={`post-${tipo}`}
+              className="sm:hidden mt-2 inline-flex items-center gap-1 text-emerald-700 font-semibold text-sm"
+            >
+              {aperto ? (it ? 'Mostra meno' : 'Show less') : it ? 'Mostra tutto' : 'Show all'}
+              {aperto ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          )}
           <p className="mt-4 text-sm text-stone-500">
             {it ? 'Pubblicato il' : 'Posted on'} {data} ·{' '}
             <a href={post.link} target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold hover:underline">

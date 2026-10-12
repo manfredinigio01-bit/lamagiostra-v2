@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import NotFoundPage from './components/NotFoundPage';
 import PersonaPage from './components/PersonaPage';
 import ProduttorePage from './components/ProduttorePage';
+import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
 import { COMPANY, whatsappLink } from './lib/company';
@@ -222,6 +223,8 @@ function App() {
         return member ? <PersonaPage language={language} member={member} onBack={() => navigate('staff')} /> : null;
       case 'produttore':
         return fornitore ? <ProduttorePage language={language} fornitore={fornitore} onBack={() => navigate('fornitori')} /> : null;
+      case 'dove':
+        return <ComeArrivarePage language={language} />;
       case 'privacy':
         return <PrivacyPolicyPage language={language} />;
       case 'cookie':
