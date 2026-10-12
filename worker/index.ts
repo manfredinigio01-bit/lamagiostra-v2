@@ -75,7 +75,9 @@ async function apiInstagram(request: Request, env: Env, ctx: ExecutionContext): 
     risposta = env.AMBIENTE === 'prova' ? esempio() : { menu: null, cassetta: null };
   }
 
-  const res = json(risposta, CACHE_SECONDI);
+  // Post veri: un'ora. Esempio o nessun post: un minuto, così un collegamento nuovo si vede subito.
+  const veri = !risposta.esempio && (risposta.menu || risposta.cassetta);
+  const res = json(risposta, veri ? CACHE_SECONDI : 60);
   ctx.waitUntil(cache.put(chiave, res.clone()));
   return res;
 }
