@@ -1,18 +1,14 @@
 import { Info, MessageCircle } from 'lucide-react';
-import { ALLERGENI, ALLERGENI_LABORATORIO, piattiFissi, verificato } from '../data/allergeni';
-import { IS_PROVA } from '../lib/ambiente';
+import { ALLERGENI, ALLERGENI_LABORATORIO } from '../data/allergeni';
 import { whatsappLink } from '../lib/company';
 
 interface Props {
   language: string;
 }
 
-/** Allergeni dei piatti sempre presenti, più l'avviso per i piatti della settimana. */
+/** Allergeni usati in laboratorio, in forma generale, con l'invito a chiedere. */
 export default function AllergeniTabella({ language }: Props) {
   const it = language === 'it';
-  const piatti = piattiFissi.filter((p) => IS_PROVA || verificato(p));
-  const elenco = (chiavi: (keyof typeof ALLERGENI)[]) =>
-    chiavi.map((k) => (it ? ALLERGENI[k].it : ALLERGENI[k].en)).join(', ');
 
   return (
     <section id="allergeni" className="mt-10 sm:mt-16 scroll-mt-24" aria-labelledby="allergeni-titolo">
@@ -47,41 +43,6 @@ export default function AllergeniTabella({ language }: Props) {
             ))}
           </ul>
         </div>
-
-        {piatti.length > 0 && (
-          <div>
-            <h3 className="font-bold text-emerald-900 mb-3">
-              {it ? 'I piatti sempre presenti' : 'Dishes always available'}
-            </h3>
-            <dl className="divide-y divide-stone-200 border-y border-stone-200">
-              {piatti.map((p, i) => (
-                <div key={i} className="py-3 sm:grid sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-semibold text-stone-800">{it ? p.nome.it : p.nome.en}</dt>
-                  <dd className="text-stone-700 sm:col-span-2 mt-1 sm:mt-0 text-sm sm:text-base">
-                    {!verificato(p) ? (
-                      <span className="inline-block border border-dashed border-amber-400 bg-amber-50 text-amber-900 rounded px-2 py-0.5 text-xs font-semibold">
-                        Da completare: allergeni da verificare sulla ricetta (visibile solo nella versione di prova)
-                      </span>
-                    ) : p.allergeni!.length === 0 ? (
-                      it ? 'Nessuno dei 14 allergeni' : 'None of the 14 allergens'
-                    ) : (
-                      <>
-                        <span className="font-medium">{it ? 'Contiene: ' : 'Contains: '}</span>
-                        {elenco(p.allergeni!)}
-                      </>
-                    )}
-                    {verificato(p) && p.tracce && p.tracce.length > 0 && (
-                      <span className="block text-stone-500 text-sm mt-1">
-                        {it ? 'Può contenere tracce di: ' : 'May contain traces of: '}
-                        {elenco(p.tracce)}
-                      </span>
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        )}
 
         <a
           href={whatsappLink(language, {
