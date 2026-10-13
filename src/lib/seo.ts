@@ -69,6 +69,16 @@ const META: Record<Exclude<Page, 'persona' | 'produttore'>, { it: Meta; en: Meta
       description: 'The people who work every day in the shop and kitchen at La Magiostra.',
     },
   },
+  dove: {
+    it: {
+      title: 'Come arrivare – La Magiostra, Via Grado 1, Cremona',
+      description: 'Dove trovarci: La Magiostra, Via Grado 1, 26100 Cremona. Orari di apertura, mappa e contatti per arrivare in bottega.',
+    },
+    en: {
+      title: 'Find us – La Magiostra, Via Grado 1, Cremona',
+      description: 'Where to find us: La Magiostra, Via Grado 1, 26100 Cremona. Opening hours, map and contacts.',
+    },
+  },
   privacy: {
     it: { title: 'Informativa privacy – La Magiostra', description: 'Informativa sul trattamento dei dati personali (GDPR) di La Magiostra, Cremona.' },
     en: { title: 'Privacy policy – La Magiostra', description: 'Privacy policy (GDPR) of La Magiostra, Cremona.' },

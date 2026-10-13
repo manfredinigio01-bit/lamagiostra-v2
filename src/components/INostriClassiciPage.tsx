@@ -1,5 +1,6 @@
 import { whatsappLink } from '../lib/company';
 import InstagramPost from './InstagramPost';
+import AllergeniTabella from './AllergeniTabella';
 import { ShoppingBasket, Clock, Star, Utensils, CalendarDays, RefreshCw } from 'lucide-react';
 
 interface Props {
@@ -175,6 +176,13 @@ export default function INostriClassiciPage({ language }: Props) {
             />
           </div>
 
+          <p className="-mt-4 mb-8 text-sm text-stone-500">
+            {language === 'it' ? 'Allergie o intolleranze? ' : 'Allergies or intolerances? '}
+            <a href="#allergeni" className="text-emerald-700 font-semibold hover:underline">
+              {language === 'it' ? 'Leggi gli allergeni ↓' : 'Read about allergens ↓'}
+            </a>
+          </p>
+
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-6 py-4 flex items-start gap-3">
             <Star className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
             <p className="text-emerald-800 text-sm leading-relaxed">
@@ -246,6 +254,8 @@ export default function INostriClassiciPage({ language }: Props) {
             ))}
           </div>
         </div>
+
+        <AllergeniTabella language={language} />
 
         <div className="mt-10 sm:mt-16 bg-stone-100 rounded-2xl p-6 sm:p-10 text-center border border-stone-200">
           <ShoppingBasket className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-emerald-600" />
