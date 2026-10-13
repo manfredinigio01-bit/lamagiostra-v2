@@ -23,7 +23,6 @@ export const CESTI_NATALE = {
     en: 'For years we have been seeking out, tasting and selecting small producers, many of them certified organic or biodynamic: the kind you rarely find on supermarket shelves. The same care we put into the shop every day goes into a basket for your Christmas. Four baskets, four price ranges, the same care in every choice.',
   },
   condizioni: [
-    { it: '5% di sconto con pagamento anticipato.', en: '5% off with advance payment.' },
     { it: 'Prezzi IVA inclusa.', en: 'Prices include VAT.' },
     {
       it: 'Gli allergeni sono indicati sull’etichetta di ogni prodotto. Per esigenze vegetariane o vegane contattaci: ti aiutiamo a scegliere.',
