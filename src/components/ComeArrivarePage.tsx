@@ -19,17 +19,29 @@ const INDICAZIONI: { icona: ReactNode; titolo: Testo; testo?: Testo; suggeriment
   {
     icona: <Car className="w-6 h-6 text-emerald-700" />,
     titolo: { it: 'In auto e parcheggio', en: 'By car and parking' },
-    suggerimento: 'Dove si parcheggia più facilmente, se è a pagamento o a disco orario, se c’è ZTL vicino.',
+    testo: {
+      it: 'Si trova parcheggio in zona, vicino a piazza Castello o nelle vie intorno alla bottega: al massimo 3–4 minuti a piedi.',
+      en: 'You can find parking nearby, around Piazza Castello or in the streets around the shop: 3–4 minutes on foot at most.',
+    },
+    suggerimento: 'Dove si parcheggia più facilmente.',
   },
   {
     icona: <Footprints className="w-6 h-6 text-emerald-700" />,
-    titolo: { it: 'A piedi e in autobus', en: 'On foot and by bus' },
-    suggerimento: 'Quanto dista dal centro o dalla stazione, quali autobus fermano vicino e dove.',
+    titolo: { it: 'A piedi', en: 'On foot' },
+    testo: {
+      it: 'Dal centro di Cremona ci si arriva facilmente a piedi.',
+      en: 'The shop is an easy walk from the centre of Cremona.',
+    },
+    suggerimento: 'Quanto dista dal centro.',
   },
   {
     icona: <Bike className="w-6 h-6 text-emerald-700" />,
     titolo: { it: 'In bicicletta', en: 'By bike' },
-    suggerimento: 'Dove si può lasciare la bici (rastrelliera davanti al negozio?).',
+    testo: {
+      it: 'Facile da raggiungere in bici dal centro. Davanti alla bottega potete legare la bici alla ringhiera.',
+      en: 'Easy to reach by bike from the centre. You can lock your bike to the railing in front of the shop.',
+    },
+    suggerimento: 'Dove si può lasciare la bici.',
   },
 ];
 
