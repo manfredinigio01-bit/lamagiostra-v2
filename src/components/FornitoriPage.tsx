@@ -9,7 +9,6 @@ interface Props {
 
 export default function FornitoriPage({ language, onOpen }: Props) {
   const it = language === 'it';
-  const altri = fornitori.filter((f) => f.gruppo === 'altri');
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -31,14 +30,8 @@ export default function FornitoriPage({ language, onOpen }: Props) {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 sm:space-y-16">
-        <Griglia elenco={fornitori.filter((f) => !f.gruppo)} it={it} onOpen={onOpen} />
-        {altri.length > 0 && (
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-6">{it ? 'Altri fornitori' : 'Other suppliers'}</h2>
-            <Griglia elenco={altri} it={it} onOpen={onOpen} />
-          </div>
-        )}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <Griglia elenco={fornitori} it={it} onOpen={onOpen} />
       </section>
     </div>
   );

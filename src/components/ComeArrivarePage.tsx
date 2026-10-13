@@ -18,19 +18,19 @@ const GOOGLE_NAVIGATORE = `https://www.google.com/maps/dir/?api=1&destination=${
 const INDICAZIONI: { icona: ReactNode; titolo: Testo; testo?: Testo; suggerimento: string }[] = [
   {
     icona: <Car className="w-6 h-6 text-emerald-700" />,
-    titolo: { it: 'In auto e parcheggio', en: 'By car and parking' },
+    titolo: { it: 'In auto', en: 'By car' },
     testo: {
-      it: 'Si trova parcheggio in zona, vicino a piazza Castello o nelle vie intorno alla bottega: al massimo 3–4 minuti a piedi.',
-      en: 'You can find parking nearby, around Piazza Castello or in the streets around the shop: 3–4 minutes on foot at most.',
+      it: 'Facilmente raggiungibile in auto da Via Dante o Via Ghinaglia: parcheggia in Piazza Castello ed entra a trovarci.',
+      en: 'Easy to reach by car from Via Dante or Via Ghinaglia: park in Piazza Castello and come in.',
     },
-    suggerimento: 'Dove si parcheggia più facilmente.',
+    suggerimento: 'Come arrivare in auto e dove parcheggiare.',
   },
   {
     icona: <Footprints className="w-6 h-6 text-emerald-700" />,
     titolo: { it: 'A piedi', en: 'On foot' },
     testo: {
-      it: 'Dal centro di Cremona ci si arriva facilmente a piedi.',
-      en: 'The shop is an easy walk from the centre of Cremona.',
+      it: 'A soli 15 minuti a piedi da Piazza del Duomo.',
+      en: 'Just a 15-minute walk from Piazza del Duomo.',
     },
     suggerimento: 'Quanto dista dal centro.',
   },
@@ -38,8 +38,8 @@ const INDICAZIONI: { icona: ReactNode; titolo: Testo; testo?: Testo; suggeriment
     icona: <Bike className="w-6 h-6 text-emerald-700" />,
     titolo: { it: 'In bicicletta', en: 'By bike' },
     testo: {
-      it: 'Facile da raggiungere in bici dal centro. Davanti alla bottega potete legare la bici alla ringhiera.',
-      en: 'Easy to reach by bike from the centre. You can lock your bike to the railing in front of the shop.',
+      it: 'A soli 5 minuti dal centro: troverete spazio per lasciare la vostra bici ed entrare da noi.',
+      en: 'Just 5 minutes from the centre: you will find space to leave your bike and come in.',
     },
     suggerimento: 'Dove si può lasciare la bici.',
   },

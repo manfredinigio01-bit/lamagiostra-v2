@@ -45,8 +45,6 @@ export interface Fornitore {
   link?: { url: string; label: string };
   /** Breve nota sotto il nome nella griglia, es. "Pane". */
   nota?: Testo;
-  /** 'altri' = elencati sotto, nel gruppo "Altri fornitori" (distributori e marchi). */
-  gruppo?: 'altri';
 }
 
 export const staff: StaffMember[] = [
@@ -72,10 +70,7 @@ export const fornitori: Fornitore[] = [
   { slug: 'allegri-daniele', name: 'Allegri Daniele', nota: { it: 'Pane', en: 'Bread' } },
   { slug: 'mulino-sobrino', name: 'Mulino Sobrino' },
   { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' },
-  { slug: 'effegi', name: 'Effegi Srl', gruppo: 'altri' },
-  { slug: 'mediterranea', name: 'Mediterranea Srl', gruppo: 'altri' },
-  { slug: 'ecor', name: 'Ecor', gruppo: 'altri' },
-  { slug: 'probios', name: 'Probios', gruppo: 'altri' },
+  { slug: 'mediterranea', name: 'Mediterranea Srl' },
 ];
 
 /** Una persona ha la pagina di approfondimento solo se ha una descrizione. */
