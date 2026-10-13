@@ -1,4 +1,4 @@
-import { Check, Gift, MessageCircle, ShoppingBasket } from 'lucide-react';
+import { Check, MessageCircle, ShoppingBasket } from 'lucide-react';
 import { CESTI_NATALE, cestiNataleVisibili } from '../data/cesti';
 import { whatsappLink } from '../lib/company';
 
@@ -75,14 +75,6 @@ export default function CestiNatale({ language }: Props) {
             ))}
           </div>
 
-          <div className="mt-6 bg-red-50 border border-red-200 rounded-2xl p-5 sm:p-6 flex gap-3">
-            <Gift className="w-6 h-6 text-red-700 flex-shrink-0" aria-hidden="true" />
-            <ul className="space-y-1 text-sm sm:text-base text-stone-700">
-              {CESTI_NATALE.condizioni.map((t, i) => (
-                <li key={i}>{it ? t.it : t.en}</li>
-              ))}
-            </ul>
-          </div>
         </section>
       )}
 
@@ -92,12 +84,12 @@ export default function CestiNatale({ language }: Props) {
         </div>
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-emerald-900 mb-2">
-            {it ? 'Oppure componi il tuo cesto in bottega' : 'Or build your own basket in the shop'}
+            {it ? 'Componi il tuo cesto' : 'Build your own basket'}
           </h2>
           <p className="text-stone-600 leading-relaxed">
             {it
-              ? 'Passa in negozio e scegli tu i prodotti dagli scaffali, sul momento: componiamo insieme il cesto a tuo piacimento, con la quantità e il budget che preferisci.'
-              : 'Come to the shop and pick the products from our shelves yourself: we put the basket together with you, with the amount and budget you prefer.'}
+              ? 'Passa in negozio e scegli tu i prodotti dagli scaffali: componiamo insieme il tuo cesto secondo preferenze ed esigenze specifiche.'
+              : 'Come to the shop and pick the products from our shelves yourself: we put your basket together with you, to suit your tastes and needs.'}
           </p>
         </div>
       </section>

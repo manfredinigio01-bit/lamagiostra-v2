@@ -32,10 +32,10 @@ const classiciHero = [
 
 const classici = [
   {
-    nome: 'Pane fresco di forno',
-    nome_en: 'Fresh bakery bread',
-    desc: 'Quattro fornitori locali diversi consegnano ogni mattina. Integrale, di farro, con semi, al grano antico — ogni giorno una selezione fresca.',
-    desc_en: 'Four different local suppliers deliver every morning. Wholemeal, spelt, seeded, ancient grain — a fresh selection every day.',
+    nome: 'Pane fresco ogni giorno',
+    nome_en: 'Fresh bread every day',
+    desc: 'Quattro diversi fornai locali consegnano il pane ogni mattina offrendovi un\'ampia selezione: pane integrale, pane di farro, pane di grano saraceno, pane di avena, pane con semi di lino e semi misti, pane ai grani antichi.',
+    desc_en: 'Four different local bakers deliver bread every morning, offering a wide choice: wholemeal, spelt, buckwheat, oat, flaxseed and mixed-seed, and ancient-grain bread.',
     img: '/foto_pane.webp',
     tag: 'Ogni mattina',
     tag_en: 'Every morning',
@@ -93,8 +93,8 @@ export default function INostriClassiciPage({ language }: Props) {
           </div>
           <p className="text-stone-500 text-base mb-8 max-w-2xl">
             {language === 'it'
-              ? 'La nostra gastronomia cambia ogni settimana, seguendo la stagione e quello che ci porta il territorio. Rimangono sempre i piatti classici che ci contraddistinguono, affiancati da nuove preparazioni ogni volta diverse.'
-              : 'Our deli changes every week, following the season and local availability. The classic dishes that define us are always there, alongside new preparations each time.'}
+              ? 'Il banco gastronomia cambia ogni settimana, seguendo la stagione e quello che porta il territorio, ad eccezione di alcuni piatti classici che ci contraddistinguono, disponibili ogni giorno.'
+              : 'Our deli counter changes every week, following the season and what the land brings, except for a few classic dishes that define us, available every day.'}
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -108,8 +108,8 @@ export default function INostriClassiciPage({ language }: Props) {
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">
                   {language === 'it'
-                    ? 'Ogni settimana prepariamo nuove proposte di gastronomia vegetariana e vegana, sempre diverse, sempre di stagione. Non troverai mai lo stesso menu due settimane di fila.'
-                    : 'Every week we prepare new vegetarian and vegan dishes, always different, always seasonal. You\'ll never find the same menu two weeks in a row.'}
+                    ? 'Ogni giorno nuove proposte di gastronomia vegetariana e vegana, secondo stagionalità e disponibilità di materie prime.'
+                    : 'New vegetarian and vegan dishes every day, following the seasons and the availability of ingredients.'}
                 </p>
               </div>
             </div>
@@ -120,15 +120,15 @@ export default function INostriClassiciPage({ language }: Props) {
               </div>
               <div>
                 <div className="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-2 uppercase tracking-wider">
-                  {language === 'it' ? 'Martedì — Venerdì' : 'Tuesday — Friday'}
+                  {language === 'it' ? 'Martedì — Sabato' : 'Tuesday — Saturday'}
                 </div>
                 <h3 className="font-bold text-emerald-800 text-lg mb-2">
                   {language === 'it' ? 'Proposta del pranzo' : 'Lunch of the day'}
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">
                   {language === 'it'
-                    ? 'Ogni giorno a pranzo una proposta diversa: un piatto caldo o freddo dal banco gastronomia, da mangiare ai nostri tavolini o da portare a casa.'
-                    : 'Every day at lunch, a different dish: hot or cold from the deli counter, to enjoy at our tables or take away.'}
+                    ? 'Da martedì a sabato, a pranzo, un menù diverso: piatti caldi e freddi dal banco gastronomia, da mangiare qui o portare in ufficio e a casa.'
+                    : 'From Tuesday to Saturday, a different lunch menu: hot and cold dishes from the deli counter, to eat here or take to the office or home.'}
                 </p>
               </div>
             </div>
@@ -146,8 +146,8 @@ export default function INostriClassiciPage({ language }: Props) {
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">
                   {language === 'it'
-                    ? 'Il sabato proponiamo un menu dedicato, con preparazioni più elaborate e una scelta più ricca rispetto agli altri giorni.'
-                    : 'On Saturdays we offer a dedicated menu, with more elaborate dishes and a wider choice than on other days.'}
+                    ? 'Ogni sabato è possibile ordinare un menu completo e bilanciato, dall\'antipasto al dolce, pensato da noi apposta per il weekend.'
+                    : 'Every Saturday you can order a complete, balanced menu, from starter to dessert, designed by us especially for the weekend.'}
                 </p>
               </div>
             </div>
