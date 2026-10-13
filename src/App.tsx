@@ -31,7 +31,7 @@ const translations = {
     getInTouch: 'Contattaci',
     ourStory: 'La Nostra Storia',
     storyText1: 'La Magiostra nasce nel 1987 come spaccio agricolo della Cooperativa Iris, di cui Chiara è socia lavoratrice. Nel 1995 la cooperativa cede il negozio e Chiara ne diventa la titolare.',
-    storyText2: 'Negli anni Novanta è il primo negozio biologico di Cremona, dedicato alla sana alimentazione e al rispetto dell\'ambiente. Oggi non ha più la certificazione biologica, ma la filosofia è rimasta la stessa: sceglie piccoli produttori conosciuti di persona, quasi tutti certificati biologici. Frutta, verdura e pane arrivano freschi ogni mattina.',
+    storyText2: 'Negli anni Novanta è il primo negozio biologico di Cremona, dedicato alla sana alimentazione e al rispetto dell\'ambiente. Ancora oggi sceglie piccoli produttori conosciuti di persona, quasi tutti certificati biologici. Frutta, verdura e pane arrivano freschi ogni mattina.',
     storyText3: 'Nel 2018 arriva la cucina: i prodotti del negozio si trasformano in piatti vegetariani e vegani, e in poco tempo La Magiostra diventa un punto di riferimento a Cremona per questa cucina. Chi ci frequenta da anni ci riconosce soprattutto disponibilità, ascolto e attenzione.',
     communityFirst: 'Comunità al Centro',
     communityDesc: 'Al servizio di Cremona dal 1987',
@@ -42,15 +42,13 @@ const translations = {
     freshDaily: 'Fresco Ogni Giorno',
     freshDesc: 'Piatti pronti fatti in casa',
     whatWe: 'Cosa Offriamo',
-    whatWeDesc: 'Dalla frutta e verdura fresca di stagione ai piatti vegetariani e vegani fatti in casa, abbiamo tutto ciò che serve per uno stile di vita sano e sostenibile.',
     organicProducts: 'Pane fresco',
     organicProductsDesc: 'Un\'ampia selezione di prodotti di qualità, dalle basi di cucina agli articoli speciali. Collaboriamo con fornitori di fiducia che condividono il nostro impegno per la qualità e la sostenibilità.',
     gastronomy: 'Gastronomia e Piatti Pronti',
     gastronomyDesc: 'Al banco della gastronomia troverete ogni giorno i nostri grandi classici: farinata di ceci, hummus di ceci, budini di miglio e insalata russa. Ogni giorno condividiamo su Facebook, Instagram e WhatsApp le proposte della settimana. Il venerdì pubblichiamo la nostra cassetta di frutta e verdura, il sabato un menù speciale.',
     freshProduce: 'Frutta e Verdura Fresca',
     freshProduceDesc: 'Frutta e verdura di stagione, scelte con cura da produttori locali di fiducia. Ogni articolo deve rispettare i nostri standard di freschezza e sapore.',
-    visitUs: 'Visita o Contattaci',
-    visitUsDesc: 'Ci piacerebbe sentire da te. Vieni nel nostro negozio o contattaci.',
+    visitUs: 'Vieni a trovarci o contattaci',
     location: 'Indirizzo',
     phone: 'Telefono',
     email: 'Email',
@@ -87,7 +85,7 @@ const translations = {
     getInTouch: 'Get in Touch',
     ourStory: 'Our Story',
     storyText1: 'La Magiostra opened in 1987 as the farm shop of the Iris Cooperative, where Chiara was a working member. In 1995 the cooperative sold the shop and Chiara became its owner.',
-    storyText2: 'In the 1990s it was Cremona\'s first organic shop, devoted to healthy eating and respect for the environment. The shop no longer holds organic certification, but the philosophy is unchanged: small producers we know personally, almost all of them certified organic. Fruit, vegetables and bread arrive fresh every morning.',
+    storyText2: 'In the 1990s it was Cremona\'s first organic shop, devoted to healthy eating and respect for the environment. It still chooses small producers it knows personally, almost all of them certified organic. Fruit, vegetables and bread arrive fresh every morning.',
     storyText3: 'In 2018 the kitchen arrived: the shop\'s products became vegetarian and vegan dishes, and La Magiostra soon became a reference point in Cremona for this kind of cooking. Long-time customers know us above all for being available, listening and paying attention.',
     communityFirst: 'Community First',
     communityDesc: 'Serving Cremona since 1987',
@@ -98,15 +96,13 @@ const translations = {
     freshDaily: 'Fresh Daily',
     freshDesc: 'Homemade ready meals',
     whatWe: 'What We Offer',
-    whatWeDesc: 'From fresh seasonal produce to homemade vegetarian and vegan ready meals, we have everything you need for a healthy and sustainable lifestyle.',
     organicProducts: 'Selected Products',
     organicProductsDesc: 'A comprehensive selection of quality products, from staple items to specialty goods. We partner with trusted suppliers who share our commitment to quality and sustainability.',
     gastronomy: 'Gastronomia & Ready Meals',
     gastronomyDesc: 'At the deli counter you will find our signature classics every day: chickpea farinata, chickpea hummus, millet puddings and Russian salad. Every day we share the week\'s specials on Facebook, Instagram and WhatsApp. On Fridays we publish our seasonal fruit and vegetable box, on Saturdays a special menu.',
     freshProduce: 'Fresh Produce',
     freshProduceDesc: 'Seasonal fruit and vegetables, carefully chosen from trusted local producers. Every item has to meet our standards for freshness and flavor.',
-    visitUs: 'Visit Us or Get in Touch',
-    visitUsDesc: 'We would love to hear from you. Come by our store or contact us.',
+    visitUs: 'Come and visit us or get in touch',
     location: 'Location',
     phone: 'Phone',
     email: 'Email',
@@ -385,8 +381,7 @@ function App() {
 
             <section id="products" className="py-14 sm:py-20 bg-cream">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl sm:text-4xl font-bold text-emerald-900 mb-4">{t.whatWe}</h2>
-                <p className="text-stone-600 text-base sm:text-lg mb-8 sm:mb-12 max-w-2xl">{t.whatWeDesc}</p>
+                <h2 className="text-3xl sm:text-4xl font-bold text-emerald-900 mb-8 sm:mb-12">{t.whatWe}</h2>
                 <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
                   <a
                     href={pathFor('classici')}
@@ -436,7 +431,6 @@ function App() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-8 sm:mb-12">
                   <h2 className="text-3xl sm:text-4xl font-bold text-emerald-900 mb-3">{t.visitUs}</h2>
-                  <p className="text-stone-600 text-base sm:text-lg">{t.visitUsDesc}</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
                   <div className="bg-cream border border-emerald-900/10 p-6 rounded-2xl">
