@@ -31,6 +31,17 @@ export const ALLERGENI = {
 
 export type Allergene = keyof typeof ALLERGENI;
 
+/** Allergeni usati nel nostro laboratorio: compaiono in alcuni piatti, non in tutti. */
+export const ALLERGENI_LABORATORIO: Allergene[] = [
+  'glutine',
+  'soia',
+  'senape',
+  'sesamo',
+  'sedano',
+  'frutta-a-guscio',
+  'arachidi',
+];
+
 export interface PiattoFisso {
   nome: Testo;
   /** Non scritto = non ancora verificato (il piatto non compare sul sito vero). */
