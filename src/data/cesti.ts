@@ -19,16 +19,9 @@ export const CESTI_NATALE = {
   anno: 2026,
   visibileFinoA: '2026-12-31',
   intro: {
-    it: 'Da anni cerchiamo, assaggiamo e selezioniamo piccoli produttori, molti con certificazione biologica o biodinamica: realtà che difficilmente trovate sugli scaffali della grande distribuzione. La stessa cura che mettiamo ogni giorno in bottega è racchiusa in un cesto per il vostro Natale. Quattro proposte, quattro fasce di prezzo, un’unica cura nella selezione.',
-    en: 'For years we have been seeking out, tasting and selecting small producers, many of them certified organic or biodynamic: the kind you rarely find on supermarket shelves. The same care we put into the shop every day goes into a basket for your Christmas. Four baskets, four price ranges, the same care in every choice.',
+    it: 'Da anni ricerchiamo e selezioniamo i migliori produttori. Ogni anno cerchiamo di trasferire questa cura nella selezione dei prodotti anche nei cesti natalizi.',
+    en: 'For years we have been seeking out and selecting the best producers. Every year we try to bring the same care in choosing products to our Christmas baskets.',
   },
-  condizioni: [
-    { it: 'Prezzi IVA inclusa.', en: 'Prices include VAT.' },
-    {
-      it: 'Gli allergeni sono indicati sull’etichetta di ogni prodotto. Per esigenze vegetariane o vegane contattaci: ti aiutiamo a scegliere.',
-      en: 'Allergens are listed on the label of each product. For vegetarian or vegan needs, contact us: we will help you choose.',
-    },
-  ] as Testo[],
   cesti: [
     {
       slug: 'assaggiami',

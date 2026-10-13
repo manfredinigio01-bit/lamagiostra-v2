@@ -40,7 +40,7 @@ const META: Record<Exclude<Page, 'persona' | 'produttore'>, { it: Meta; en: Meta
     it: {
       title: 'Ricorrenze: torte vegane, cesti regalo e gift card – La Magiostra, Cremona',
       description:
-        'Torte di compleanno vegane su ordinazione, cesti e pacchi regalo, gift card: le idee de La Magiostra per le tue ricorrenze a Cremona.',
+        'Torte di compleanno vegane su ordinazione, cesti e confezioni regalo, gift card: le idee de La Magiostra per le tue ricorrenze a Cremona.',
     },
     en: {
       title: 'Celebrations: vegan cakes, gift baskets and gift cards – La Magiostra, Cremona',

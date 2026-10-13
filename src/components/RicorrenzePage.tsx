@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CestiNatale from './CestiNatale';
 import { COMPANY, whatsappLink } from '../lib/company';
-import { Gift, Cake, Package, CreditCard, Sparkles, Phone } from 'lucide-react';
+import { Gift, Cake, Package, CreditCard, Phone } from 'lucide-react';
 
 interface Props {
   language: string;
@@ -10,10 +10,10 @@ interface Props {
 const serviziSpeciali = [
   {
     icon: Cake,
-    titolo: 'Torte di Compleanno Vegane',
-    titolo_en: 'Vegan Birthday Cakes',
-    desc: 'Torte vegane fatte a mano nel nostro laboratorio, per compleanni e feste. Ordinala almeno 48 ore prima.',
-    desc_en: 'Vegan cakes handmade in our workshop, for birthdays and parties. Order at least 48 hours ahead.',
+    titolo: 'Torte di compleanno vegane',
+    titolo_en: 'Vegan birthday cakes',
+    desc: 'Torte vegane fatte a mano nel nostro laboratorio, per compleanni e occasioni speciali, da ordinare almeno 48 ore prima.',
+    desc_en: 'Vegan cakes handmade in our kitchen, for birthdays and special occasions, to be ordered at least 48 hours ahead.',
     dettagli: [
       'Impasti 100% vegetali',
       'Decorazioni personalizzate su richiesta',
@@ -27,10 +27,10 @@ const serviziSpeciali = [
   },
   {
     icon: Package,
-    titolo: 'Cesti e Pacchi Regalo',
-    titolo_en: 'Gift Baskets & Hampers',
-    desc: 'Cesti e pacchi regalo composti con i prodotti della bottega: conserve, miele, pasta artigianale, dolci. Li prepariamo in base al tuo budget.',
-    desc_en: 'Gift baskets and hampers made up with products from the shop: preserves, honey, artisan pasta, sweets. We put them together to fit your budget.',
+    titolo: 'Cesti e confezioni regalo',
+    titolo_en: 'Gift baskets and boxes',
+    desc: 'Cesti regalo confezionati con i nostri prodotti: conserve, miele, pasta artigianale, dolci e altro ancora, preparati in base alle tue esigenze.',
+    desc_en: 'Gift baskets made up with our products: preserves, honey, artisan pasta, sweets and more, put together to suit your needs.',
     dettagli: [
       'Composizione personalizzata in base al budget',
       'Prodotti artigianali selezionati dalla bottega',
@@ -46,8 +46,8 @@ const serviziSpeciali = [
     icon: CreditCard,
     titolo: 'Gift Card',
     titolo_en: 'Gift Cards',
-    desc: 'Per chi non sa cosa regalare: una gift card dell\'importo che preferisci, da spendere in bottega su prodotti e servizi.',
-    desc_en: 'Not sure what to give? A gift card for any amount you like, to spend in the shop on products and services.',
+    desc: 'Se non sai cosa regalare scegli una gift card, utilizzabile su spesa e gastronomia, dell\'importo che decidi tu.',
+    desc_en: 'Not sure what to give? Choose a gift card, for any amount you decide, to use on groceries and our deli.',
     dettagli: [
       'Importo libero a scelta del donatore',
       'Valida per tutti i prodotti e servizi in bottega',
@@ -83,27 +83,13 @@ export default function RicorrenzePage({ language }: Props) {
           </h1>
           <p className="text-emerald-200 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
             {language === 'it'
-              ? 'Torte, cesti regalo e gift card per compleanni, feste e regali. Tutto preparato da noi.'
-              : 'Cakes, gift baskets and gift cards for birthdays, parties and presents. All made by us.'}
+              ? 'Torte, cesti regalo e gift card per compleanni, feste e regali.'
+              : 'Cakes, gift baskets and gift cards for birthdays, parties and presents.'}
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-
-        <div className="mb-12 text-center">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Sparkles className="w-6 h-6 text-emerald-600" />
-            <h2 className="text-xl sm:text-3xl font-bold text-stone-800">
-              {language === 'it' ? 'Cosa prepariamo' : 'What we make'}
-            </h2>
-          </div>
-          <p className="text-stone-500 text-base sm:text-lg max-w-xl mx-auto">
-            {language === 'it'
-              ? 'Tutto l\'anno, su ordinazione'
-              : 'All year round, made to order'}
-          </p>
-        </div>
 
         <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
           {serviziSpeciali.map((servizio, i) => {
@@ -168,8 +154,8 @@ export default function RicorrenzePage({ language }: Props) {
           </h2>
           <p className="text-emerald-200 mb-7 max-w-xl mx-auto">
             {language === 'it'
-              ? 'Scrivici con un po\' di anticipo e lo organizziamo insieme.'
-              : 'Message us a little in advance and we will plan it together.'}
+              ? 'Scrivici con un po\' di anticipo.'
+              : 'Message us a little in advance.'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
