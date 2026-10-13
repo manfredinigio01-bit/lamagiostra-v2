@@ -62,5 +62,6 @@ Il sito statico ha pochissimo da attaccare. Il rischio reale è che qualcuno ent
 ## 7. Ripubblicare e build fallite
 
 - Ogni merge su `main` fa partire una build. Se una pull request ha la **X rossa** del controllo automatico, non va unita: la stessa build fallirà anche su Cloudflare.
+- **Unire una pull request alla volta**, aspettando la spunta verde della pubblicazione su Cloudflare prima di unire la successiva. Il 13 ottobre 2026 due PR unite a 11 secondi di distanza hanno fatto saltare la pubblicazione della seconda (i cesti di Natale): il codice era su `main`, ma il sito era fermo alla prima. Per controllare: su GitHub, accanto all'ultimo commit di `main`, deve esserci la spunta verde *Workers Builds*.
 - Su Cloudflare **"Retry build" ricompila lo stesso commit**, anche se è vecchio. Per pubblicare l'ultima versione serve un commit nuovo su `main` (anche una modifica minima, ad esempio al README, fatta da GitHub).
 - Il 9 ottobre 2026 le build si erano bloccate per un `package-lock.json` non allineato a `package.json` (`npm ci` si ferma). Si ripara rigenerando il file con `npm install` e verificando con `npm ci`.
