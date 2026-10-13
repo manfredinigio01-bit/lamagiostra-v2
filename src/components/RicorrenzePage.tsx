@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CestiNatale from './CestiNatale';
 import { COMPANY, whatsappLink } from '../lib/company';
 import { Gift, Cake, Package, CreditCard, Sparkles, Phone } from 'lucide-react';
 
@@ -157,6 +158,8 @@ export default function RicorrenzePage({ language }: Props) {
             );
           })}
         </div>
+
+        <CestiNatale language={language} />
 
         <div className="mt-10 sm:mt-16 bg-emerald-700 rounded-2xl p-6 sm:p-10 text-white text-center">
           <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-emerald-300" />
