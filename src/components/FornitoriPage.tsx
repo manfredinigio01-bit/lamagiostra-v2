@@ -9,6 +9,7 @@ interface Props {
 
 export default function FornitoriPage({ language, onOpen }: Props) {
   const it = language === 'it';
+  const altri = fornitori.filter((f) => f.gruppo === 'altri');
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -30,30 +31,42 @@ export default function FornitoriPage({ language, onOpen }: Props) {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
-          {fornitori.map((f) =>
-            fornitoreApribile(f) ? (
-              <a
-                key={f.slug}
-                href={produttorePath(f.slug)}
-                onClick={(e) => {
-                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-                  e.preventDefault();
-                  onOpen(produttorePath(f.slug));
-                }}
-                className="group block bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
-              >
-                <Scheda f={f} it={it} apribile />
-              </a>
-            ) : (
-              <div key={f.slug} className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden">
-                <Scheda f={f} it={it} apribile={false} />
-              </div>
-            ),
-          )}
-        </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 sm:space-y-16">
+        <Griglia elenco={fornitori.filter((f) => !f.gruppo)} it={it} onOpen={onOpen} />
+        {altri.length > 0 && (
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-6">{it ? 'Altri fornitori' : 'Other suppliers'}</h2>
+            <Griglia elenco={altri} it={it} onOpen={onOpen} />
+          </div>
+        )}
       </section>
+    </div>
+  );
+}
+
+function Griglia({ elenco, it, onOpen }: { elenco: Fornitore[]; it: boolean; onOpen: (path: string) => void }) {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
+      {elenco.map((f) =>
+        fornitoreApribile(f) ? (
+          <a
+            key={f.slug}
+            href={produttorePath(f.slug)}
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+              e.preventDefault();
+              onOpen(produttorePath(f.slug));
+            }}
+            className="group block bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+          >
+            <Scheda f={f} it={it} apribile />
+          </a>
+        ) : (
+          <div key={f.slug} className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden">
+            <Scheda f={f} it={it} apribile={false} />
+          </div>
+        ),
+      )}
     </div>
   );
 }
@@ -79,6 +92,7 @@ function Scheda({ f, it, apribile }: { f: Fornitore; it: boolean; apribile: bool
       </div>
       <div className="p-3 text-center">
         <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
+        {f.nota && <p className="mt-1 text-stone-500 text-xs">{it ? f.nota.it : f.nota.en}</p>}
         {apribile && (
           <p className="mt-1 inline-flex items-center gap-1 text-emerald-700 text-xs font-semibold">
             {it ? 'Scopri di più' : 'Learn more'}

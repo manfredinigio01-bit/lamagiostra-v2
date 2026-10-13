@@ -43,6 +43,10 @@ export interface Fornitore {
   dettagli?: Dettaglio[];
   /** Sito o pagina social del produttore. */
   link?: { url: string; label: string };
+  /** Breve nota sotto il nome nella griglia, es. "Pane". */
+  nota?: Testo;
+  /** 'altri' = elencati sotto, nel gruppo "Altri fornitori" (distributori e marchi). */
+  gruppo?: 'altri';
 }
 
 export const staff: StaffMember[] = [
@@ -56,10 +60,22 @@ export const staff: StaffMember[] = [
 ];
 
 export const fornitori: Fornitore[] = [
-  { slug: 'luna-nel-pozzo', name: 'Luna nel Pozzo' },
+  { slug: 'arete', name: 'Areté Cooperativa Sociale' },
+  { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura' },
   { slug: 'bio-pan', name: 'Bio-Pan', photo: '/fornitori/bio-pan.webp' },
-  { slug: 'cascina-marasco', name: 'Cascina Marasco' },
-  { slug: 'daniele', name: 'Daniele' },
+  { slug: 'cascina-marasco', name: 'Cascina Marasco, coop. agricola sociale' },
+  { slug: 'moronara', name: 'Az. Agr. Moronara' },
+  { slug: 'forno-astori', name: 'Forno Astori' },
+  { slug: 'nuova-olearia-scaligera', name: 'Nuova Olearia Scaligera' },
+  { slug: 'officina-naturae', name: 'Officina Naturae', nota: { it: 'Cosmetica e detergenza naturale', en: 'Natural cosmetics and cleaning products' } },
+  { slug: 'monastero-negri', name: 'Azienda Monastero di Negri Alberto, soc. agricola' },
+  { slug: 'allegri-daniele', name: 'Allegri Daniele', nota: { it: 'Pane', en: 'Bread' } },
+  { slug: 'mulino-sobrino', name: 'Mulino Sobrino' },
+  { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' },
+  { slug: 'effegi', name: 'Effegi Srl', gruppo: 'altri' },
+  { slug: 'mediterranea', name: 'Mediterranea Srl', gruppo: 'altri' },
+  { slug: 'ecor', name: 'Ecor', gruppo: 'altri' },
+  { slug: 'probios', name: 'Probios', gruppo: 'altri' },
 ];
 
 /** Una persona ha la pagina di approfondimento solo se ha una descrizione. */
