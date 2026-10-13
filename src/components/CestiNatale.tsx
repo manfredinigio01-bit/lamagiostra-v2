@@ -96,8 +96,8 @@ export default function CestiNatale({ language }: Props) {
           </h2>
           <p className="text-stone-600 leading-relaxed">
             {it
-              ? 'Passa in negozio e scegli tu i prodotti dagli scaffali, sul momento: componiamo insieme il cesto a tuo piacimento, con la quantità e il budget che preferisci, e lo confezioniamo per il regalo.'
-              : 'Come to the shop and pick the products from our shelves yourself: we put the basket together with you, with the amount and budget you prefer, and wrap it as a gift.'}
+              ? 'Passa in negozio e scegli tu i prodotti dagli scaffali, sul momento: componiamo insieme il cesto a tuo piacimento, con la quantità e il budget che preferisci.'
+              : 'Come to the shop and pick the products from our shelves yourself: we put the basket together with you, with the amount and budget you prefer.'}
           </p>
         </div>
       </section>

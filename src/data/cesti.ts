@@ -24,10 +24,6 @@ export const CESTI_NATALE = {
   },
   condizioni: [
     { it: '5% di sconto con pagamento anticipato.', en: '5% off with advance payment.' },
-    {
-      it: '10% di sconto totale per ordini oltre i 100 pacchi, non cumulabile con lo sconto precedente.',
-      en: '10% off in total for orders of more than 100 baskets, not combinable with the previous discount.',
-    },
     { it: 'Prezzi IVA inclusa.', en: 'Prices include VAT.' },
     {
       it: 'Gli allergeni sono indicati sull’etichetta di ogni prodotto. Per esigenze vegetariane o vegane contattaci: ti aiutiamo a scegliere.',
