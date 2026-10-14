@@ -71,6 +71,8 @@ export const fornitori: Fornitore[] = [
   { slug: 'mulino-sobrino', name: 'Mulino Sobrino' },
   { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' },
   { slug: 'mediterranea', name: 'Mediterranea Srl' },
+  { slug: 'iris', name: 'Iris', nota: { it: 'Passate di pomodoro', en: 'Tomato passata' } },
+  { slug: 'columbro', name: 'Columbro', nota: { it: 'Pasta', en: 'Pasta' } },
 ];
 
 /** Una persona ha la pagina di approfondimento solo se ha una descrizione. */
