@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import NotFoundPage from './components/NotFoundPage';
 import PersonaPage from './components/PersonaPage';
 import ProduttorePage from './components/ProduttorePage';
+import ChiamaMenu from './components/ChiamaMenu';
 import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
@@ -252,13 +253,10 @@ function App() {
                       <MessageCircle className="w-5 h-5" />
                       {t.orderNow}
                     </a>
-                    <a
-                      href={`tel:${COMPANY.mobile.tel}`}
-                      className="inline-flex items-center justify-center gap-2 border border-emerald-700 text-emerald-800 px-6 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
-                    >
-                      <Phone className="w-5 h-5" />
-                      {language === 'it' ? 'Chiama' : 'Call'}
-                    </a>
+                    <ChiamaMenu
+                      language={language}
+                      className="w-full inline-flex items-center justify-center gap-2 border border-emerald-700 text-emerald-800 px-6 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
+                    />
                     <a
                       href="#contact"
                       className="inline-flex items-center justify-center gap-2 text-emerald-800 px-4 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
@@ -478,13 +476,10 @@ function App() {
                     <MessageCircle className="w-5 h-5" />
                     {t.orderNow}
                   </a>
-                  <a
-                    href={`tel:${COMPANY.mobile.tel}`}
-                    className="inline-flex items-center justify-center gap-2 border border-emerald-700 text-emerald-800 px-6 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
-                  >
-                    <Phone className="w-5 h-5" />
-                    {language === 'it' ? 'Chiama' : 'Call'}
-                  </a>
+                  <ChiamaMenu
+                    language={language}
+                    className="w-full inline-flex items-center justify-center gap-2 border border-emerald-700 text-emerald-800 px-6 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
+                  />
                   <div className="flex items-center gap-3 sm:ml-auto">
                     <span className="text-stone-500 text-sm font-semibold">{t.followUs}</span>
                     <a href={COMPANY.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-emerald-700 hover:text-emerald-900 transition-colors">

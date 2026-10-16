@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import CestiNatale from './CestiNatale';
-import { COMPANY, whatsappLink } from '../lib/company';
-import { Gift, Cake, Package, CreditCard, Phone } from 'lucide-react';
+import ChiamaMenu from './ChiamaMenu';
+import { whatsappLink } from '../lib/company';
+import { Gift, Cake, Package, CreditCard } from 'lucide-react';
 
 interface Props {
   language: string;
@@ -166,13 +167,10 @@ export default function RicorrenzePage({ language }: Props) {
             >
               WhatsApp
             </a>
-            <a
-              href={`tel:${COMPANY.mobile.tel}`}
-              className="inline-flex items-center justify-center gap-2 bg-emerald-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-emerald-950 transition text-sm sm:text-base"
-            >
-              <Phone className="w-5 h-5" />
-              {COMPANY.mobile.display}
-            </a>
+            <ChiamaMenu
+              language={language}
+              className="w-full inline-flex items-center justify-center gap-2 bg-emerald-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-emerald-950 transition text-sm sm:text-base"
+            />
           </div>
         </div>
       </div>
