@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp, Facebook, Instagram } from 'lucide-react';
 import { COMPANY } from '../lib/company';
+import { conLinkTelefono } from '../lib/telefoni';
 
 interface PostSito {
   testo: string;
@@ -94,7 +95,7 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
               lungo && !aperto ? 'line-clamp-[10] sm:line-clamp-none' : ''
             }`}
           >
-            {post.testo}
+            {conLinkTelefono(post.testo)}
           </p>
           {lungo && (
             <button
