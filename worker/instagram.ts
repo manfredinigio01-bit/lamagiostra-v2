@@ -1,17 +1,19 @@
 // Riconosce, tra gli ultimi post della pagina Facebook (o di Instagram), quello del menu della settimana e quello
-// della cassetta del venerdì, in base alla frase con cui inizia il testo del post.
+// della cassetta del venerdì, in base a una frase che compare nelle prime righe del post.
+// Se più post corrispondono, vince il più recente per data (anche se Facebook ne ha fissato uno in alto).
 //
 // Per cambiare le frasi riconosciute basta modificare gli elenchi qui sotto: il confronto
 // ignora maiuscole, accenti, emoji e punteggiatura, quindi "🥕 MENÙ della settimana!" va bene.
 
 export const FRASI_MENU = [
-  'la proposta della gastronomia',
-  'le proposte della gastronomia',
-  'la proposte della gastronomia',
+  'proposte della gastronomia',
+  'proposta della gastronomia',
   'menu della settimana',
-  'il menu della settimana',
-]; // i post iniziano con "La PROPOSTE della GASTRONOMIA"
-export const FRASI_CASSETTA = ['cassetta del venerdi', 'la cassetta del venerdi', 'cassetta della settimana'];
+]; // i post iniziano con "Le PROPOSTE della GASTRONOMIA di Martedì… / di Giovedì…"
+export const FRASI_CASSETTA = ['cassetta del venerdi', 'cassetta della settimana'];
+
+/** Quante righe (non vuote) all'inizio del post vengono controllate. */
+const RIGHE_CONTROLLATE = 3;
 
 export interface PostInstagram {
   id: string;
@@ -48,10 +50,18 @@ export function normalizza(testo: string): string {
     .trim();
 }
 
+/** true se una delle frasi compare nelle prime righe del post (titolo, data, emoji su righe separate…). */
 export function iniziaCon(caption: string | undefined, frasi: string[]): boolean {
   if (!caption) return false;
-  const inizio = normalizza(caption.slice(0, 200));
-  return frasi.some((f) => inizio.startsWith(normalizza(f)));
+  const inizio = normalizza(
+    caption
+      .replace(/\r\n/g, '\n')
+      .split('\n')
+      .filter((r) => normalizza(r) !== '')
+      .slice(0, RIGHE_CONTROLLATE)
+      .join(' '),
+  );
+  return frasi.some((f) => inizio.includes(normalizza(f)));
 }
 
 /** Toglie gli hashtag in fondo al testo e le righe vuote in eccesso. Il testo resta quello pubblicato. */
@@ -65,10 +75,18 @@ function versoSito(p: PostInstagram): PostSito {
   return { testo: pulisciTesto(p.caption ?? ''), link: p.permalink, data: p.timestamp };
 }
 
-/** I post arrivano da Instagram dal più recente: prende il primo che corrisponde per ciascun tipo. */
+/** Il post più recente (per data di pubblicazione) tra quelli che corrispondono alle frasi. */
+function piuRecente(posts: PostInstagram[], frasi: string[]): PostInstagram | undefined {
+  return posts
+    .filter((p) => iniziaCon(p.caption, frasi))
+    .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+}
+
+/** Sceglie il menu e la cassetta più recenti, senza fidarsi dell'ordine in cui arrivano i post. */
 export function scegliPost(posts: PostInstagram[]): Risposta {
-  const menu = posts.find((p) => iniziaCon(p.caption, FRASI_MENU));
-  const cassetta = posts.find((p) => iniziaCon(p.caption, FRASI_CASSETTA));
+  // Un post del menu che nomina la cassetta (o viceversa) non deve finire nel riquadro sbagliato.
+  const menu = piuRecente(posts.filter((p) => !iniziaCon(p.caption, FRASI_CASSETTA)), FRASI_MENU);
+  const cassetta = piuRecente(posts.filter((p) => !iniziaCon(p.caption, FRASI_MENU)), FRASI_CASSETTA);
   return { menu: menu ? versoSito(menu) : null, cassetta: cassetta ? versoSito(cassetta) : null };
 }
 
