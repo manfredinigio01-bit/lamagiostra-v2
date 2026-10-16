@@ -124,11 +124,18 @@ export default function ComeArrivarePage({ language }: Props) {
             </dl>
             <div className="flex flex-col gap-3">
               <a
+                href={`tel:${COMPANY.mobile.tel}`}
+                className="inline-flex items-center gap-2 text-emerald-800 font-semibold hover:underline"
+              >
+                <Phone className="w-5 h-5" />
+                {COMPANY.mobile.display} <span className="font-normal text-stone-500">({it ? 'cellulare' : 'mobile'})</span>
+              </a>
+              <a
                 href={`tel:${COMPANY.landline.tel}`}
                 className="inline-flex items-center gap-2 text-emerald-800 font-semibold hover:underline"
               >
                 <Phone className="w-5 h-5" />
-                {COMPANY.landline.display}
+                {COMPANY.landline.display} <span className="font-normal text-stone-500">({it ? 'negozio' : 'shop'})</span>
               </a>
               <a
                 href={whatsappLink(language, {
