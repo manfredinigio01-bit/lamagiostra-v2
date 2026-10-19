@@ -4,6 +4,7 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fornitori } from './src/data/team';
 import { allPublicPaths, produttorePath } from './src/lib/routes';
+import { metaPerPercorso } from './src/lib/seo';
 
 // Se in .env (o nelle variabili del hosting) c'è VITE_SITE_URL, ad esempio
 // https://www.lamagiostra.it, il build genera sitemap.xml, robots.txt con la sitemap
@@ -53,7 +54,7 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
           if (path === '/') continue;
           const file = resolve(outDir, `${path.slice(1)}.html`);
           mkdirSync(dirname(file), { recursive: true });
-          writeFileSync(file, html);
+          writeFileSync(file, conMetaDellaPagina(html, path, siteUrl));
         }
         const nonTrovata = html.replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
         writeFileSync(resolve(outDir, '404.html'), nonTrovata);
@@ -66,6 +67,28 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
       writeFileSync(file, headers.replace(/^\/\*\n/m, '/*\n  X-Robots-Tag: noindex, nofollow\n'));
     },
   };
+}
+
+const attr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+// Mette nel file della pagina titolo, descrizione, og e canonical giusti
+// (senza, ogni pagina dichiarerebbe a Google di essere una copia della home).
+function conMetaDellaPagina(html: string, path: string, siteUrl: string): string {
+  const meta = metaPerPercorso(path);
+  let out = html;
+  if (meta) {
+    out = out
+      .replace(/<title>[^<]*<\/title>/, `<title>${attr(meta.title)}</title>`)
+      .replace(/(<meta name="description" content=")[^"]*"/, `$1${attr(meta.description)}"`)
+      .replace(/(<meta property="og:title" content=")[^"]*"/, `$1${attr(meta.title)}"`)
+      .replace(/(<meta property="og:description" content=")[^"]*"/, `$1${attr(meta.description)}"`);
+  }
+  if (siteUrl) {
+    out = out
+      .replace(/(<meta property="og:url" content=")[^"]*"/, `$1${siteUrl}${path}"`)
+      .replace(/(<link rel="canonical" href=")[^"]*"/, `$1${siteUrl}${path}"`);
+  }
+  return out;
 }
 
 // https://vitejs.dev/config/
