@@ -58,8 +58,8 @@ export default function PrivacyPolicyPage({ language }: Props) {
           <h3 className="font-semibold text-stone-800 mb-1">{it ? 'c) Foto e nomi di staff e fornitori' : 'c) Photos and names of staff and suppliers'}</h3>
           <p>
             {it
-              ? 'Le pagine "Staff" e "Fornitori" pubblicano il nome, il reparto e la fotografia delle persone che lavorano in negozio e delle aziende fornitrici. Per le persone la pubblicazione avviene solo con il loro consenso, che può essere revocato in qualsiasi momento scrivendoci: la foto sarà rimossa dal sito.'
-              : 'The "Staff" and "Suppliers" pages publish the first name, department and photograph of the people working in the shop and of supplier businesses. For individuals, publication takes place only with their consent, which can be withdrawn at any time by writing to us: the photo will be removed from the site.'}
+              ? 'Le pagine "Staff" e "Fornitori" pubblicano il nome, il reparto, la fotografia e, per alcune persone, una breve presentazione di chi lavora in negozio, oltre ai nomi delle aziende fornitrici. Per le persone la pubblicazione avviene solo con il loro consenso, che può essere revocato in qualsiasi momento scrivendoci: la foto sarà rimossa dal sito.'
+              : 'The "Staff" and "Suppliers" pages publish the first name, department, photograph and, for some people, a short introduction of those working in the shop, as well as the names of supplier businesses. For individuals, publication takes place only with their consent, which can be withdrawn at any time by writing to us: the photo will be removed from the site.'}
           </p>
         </div>
       </LegalSection>
@@ -98,16 +98,16 @@ export default function PrivacyPolicyPage({ language }: Props) {
       <LegalSection title={it ? '4. Con chi condividiamo i dati' : '4. Who we share data with'}>
         <p>
           {it
-            ? 'Non vendiamo i dati e non li usiamo per marketing o profilazione. Può trattarli, per nostro conto, il fornitore di hosting del sito, nominato responsabile del trattamento ai sensi dell\'art. 28 GDPR. Se scrivi su WhatsApp, il servizio è fornito da WhatsApp Ireland / Meta, che tratta i dati secondo la propria informativa. Per le informazioni dovute per legge i dati possono essere comunicati a consulenti e autorità competenti.'
-            : 'We do not sell data and do not use it for marketing or profiling. It may be processed on our behalf by the site\'s hosting provider, appointed as data processor under Art. 28 GDPR. If you write on WhatsApp, the service is provided by WhatsApp Ireland / Meta, which processes data under its own privacy notice. Data may be disclosed to advisers and competent authorities where required by law.'}
+            ? 'Non vendiamo i dati e non li usiamo per marketing o profilazione. Può trattarli, per nostro conto, il fornitore che ospita il sito, Cloudflare, Inc., responsabile del trattamento ai sensi dell\'art. 28 GDPR in base al proprio accordo sul trattamento dei dati. I menu e la cassetta mostrati nel sito sono letti dal server direttamente dalla nostra pagina Facebook: al tuo browser non arriva nessun contenuto di Meta e a Meta non viene inviato alcun tuo dato. Se scrivi su WhatsApp, il servizio è fornito da WhatsApp Ireland / Meta, che tratta i dati secondo la propria informativa. Per le informazioni dovute per legge i dati possono essere comunicati a consulenti e autorità competenti.'
+            : 'We do not sell data and do not use it for marketing or profiling. It may be processed on our behalf by the provider hosting the site, Cloudflare, Inc., acting as data processor under Art. 28 GDPR under its data processing agreement. The menus and Friday box shown on the site are read by the server directly from our Facebook page: no Meta content reaches your browser and none of your data is sent to Meta. If you write on WhatsApp, the service is provided by WhatsApp Ireland / Meta, which processes data under its own privacy notice. Data may be disclosed to advisers and competent authorities where required by law.'}
         </p>
       </LegalSection>
 
       <LegalSection title={it ? '5. Trasferimenti fuori dall\'Unione Europea' : '5. Transfers outside the EU'}>
         <p>
           {it
-            ? 'Il fornitore di hosting (e WhatsApp/Meta) può trattare dati anche fuori dallo Spazio Economico Europeo. In tal caso il trasferimento avviene con le garanzie previste dagli artt. 44–49 GDPR, ad esempio decisioni di adeguatezza o Clausole Contrattuali Standard della Commissione Europea.'
-            : 'The hosting provider (and WhatsApp/Meta) may also process data outside the European Economic Area. In that case the transfer relies on the safeguards provided by Arts. 44–49 GDPR, such as adequacy decisions or the European Commission\'s Standard Contractual Clauses.'}
+            ? 'Cloudflare (e WhatsApp/Meta, se ci scrivi) può trattare dati anche fuori dallo Spazio Economico Europeo. In tal caso il trasferimento avviene con le garanzie previste dagli artt. 44–49 GDPR, ad esempio decisioni di adeguatezza o Clausole Contrattuali Standard della Commissione Europea.'
+            : 'Cloudflare (and WhatsApp/Meta, if you write to us) may also process data outside the European Economic Area. In that case the transfer relies on the safeguards provided by Arts. 44–49 GDPR, such as adequacy decisions or the European Commission\'s Standard Contractual Clauses.'}
         </p>
       </LegalSection>
 
