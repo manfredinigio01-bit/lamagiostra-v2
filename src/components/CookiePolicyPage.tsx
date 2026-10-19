@@ -22,8 +22,8 @@ export default function CookiePolicyPage({ language }: Props) {
         <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
           <p>
             {it
-              ? 'Questo sito non installa cookie sul tuo dispositivo e non usa strumenti di tracciamento, statistica, pubblicità o profilazione. Per questo non ti mostriamo un banner dei cookie: non c\'è nulla da accettare o rifiutare.'
-              : 'This site does not install cookies on your device and uses no tracking, analytics, advertising or profiling tools. That is why we do not show a cookie banner: there is nothing to accept or decline.'}
+              ? 'Questo sito non installa cookie sul tuo dispositivo e non usa strumenti di tracciamento, pubblicità o profilazione. Per contare le visite usiamo una statistica senza cookie (Cloudflare Web Analytics) che non ti identifica. Per questo non ti mostriamo un banner dei cookie: non c\'è nulla da accettare o rifiutare.'
+              : 'This site does not install cookies on your device and uses no tracking, advertising or profiling tools. To count visits we use cookie-free statistics (Cloudflare Web Analytics) that do not identify you. That is why we do not show a cookie banner: there is nothing to accept or decline.'}
           </p>
         </div>
       </LegalSection>
@@ -39,8 +39,8 @@ export default function CookiePolicyPage({ language }: Props) {
       <LegalSection title={it ? '3. Servizi di terzi' : '3. Third-party services'}>
         <p>
           {it
-            ? 'Il sito non incorpora contenuti di terzi (mappe, video, pulsanti social). I link verso WhatsApp, Instagram, Facebook e Google Maps ti portano su siti esterni: da quel momento valgono le informative e i cookie di quelle piattaforme, di cui non siamo responsabili.'
-            : 'The site embeds no third-party content (maps, videos, social buttons). Links to WhatsApp, Instagram, Facebook and Google Maps take you to external sites: from that point the notices and cookies of those platforms apply, for which we are not responsible.'}
+            ? 'Il sito non incorpora contenuti di terzi (mappe, video, pulsanti social); carica solo il piccolo script della statistica di Cloudflare, senza cookie. I link verso WhatsApp, Instagram, Facebook e Google Maps ti portano su siti esterni: da quel momento valgono le informative e i cookie di quelle piattaforme, di cui non siamo responsabili.'
+            : 'The site embeds no third-party content (maps, videos, social buttons); it only loads Cloudflare\'s small cookie-free statistics script. Links to WhatsApp, Instagram, Facebook and Google Maps take you to external sites: from that point the notices and cookies of those platforms apply, for which we are not responsible.'}
         </p>
       </LegalSection>
 
