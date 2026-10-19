@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Testo } from '../data/team';
 import { IS_PROVA } from '../lib/ambiente';
 import { COMPANY, whatsappLink } from '../lib/company';
+import Pagamenti from './Pagamenti';
 
 interface Props {
   language: string;
@@ -152,6 +153,8 @@ export default function ComeArrivarePage({ language }: Props) {
             </div>
           </section>
         </div>
+
+        <Pagamenti language={language} sfondo="white" />
 
         {voci.length > 0 && (
           <div className="grid md:grid-cols-3 gap-6">

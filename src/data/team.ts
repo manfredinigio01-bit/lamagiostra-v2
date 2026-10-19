@@ -59,20 +59,24 @@ export const staff: StaffMember[] = [
 
 export const fornitori: Fornitore[] = [
   { slug: 'arete', name: 'Areté Cooperativa Sociale' },
-  { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura' },
+  { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura', nota: { it: 'Carne bianca', en: 'White meat' } },
   { slug: 'bio-pan', name: 'Bio-Pan', photo: '/fornitori/bio-pan.webp' },
   { slug: 'cascina-marasco', name: 'Cascina Marasco, coop. agricola sociale' },
   { slug: 'moronara', name: 'Az. Agr. Moronara' },
   { slug: 'forno-astori', name: 'Forno Astori' },
   { slug: 'nuova-olearia-scaligera', name: 'Nuova Olearia Scaligera' },
   { slug: 'officina-naturae', name: 'Officina Naturae', nota: { it: 'Cosmetica e detergenza naturale', en: 'Natural cosmetics and cleaning products' } },
-  { slug: 'monastero-negri', name: 'Azienda Monastero di Negri Alberto, soc. agricola' },
+  { slug: 'monastero-negri', name: 'Azienda Monastero di Negri Alberto, soc. agricola', nota: { it: 'Uova', en: 'Eggs' } },
   { slug: 'allegri-daniele', name: 'Allegri Daniele', nota: { it: 'Pane', en: 'Bread' } },
   { slug: 'mulino-sobrino', name: 'Mulino Sobrino' },
   { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' },
   { slug: 'mediterranea', name: 'Mediterranea Srl' },
   { slug: 'iris', name: 'Iris', nota: { it: 'Passate di pomodoro', en: 'Tomato passata' } },
   { slug: 'columbro', name: 'Columbro', nota: { it: 'Pasta', en: 'Pasta' } },
+  { slug: 'binomio-lab', name: 'Binomio Lab' },
+  { slug: 'fattorie-san-lorenzo', name: 'Fattorie San Lorenzo', nota: { it: 'Carne rossa', en: 'Red meat' } },
+  { slug: 'maghenzani', name: 'Maghenzani', nota: { it: 'Frutta e verdura', en: 'Fruit and vegetables' } },
+  { slug: 'michelangelo-terrazzino', name: 'Michelangelo Terrazzino', nota: { it: 'Olio d’oliva', en: 'Olive oil' } },
 ];
 
 /** Una persona ha la pagina di approfondimento solo se ha una descrizione. */

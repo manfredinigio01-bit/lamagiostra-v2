@@ -74,8 +74,8 @@ export default function MagiostraPage({ language, onHome }: Props) {
             </h2>
             <p>
               {it
-                ? 'Nessuno lo sa con certezza. La spiegazione più popolare la lega a magg, maggio: il mese in cui maturano le prime fragole. I linguisti però pensano più probabilmente a una parola gallica, *majoþa, la stessa radice da cui vengono il catalano maduixa e l’occitano majofa.'
-                : 'Nobody knows for sure. The popular explanation links it to magg, May, the month when the first strawberries ripen. Linguists, however, more likely trace it to a Gaulish word, *majoþa, the same root behind Catalan maduixa and Occitan majofa.'}
+                ? 'Nessuno lo sa con certezza. La spiegazione più popolare la lega al mese di maggio, in dialetto «magg», quando maturano le prime fragole. I linguisti però pensano più probabilmente a una parola gallica, *majoþa, la stessa radice da cui vengono il catalano maduixa e l’occitano majofa.'
+                : 'Nobody knows for sure. The popular explanation links it to the month of May («magg» in dialect), when the first strawberries ripen. Linguists, however, more likely trace it to a Gaulish word, *majoþa, the same root behind Catalan maduixa and Occitan majofa.'}
             </p>
           </div>
         </article>
