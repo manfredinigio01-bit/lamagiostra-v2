@@ -32,7 +32,10 @@ interface ExecutionContext {
   waitUntil(promise: Promise<unknown>): void;
 }
 
-const CACHE_SECONDI = 60 * 60; // un'ora
+// Quanto restano in memoria i post. Un post nuovo compare sul sito al massimo dopo circa
+// CACHE_SECONDI + BROWSER_SECONDI (oggi: 15 + 5 = 20 minuti).
+const CACHE_SECONDI = 15 * 60; // su Cloudflare
+const BROWSER_SECONDI = 5 * 60; // nel browser di chi ha già aperto la pagina
 const API = 'https://graph.instagram.com';
 // Le versioni dell'API di Facebook restano valide circa due anni: se un giorno smette di
 // funzionare, la prima cosa da provare è aggiornare questo numero.
@@ -103,7 +106,7 @@ async function apiSocial(request: Request, env: Env, ctx: ExecutionContext): Pro
   const cache = (caches as unknown as { default: Cache }).default;
   const chiave = new Request(new URL('/api/social', request.url).toString());
   const inCache = await cache.match(chiave);
-  if (inCache) return inCache;
+  if (inCache) return perBrowser(inCache);
 
   let risposta: Risposta | null = null;
   let diagnosi = '';
@@ -125,11 +128,19 @@ async function apiSocial(request: Request, env: Env, ctx: ExecutionContext): Pro
   // Solo sul sito di prova: perché non ci sono post veri (aiuta a configurare il collegamento).
   if (env.AMBIENTE === 'prova' && diagnosi) risposta = { ...risposta, diagnosi };
 
-  // Post veri: un'ora. Esempio o nessun post: un minuto, così un collegamento nuovo si vede subito.
+  // Post veri: 15 minuti. Esempio o nessun post: un minuto, così un collegamento nuovo si vede subito.
   const veri = !risposta.esempio && (risposta.menu || risposta.cassetta || risposta.sabato);
   const res = json(risposta, veri ? CACHE_SECONDI : 60);
   ctx.waitUntil(cache.put(chiave, res.clone()));
-  return res;
+  return perBrowser(res);
+}
+
+/** Il browser tiene la risposta al massimo BROWSER_SECONDI, anche se Cloudflare la tiene più a lungo. */
+function perBrowser(res: Response): Response {
+  const cloudflare = Number(/max-age=(\d+)/.exec(res.headers.get('Cache-Control') ?? '')?.[1] ?? 0);
+  const out = new Response(res.body, res);
+  out.headers.set('Cache-Control', `public, max-age=${Math.min(cloudflare, BROWSER_SECONDI)}`);
+  return out;
 }
 
 /** Ogni giorno: rinnova il token (vale 60 giorni) e lo salva nello spazio KV, se configurato. */
