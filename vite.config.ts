@@ -1,8 +1,9 @@
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { allPublicPaths } from './src/lib/routes';
+import { fornitori } from './src/data/team';
+import { allPublicPaths, produttorePath } from './src/lib/routes';
 
 // Se in .env (o nelle variabili del hosting) c'è VITE_SITE_URL, ad esempio
 // https://www.lamagiostra.it, il build genera sitemap.xml, robots.txt con la sitemap
@@ -37,8 +38,26 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
         this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: xml });
       }
     },
-    // Dopo la copia di public/: nel sito di prova aggiunge il noindex alle intestazioni.
+    // Dopo la copia di public/:
+    //  - una copia di index.html per ogni pagina vera (es. staff/chiara.html) e un 404.html:
+    //    Cloudflare risponde "200" alle pagine vere e "404 non trovata" a tutto il resto
+    //    (in wrangler.jsonc: not_found_handling = "404-page"); il sito mostra comunque la sua pagina.
+    //  - nel sito di prova aggiunge il noindex alle intestazioni.
     closeBundle() {
+      const index = resolve(outDir, 'index.html');
+      if (existsSync(index)) {
+        const html = readFileSync(index, 'utf8');
+        // Sul sito di prova si aprono anche le schede dei fornitori senza descrizione.
+        const pagine = new Set([...allPublicPaths(), ...(prova ? fornitori.map((f) => produttorePath(f.slug)) : [])]);
+        for (const path of pagine) {
+          if (path === '/') continue;
+          const file = resolve(outDir, `${path.slice(1)}.html`);
+          mkdirSync(dirname(file), { recursive: true });
+          writeFileSync(file, html);
+        }
+        const nonTrovata = html.replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
+        writeFileSync(resolve(outDir, '404.html'), nonTrovata);
+      }
       if (!prova) return;
       const file = resolve(outDir, '_headers');
       if (!existsSync(file)) return;

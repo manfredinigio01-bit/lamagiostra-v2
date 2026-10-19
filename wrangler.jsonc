@@ -20,7 +20,7 @@
     // Le richieste /api/* vanno al programma; tutte le altre ai file del sito.
     "run_worker_first": ["/api/*"],
     // Ogni indirizzo (es. /fornitori) apre l'app; la pagina "non trovata" la mostra l'app stessa.
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "404-page"
   },
   // Sito di prova v3 (ramo "v3"): progetto Cloudflare "lamagiostra-v3", indirizzo *.workers.dev.
   // Su Cloudflare il comando di pubblicazione è: npx wrangler deploy --env v3
