@@ -56,15 +56,23 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
     <header className="bg-cream text-stone-800 sticky top-0 z-50 border-b border-emerald-900/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center justify-between">
-          <a href={pathFor('home')} onClick={(e) => go(e, 'home')} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="h-10 sm:h-12">
+          <div className="flex items-center gap-3">
+            {/* Sorpresa: in home, toccando il sole si apre la pagina sul significato di "magiostra". */}
+            <a
+              href={page === 'home' ? pathFor('magiostra') : pathFor('home')}
+              onClick={(e) => go(e, page === 'home' ? 'magiostra' : 'home')}
+              aria-label={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : 'La Magiostra – Home'}
+              title={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : undefined}
+              className="h-10 sm:h-12 block transition-transform duration-500 hover:rotate-[20deg]"
+            >
               <img
                 src="/logo_magiostra_transparent.webp"
-                alt="La Magiostra"
+                alt=""
                 fetchPriority="high"
                 className="h-full w-auto object-contain"
               />
-            </div>
+            </a>
+          <a href={pathFor('home')} onClick={(e) => go(e, 'home')} className="flex items-center hover:opacity-80 transition-opacity">
             <div className="text-left">
               <p className="font-display text-lg sm:text-2xl font-bold leading-tight text-emerald-900 whitespace-nowrap">La Magiostra</p>
               <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block lg:hidden xl:block">
@@ -72,6 +80,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               </p>
             </div>
           </a>
+          </div>
 
           <div className="flex items-center gap-4">
             <nav className="hidden lg:flex gap-5 xl:gap-6 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
