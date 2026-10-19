@@ -11,6 +11,8 @@ export const FRASI_MENU = [
   'menu della settimana',
 ]; // i post iniziano con "Le PROPOSTE della GASTRONOMIA di Martedì… / di Giovedì…"
 export const FRASI_CASSETTA = ['cassetta del venerdi', 'cassetta della settimana'];
+/** Menu del sabato: mostrato solo aprendo la scheda "Il menu del sabato" (pagina I nostri classici). */
+export const FRASI_SABATO = ['menu del sabato', 'pranzo del sabato', 'proposte del sabato', 'proposta del sabato', 'menu sabato'];
 
 /** Quante righe (non vuote) all'inizio del post vengono controllate. */
 const RIGHE_CONTROLLATE = 3;
@@ -31,6 +33,7 @@ export interface PostSito {
 export interface Risposta {
   menu: PostSito | null;
   cassetta: PostSito | null;
+  sabato?: PostSito | null;
   /** Da dove arrivano i post: la pagina Facebook (consigliato) o l'account Instagram. */
   fonte?: 'facebook' | 'instagram';
   /** true se i contenuti sono di esempio (solo sul sito di prova, senza collegamento a Instagram). */
@@ -82,12 +85,24 @@ function piuRecente(posts: PostInstagram[], frasi: string[]): PostInstagram | un
     .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
 }
 
-/** Sceglie il menu e la cassetta più recenti, senza fidarsi dell'ordine in cui arrivano i post. */
+/** Post del sabato: una frase del sabato, oppure "proposte della gastronomia" insieme a "sabato" nelle prime righe. */
+export function eSabato(caption: string | undefined): boolean {
+  return iniziaCon(caption, FRASI_SABATO) || (iniziaCon(caption, FRASI_MENU) && iniziaCon(caption, ['sabato']) && !iniziaCon(caption, ['venerdi', 'giovedi', 'mercoledi', 'martedi']));
+}
+
+/** Sceglie menu, cassetta e menu del sabato più recenti, senza fidarsi dell'ordine in cui arrivano i post. */
 export function scegliPost(posts: PostInstagram[]): Risposta {
+  const sabati = posts.filter((p) => eSabato(p.caption));
+  const altri = posts.filter((p) => !eSabato(p.caption));
   // Un post del menu che nomina la cassetta (o viceversa) non deve finire nel riquadro sbagliato.
-  const menu = piuRecente(posts.filter((p) => !iniziaCon(p.caption, FRASI_CASSETTA)), FRASI_MENU);
-  const cassetta = piuRecente(posts.filter((p) => !iniziaCon(p.caption, FRASI_MENU)), FRASI_CASSETTA);
-  return { menu: menu ? versoSito(menu) : null, cassetta: cassetta ? versoSito(cassetta) : null };
+  const menu = piuRecente(altri.filter((p) => !iniziaCon(p.caption, FRASI_CASSETTA)), FRASI_MENU);
+  const cassetta = piuRecente(altri.filter((p) => !iniziaCon(p.caption, FRASI_MENU)), FRASI_CASSETTA);
+  const sabato = sabati.sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
+  return {
+    menu: menu ? versoSito(menu) : null,
+    cassetta: cassetta ? versoSito(cassetta) : null,
+    sabato: sabato ? versoSito(sabato) : null,
+  };
 }
 
 /** Contenuti di esempio per vedere l'aspetto sul sito di prova prima del collegamento a Instagram. */
@@ -105,6 +120,11 @@ export function esempio(): Risposta {
       testo:
         'Cassetta del venerdì\n\nTESTO DI ESEMPIO: qui comparirà il testo del vostro ultimo post che inizia con "Cassetta del venerdì".',
       link: 'https://www.instagram.com/lamagiostra/',
+      data: oggi,
+    },
+    sabato: {
+      testo: 'Il menu del sabato\n\nTESTO DI ESEMPIO: qui comparirà il vostro ultimo post con "menu del sabato" nelle prime righe.',
+      link: 'https://www.facebook.com/LaMagiostra',
       data: oggi,
     },
   };

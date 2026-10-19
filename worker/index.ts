@@ -120,13 +120,13 @@ async function apiSocial(request: Request, env: Env, ctx: ExecutionContext): Pro
 
   if (!risposta) {
     // Non collegato (o nessun dato): sul sito di prova un esempio, sul sito vero il testo fisso.
-    risposta = env.AMBIENTE === 'prova' ? esempio() : { menu: null, cassetta: null };
+    risposta = env.AMBIENTE === 'prova' ? esempio() : { menu: null, cassetta: null, sabato: null };
   }
   // Solo sul sito di prova: perché non ci sono post veri (aiuta a configurare il collegamento).
   if (env.AMBIENTE === 'prova' && diagnosi) risposta = { ...risposta, diagnosi };
 
   // Post veri: un'ora. Esempio o nessun post: un minuto, così un collegamento nuovo si vede subito.
-  const veri = !risposta.esempio && (risposta.menu || risposta.cassetta);
+  const veri = !risposta.esempio && (risposta.menu || risposta.cassetta || risposta.sabato);
   const res = json(risposta, veri ? CACHE_SECONDI : 60);
   ctx.waitUntil(cache.put(chiave, res.clone()));
   return res;
