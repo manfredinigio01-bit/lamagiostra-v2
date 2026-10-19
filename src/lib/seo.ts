@@ -79,6 +79,16 @@ const META: Record<Exclude<Page, 'persona' | 'produttore'>, { it: Meta; en: Meta
       description: 'Where to find us: La Magiostra, Via Grado 1, 26100 Cremona. Opening hours, map and contacts.',
     },
   },
+  magiostra: {
+    it: {
+      title: 'Cosa vuol dire magiostra? – La Magiostra, Cremona',
+      description: 'Magiostra in dialetto vuol dire fragola. Da dove viene la parola e perché la nostra bottega di Cremona si chiama così.',
+    },
+    en: {
+      title: 'What does magiostra mean? – La Magiostra, Cremona',
+      description: 'In the local dialect, magiostra means strawberry. Where the word comes from and why our Cremona shop bears its name.',
+    },
+  },
   privacy: {
     it: { title: 'Informativa privacy – La Magiostra', description: 'Informativa sul trattamento dei dati personali (GDPR) di La Magiostra, Cremona.' },
     en: { title: 'Privacy policy – La Magiostra', description: 'Privacy policy (GDPR) of La Magiostra, Cremona.' },

@@ -13,6 +13,7 @@ import NotFoundPage from './components/NotFoundPage';
 import PersonaPage from './components/PersonaPage';
 import ProduttorePage from './components/ProduttorePage';
 import ChiamaMenu from './components/ChiamaMenu';
+import MagiostraPage from './components/MagiostraPage';
 import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
@@ -222,6 +223,8 @@ function App() {
         return fornitore ? <ProduttorePage language={language} fornitore={fornitore} onBack={() => navigate('fornitori')} /> : null;
       case 'dove':
         return <ComeArrivarePage language={language} />;
+      case 'magiostra':
+        return <MagiostraPage language={language} onHome={() => navigate('home')} />;
       case 'privacy':
         return <PrivacyPolicyPage language={language} />;
       case 'cookie':
