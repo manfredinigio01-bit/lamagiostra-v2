@@ -50,12 +50,12 @@ function Griglia({ elenco, it, onOpen }: { elenco: Fornitore[]; it: boolean; onO
               e.preventDefault();
               onOpen(produttorePath(f.slug));
             }}
-            className="group block bg-white rounded-2xl shadow-sm hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+            className="group block bg-white rounded-2xl shadow-xs hover:shadow-md border border-stone-100 overflow-hidden transition-all duration-300 hover:-translate-y-1"
           >
             <Scheda f={f} it={it} apribile />
           </a>
         ) : (
-          <div key={f.slug} className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden">
+          <div key={f.slug} className="bg-white rounded-2xl shadow-xs border border-stone-100 overflow-hidden">
             <Scheda f={f} it={it} apribile={false} />
           </div>
         ),

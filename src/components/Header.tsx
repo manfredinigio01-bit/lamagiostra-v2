@@ -63,7 +63,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               onClick={(e) => go(e, page === 'home' ? 'magiostra' : 'home')}
               aria-label={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : 'La Magiostra – Home'}
               title={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : undefined}
-              className="h-10 sm:h-12 block transition-transform duration-500 hover:rotate-[20deg]"
+              className="h-10 sm:h-12 block transition-transform duration-500 hover:rotate-20"
             >
               <img
                 src="/logo_magiostra_transparent.webp"

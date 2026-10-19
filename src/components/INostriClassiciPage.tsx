@@ -100,7 +100,7 @@ export default function INostriClassiciPage({ language }: Props) {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-7 flex flex-col gap-4">
+            <div className="bg-white rounded-2xl border border-stone-200 shadow-xs p-7 flex flex-col gap-4">
               <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
                 <RefreshCw className="w-6 h-6 text-emerald-600" />
               </div>
@@ -116,7 +116,7 @@ export default function INostriClassiciPage({ language }: Props) {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-7 flex flex-col gap-4">
+            <div className="bg-white rounded-2xl border border-stone-200 shadow-xs p-7 flex flex-col gap-4">
               <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                 <Utensils className="w-6 h-6 text-blue-600" />
               </div>
@@ -135,7 +135,7 @@ export default function INostriClassiciPage({ language }: Props) {
               </div>
             </div>
 
-            <div className="bg-amber-50 rounded-2xl border border-amber-200 shadow-sm p-7 flex flex-col gap-4">
+            <div className="bg-amber-50 rounded-2xl border border-amber-200 shadow-xs p-7 flex flex-col gap-4">
               <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
                 <CalendarDays className="w-6 h-6 text-amber-600" />
               </div>
@@ -213,7 +213,7 @@ export default function INostriClassiciPage({ language }: Props) {
           </p>
 
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-6 py-4 flex items-start gap-3">
-            <Star className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+            <Star className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
             <p className="text-emerald-800 text-sm leading-relaxed">
               {language === 'it'
                 ? 'Accanto alle proposte variabili, trovi sempre i nostri classici: il banco frutta e verdura fresca, il pane dei fornitori locali, l\'hummus, la farinata di ceci e le preparazioni che ci identificano da sempre.'
@@ -233,7 +233,7 @@ export default function INostriClassiciPage({ language }: Props) {
           <div className="grid md:grid-cols-2 gap-5 sm:gap-7 mb-7">
             {classiciHero.map((c, i) => (
               <div key={i} className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group border border-stone-100">
-                <div className="relative h-72 sm:h-[28rem] overflow-hidden">
+                <div className="relative h-72 sm:h-112 overflow-hidden">
                   <img
                     src={c.img}
                     alt={language === 'it' ? c.nome : c.nome_en}
@@ -241,12 +241,12 @@ export default function INostriClassiciPage({ language }: Props) {
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/20 to-transparent" />
-                  <span className={`absolute top-4 left-4 ${c.tagColore} text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow`}>
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-900/70 via-stone-900/20 to-transparent" />
+                  <span className={`absolute top-4 left-4 ${c.tagColore} text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm`}>
                     {language === 'it' ? c.tag : c.tag_en}
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-2xl font-bold text-white mb-2 drop-shadow">{language === 'it' ? c.nome : c.nome_en}</h3>
+                    <h3 className="text-lg sm:text-2xl font-bold text-white mb-2 drop-shadow-sm">{language === 'it' ? c.nome : c.nome_en}</h3>
                     <p className="text-stone-200 text-xs sm:text-sm leading-relaxed">{language === 'it' ? c.desc : c.desc_en}</p>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export default function INostriClassiciPage({ language }: Props) {
 
           <div className="grid md:grid-cols-3 gap-5 sm:gap-7">
             {classici.map((c, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition overflow-hidden group border border-stone-100">
+              <div key={i} className="bg-white rounded-2xl shadow-xs hover:shadow-lg transition overflow-hidden group border border-stone-100">
                 <div className="relative h-52 sm:h-64 overflow-hidden">
                   <img
                     src={c.img}
@@ -265,7 +265,7 @@ export default function INostriClassiciPage({ language }: Props) {
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-stone-900/60 to-transparent" />
                   <span className={`absolute top-4 left-4 ${c.tagColore} text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider`}>
                     {language === 'it' ? c.tag : c.tag_en}
                   </span>

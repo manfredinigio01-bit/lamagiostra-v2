@@ -21,7 +21,7 @@ export default function Pagamenti({ language, className = '', sfondo = 'cream' }
   const it = language === 'it';
   return (
     <section
-      className={`${sfondo === 'white' ? 'bg-white border-stone-200 shadow-sm sm:p-8' : 'bg-cream border-emerald-900/10'} border rounded-2xl p-6 ${className}`} aria-labelledby="pagamenti-titolo">
+      className={`${sfondo === 'white' ? 'bg-white border-stone-200 shadow-xs sm:p-8' : 'bg-cream border-emerald-900/10'} border rounded-2xl p-6 ${className}`} aria-labelledby="pagamenti-titolo">
       <div className="flex items-center gap-3 mb-4">
         <Wallet className="w-6 h-6 text-emerald-700" aria-hidden="true" />
         <h3 id="pagamenti-titolo" className="text-lg font-bold text-emerald-900">

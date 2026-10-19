@@ -19,7 +19,7 @@ export default function AllergeniTabella({ language }: Props) {
         </h2>
       </div>
 
-      <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 sm:p-8 space-y-6">
+      <div className="bg-white rounded-2xl border border-stone-200 shadow-xs p-6 sm:p-8 space-y-6">
         <p className="text-stone-700 text-sm sm:text-base leading-relaxed">
           {it
             ? 'I piatti della gastronomia cambiano ogni settimana. Per conoscere gli allergeni di ogni preparazione chiedete al banco o scriveteci su WhatsApp prima di ordinare: vi rispondiamo con la ricetta alla mano.'

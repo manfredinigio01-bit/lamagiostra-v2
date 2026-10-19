@@ -47,9 +47,9 @@ export default function MagiostraPage({ language, onHome }: Props) {
           {it ? 'Hai trovato il nostro segreto' : 'You found our secret'}
         </p>
 
-        <article className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 sm:p-10">
+        <article className="bg-white rounded-2xl border border-stone-200 shadow-xs p-6 sm:p-10">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
-            <Fragola className="w-24 sm:w-32 flex-shrink-0 mx-auto sm:mx-0" />
+            <Fragola className="w-24 sm:w-32 shrink-0 mx-auto sm:mx-0" />
             <div>
               <h1 className="font-display text-4xl sm:text-6xl font-bold text-emerald-950 leading-none mb-2">
                 magiostra
