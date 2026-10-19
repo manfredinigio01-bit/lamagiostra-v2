@@ -47,9 +47,9 @@ export default function MagiostraPage({ language, onHome }: Props) {
           {it ? 'Hai trovato il nostro segreto' : 'You found our secret'}
         </p>
 
-        <article className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 sm:p-10">
+        <article className="bg-white rounded-2xl border border-stone-200 shadow-xs p-6 sm:p-10">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
-            <Fragola className="w-24 sm:w-32 flex-shrink-0 mx-auto sm:mx-0" />
+            <Fragola className="w-24 sm:w-32 shrink-0 mx-auto sm:mx-0" />
             <div>
               <h1 className="font-display text-4xl sm:text-6xl font-bold text-emerald-950 leading-none mb-2">
                 magiostra
@@ -74,8 +74,8 @@ export default function MagiostraPage({ language, onHome }: Props) {
             </h2>
             <p>
               {it
-                ? 'Nessuno lo sa con certezza. La spiegazione più popolare la lega al mese di maggio, in dialetto «magg», quando maturano le prime fragole. I linguisti però pensano più probabilmente a una parola gallica, *majoþa, la stessa radice da cui vengono il catalano maduixa e l’occitano majofa.'
-                : 'Nobody knows for sure. The popular explanation links it to the month of May («magg» in dialect), when the first strawberries ripen. Linguists, however, more likely trace it to a Gaulish word, *majoþa, the same root behind Catalan maduixa and Occitan majofa.'}
+                ? 'L’origine della parola magiostra è legata a diverse varietà di fragole, chiamate così in alcune regioni italiane come Lombardia, Piemonte ed Emilia-Romagna. È un termine di origine indoeuropea, sopravvissuto in alcune lingue regionali, con legami anche nella Francia meridionale e nei Paesi Baschi.'
+                : 'The word magiostra is linked to several varieties of strawberry, called this way in some Italian regions such as Lombardy, Piedmont and Emilia-Romagna. It is a word of Indo-European origin that has survived in some regional languages, with ties to southern France and the Basque Country as well.'}
             </p>
           </div>
         </article>

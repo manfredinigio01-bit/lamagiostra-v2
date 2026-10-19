@@ -21,7 +21,7 @@ export default function PersonaPage({ language, member, onBack }: Props) {
         onBack();
       }}
       media={
-        <div className="rounded-2xl overflow-hidden aspect-[4/5] bg-stone-200 shadow-md">
+        <div className="rounded-2xl overflow-hidden aspect-4/5 bg-stone-200 shadow-md">
           <img src={member.photo} alt={member.name} decoding="async" className="w-full h-full object-cover" />
         </div>
       }

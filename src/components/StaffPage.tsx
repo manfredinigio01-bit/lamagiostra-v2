@@ -58,12 +58,12 @@ function Scheda({ member, language, apribile }: { member: StaffMember; language:
                   decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-emerald-950/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-white font-bold text-xl leading-tight drop-shadow">{member.name}</h3>
-                  <p className="text-emerald-200 text-sm mt-0.5 drop-shadow">{language === 'it' ? member.role : member.role_en}</p>
+                  <h3 className="text-white font-bold text-xl leading-tight drop-shadow-sm">{member.name}</h3>
+                  <p className="text-emerald-200 text-sm mt-0.5 drop-shadow-sm">{language === 'it' ? member.role : member.role_en}</p>
                   {apribile && (
-                    <p className="mt-2 inline-flex items-center gap-1 text-white text-xs font-semibold drop-shadow">
+                    <p className="mt-2 inline-flex items-center gap-1 text-white text-xs font-semibold drop-shadow-sm">
                       {language === 'it' ? 'Scopri di più' : 'Learn more'}
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </p>

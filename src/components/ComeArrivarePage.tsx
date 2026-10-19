@@ -64,7 +64,7 @@ export default function ComeArrivarePage({ language }: Props) {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
         <div className="grid md:grid-cols-2 gap-6">
-          <section className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 sm:p-8">
+          <section className="bg-white rounded-2xl border border-stone-200 shadow-xs p-6 sm:p-8">
             <div className="flex items-center gap-3 mb-4">
               <MapPin className="w-6 h-6 text-emerald-700" />
               <h2 className="font-bold text-emerald-900 text-xl">{it ? 'Indirizzo' : 'Address'}</h2>
@@ -98,7 +98,7 @@ export default function ComeArrivarePage({ language }: Props) {
             </div>
           </section>
 
-          <section className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 sm:p-8">
+          <section className="bg-white rounded-2xl border border-stone-200 shadow-xs p-6 sm:p-8">
             <div className="flex items-center gap-3 mb-4">
               <Clock className="w-6 h-6 text-emerald-700" />
               <h2 className="font-bold text-emerald-900 text-xl">{it ? 'Orari' : 'Opening hours'}</h2>
@@ -159,7 +159,7 @@ export default function ComeArrivarePage({ language }: Props) {
         {voci.length > 0 && (
           <div className="grid md:grid-cols-3 gap-6">
             {voci.map((v, i) => (
-              <section key={i} className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
+              <section key={i} className="bg-white rounded-2xl border border-stone-200 shadow-xs p-6">
                 <div className="flex items-center gap-3 mb-3">
                   {v.icona}
                   <h2 className="font-bold text-emerald-900">{it ? v.titolo.it : v.titolo.en}</h2>
