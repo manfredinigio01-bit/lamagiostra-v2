@@ -276,7 +276,7 @@ function App() {
                     alt={language === 'it' ? 'I tavolini della bottega La Magiostra' : 'The tables at La Magiostra'}
                     fetchPriority="high"
                     decoding="async"
-                    className="w-full aspect-[4/3] lg:aspect-[5/4] object-cover rounded-2xl bg-stone-200"
+                    className="w-full aspect-4/3 lg:aspect-5/4 object-cover rounded-2xl bg-stone-200"
                   />
                 </picture>
               </div>
@@ -285,14 +285,14 @@ function App() {
             <section aria-label={language === 'it' ? 'Informazioni utili' : 'Useful information'} className="bg-emerald-900 text-emerald-50">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid sm:grid-cols-3 gap-5 sm:gap-8">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 mt-1 text-emerald-300 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 mt-1 text-emerald-300 shrink-0" />
                   <a href={COMPANY.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
                     <span className="block font-semibold text-white">{t.location}</span>
                     Via Grado 1, 26100 Cremona
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 mt-1 text-emerald-300 flex-shrink-0" />
+                  <Clock className="w-5 h-5 mt-1 text-emerald-300 shrink-0" />
                   <div>
                     <span className="block font-semibold text-white">{t.hours}</span>
                     {language === 'it' ? 'Mar–Ven' : 'Tue–Fri'} {COMPANY.hours.tueFri}
@@ -301,7 +301,7 @@ function App() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <ChefHat className="w-5 h-5 mt-1 text-emerald-300 flex-shrink-0" />
+                  <ChefHat className="w-5 h-5 mt-1 text-emerald-300 shrink-0" />
                   <div>
                     <span className="block font-semibold text-white">
                       {language === 'it' ? 'Pranzo in bottega' : 'Lunch in store'}
@@ -322,7 +322,7 @@ function App() {
                     <p className="text-stone-700 text-base sm:text-lg leading-relaxed">{t.storyText3}</p>
                   </div>
                   <figure className="md:col-span-2 w-full max-w-sm mx-auto md:mx-0 md:ml-auto">
-                    <div className="relative rounded-2xl overflow-hidden aspect-[3/4]">
+                    <div className="relative rounded-2xl overflow-hidden aspect-3/4">
                       <OptimizedImage
                         src="/foto_chiara_il_boss.webp"
                         alt={language === 'it' ? 'Chiara, titolare de La Magiostra' : 'Chiara, owner of La Magiostra'}
@@ -347,30 +347,30 @@ function App() {
                 <div className="grid md:grid-cols-3 gap-4 sm:gap-5">
                   <div className="relative rounded-2xl overflow-hidden h-64 sm:h-80 md:col-span-2">
                     <OptimizedImage src="/foto_nego_2.webp" alt={t.galleryEsterno} className="w-full h-full" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent" />
-                    <p className="absolute bottom-4 left-5 text-white font-semibold text-lg drop-shadow">{t.galleryEsterno}</p>
+                    <div className="absolute inset-0 bg-linear-to-t from-emerald-950/60 via-transparent to-transparent" />
+                    <p className="absolute bottom-4 left-5 text-white font-semibold text-lg drop-shadow-sm">{t.galleryEsterno}</p>
                   </div>
                   <div className="relative rounded-2xl overflow-hidden h-64 sm:h-80">
                     <OptimizedImage src="/banco_gastronomia.webp" alt={t.galleryGastronomia} className="w-full h-full" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent" />
-                    <p className="absolute bottom-4 left-5 text-white font-semibold text-lg drop-shadow">{t.galleryGastronomia}</p>
+                    <div className="absolute inset-0 bg-linear-to-t from-emerald-950/60 via-transparent to-transparent" />
+                    <p className="absolute bottom-4 left-5 text-white font-semibold text-lg drop-shadow-sm">{t.galleryGastronomia}</p>
                   </div>
                   <div className="relative rounded-2xl overflow-hidden h-64 sm:h-80">
                     <OptimizedImage src="/bancone_frutta_e_verdura.webp" alt={t.galleryFrutta} className="w-full h-full" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent" />
-                    <p className="absolute bottom-4 left-5 text-white font-semibold text-lg drop-shadow">{t.galleryFrutta}</p>
+                    <div className="absolute inset-0 bg-linear-to-t from-emerald-950/60 via-transparent to-transparent" />
+                    <p className="absolute bottom-4 left-5 text-white font-semibold text-lg drop-shadow-sm">{t.galleryFrutta}</p>
                   </div>
                   <div className="relative rounded-2xl overflow-hidden h-64 sm:h-80 md:col-span-2">
                     <OptimizedImage src="/tavoli_pranzo_mobile.webp" alt={t.galleryTavolini} className="w-full h-full" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-950/40 to-emerald-950/20" />
+                    <div className="absolute inset-0 bg-linear-to-t from-emerald-950/80 via-emerald-950/40 to-emerald-950/20" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8">
                       <p className="text-emerald-200 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-2">
                         {language === 'it' ? 'Martedì – Sabato · 12:00–14:00' : 'Tue – Sat · 12:00–14:00'}
                       </p>
-                      <p className="font-display text-white font-bold text-2xl sm:text-3xl leading-tight drop-shadow mb-2">
+                      <p className="font-display text-white font-bold text-2xl sm:text-3xl leading-tight drop-shadow-sm mb-2">
                         {language === 'it' ? 'Fermati a pranzare da noi!' : 'Stay for lunch with us!'}
                       </p>
-                      <p className="text-emerald-50 text-sm sm:text-base leading-relaxed drop-shadow max-w-md">
+                      <p className="text-emerald-50 text-sm sm:text-base leading-relaxed drop-shadow-sm max-w-md">
                         {language === 'it'
                           ? 'I nostri tavolini ti aspettano. Gusta i piatti caldi del banco gastronomia comodamente seduto in bottega.'
                           : 'Our tables are waiting for you. Enjoy warm dishes from the deli counter, comfortably seated in store.'}
@@ -504,7 +504,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-emerald-900 focus:px-4 focus:py-2 focus:rounded-lg">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-60 focus:bg-white focus:text-emerald-900 focus:px-4 focus:py-2 focus:rounded-lg">
         {language === 'it' ? 'Vai al contenuto' : 'Skip to content'}
       </a>
       <BannerProva />

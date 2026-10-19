@@ -67,33 +67,33 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
     : '';
 
   return (
-    <section className="bg-white rounded-2xl border border-emerald-900/10 shadow-sm p-6 sm:p-7" aria-live="polite">
+    <section className="bg-white rounded-2xl border border-emerald-900/10 shadow-xs p-6 sm:p-7" aria-live="polite">
       <div className="flex items-start justify-between gap-3 mb-4">
         <h3 className="font-bold text-emerald-900 text-lg sm:text-xl">{titolo}</h3>
         {fonte === 'instagram' ? (
-          <Instagram className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-1" aria-hidden="true" />
+          <Instagram className="w-5 h-5 text-emerald-700 shrink-0 mt-1" aria-hidden="true" />
         ) : (
-          <Facebook className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-1" aria-hidden="true" />
+          <Facebook className="w-5 h-5 text-emerald-700 shrink-0 mt-1" aria-hidden="true" />
         )}
       </div>
 
       {stato === 'carica' ? (
         <div className="space-y-2" aria-hidden="true">
-          <div className="h-3 bg-stone-200 rounded animate-pulse w-3/4" />
-          <div className="h-3 bg-stone-200 rounded animate-pulse w-full" />
-          <div className="h-3 bg-stone-200 rounded animate-pulse w-2/3" />
+          <div className="h-3 bg-stone-200 rounded-sm animate-pulse w-3/4" />
+          <div className="h-3 bg-stone-200 rounded-sm animate-pulse w-full" />
+          <div className="h-3 bg-stone-200 rounded-sm animate-pulse w-2/3" />
         </div>
       ) : post ? (
         <>
           {esempio && (
-            <p className="mb-3 inline-block bg-amber-100 text-amber-900 text-xs font-semibold px-2 py-1 rounded">
+            <p className="mb-3 inline-block bg-amber-100 text-amber-900 text-xs font-semibold px-2 py-1 rounded-sm">
               Esempio: Facebook non ancora collegato
             </p>
           )}
           <p
             id={`post-${tipo}`}
             className={`text-stone-700 text-sm sm:text-base leading-relaxed whitespace-pre-line ${
-              lungo && !aperto ? 'line-clamp-[10] sm:line-clamp-none' : ''
+              lungo && !aperto ? 'line-clamp-10 sm:line-clamp-none' : ''
             }`}
           >
             {conLinkTelefono(post.testo)}

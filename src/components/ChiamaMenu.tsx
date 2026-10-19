@@ -54,7 +54,7 @@ export default function ChiamaMenu({ language, className, children }: Props) {
       {aperto && (
         <div
           id={id}
-          className="absolute left-0 right-0 sm:right-auto top-full mt-2 z-30 min-w-[15rem] bg-white rounded-xl shadow-xl border border-stone-200 p-1.5 text-left"
+          className="absolute left-0 right-0 sm:right-auto top-full mt-2 z-30 min-w-60 bg-white rounded-xl shadow-xl border border-stone-200 p-1.5 text-left"
         >
           {voci.map((v) => (
             <a
@@ -63,7 +63,7 @@ export default function ChiamaMenu({ language, className, children }: Props) {
               onClick={() => setAperto(false)}
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-800 hover:bg-emerald-50"
             >
-              <v.icona className="w-5 h-5 text-emerald-700 flex-shrink-0" aria-hidden="true" />
+              <v.icona className="w-5 h-5 text-emerald-700 shrink-0" aria-hidden="true" />
               <span className="flex flex-col leading-tight">
                 <span className="text-xs text-stone-500 font-medium">{v.etichetta}</span>
                 <span className="font-semibold whitespace-nowrap">{v.numero}</span>

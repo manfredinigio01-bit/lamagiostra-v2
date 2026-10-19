@@ -30,9 +30,9 @@ export default function CestiNatale({ language }: Props) {
             {CESTI_NATALE.cesti.map((c) => (
               <article
                 key={c.slug}
-                className="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden flex flex-col"
+                className="bg-white rounded-2xl border border-stone-200 shadow-xs overflow-hidden flex flex-col"
               >
-                <div className="aspect-[4/3] md:aspect-[4/5] bg-stone-100 overflow-hidden">
+                <div className="aspect-4/3 md:aspect-4/5 bg-stone-100 overflow-hidden">
                   <img
                     src={c.foto}
                     alt={it ? `Cesto di Natale ${c.nome}` : `${c.nome} Christmas basket`}
@@ -53,7 +53,7 @@ export default function CestiNatale({ language }: Props) {
                   <ul className="space-y-1 text-sm text-stone-700 mb-5">
                     {c.prodotti.map((p) => (
                       <li key={p} className="flex gap-2">
-                        <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
                         <span>{p}</span>
                       </li>
                     ))}
@@ -79,7 +79,7 @@ export default function CestiNatale({ language }: Props) {
       )}
 
       <section className="mt-10 sm:mt-14 bg-white border-2 border-emerald-200 rounded-2xl p-6 sm:p-10 flex flex-col sm:flex-row gap-5 sm:gap-8 items-start">
-        <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+        <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0">
           <ShoppingBasket className="w-7 h-7 text-emerald-700" />
         </div>
         <div>

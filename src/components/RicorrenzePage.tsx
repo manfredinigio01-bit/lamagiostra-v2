@@ -99,7 +99,7 @@ export default function RicorrenzePage({ language }: Props) {
             return (
               <div
                 key={i}
-                className={`border-2 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer ${servizio.colore} ${isExpanded ? 'shadow-xl' : 'shadow-sm'}`}
+                className={`border-2 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer ${servizio.colore} ${isExpanded ? 'shadow-xl' : 'shadow-xs'}`}
                 onClick={() => setExpandedServizio(isExpanded ? null : i)}
               >
                 <div className={`${servizio.accent} p-6 text-white`}>
