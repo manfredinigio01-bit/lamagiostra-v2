@@ -12,6 +12,7 @@ interface PostSito {
 interface Risposta {
   menu: PostSito | null;
   cassetta: PostSito | null;
+  sabato?: PostSito | null;
   esempio?: boolean;
   fonte?: 'facebook' | 'instagram';
 }
@@ -28,7 +29,7 @@ function caricaPost(): Promise<Risposta | null> {
 }
 
 interface Props {
-  tipo: 'menu' | 'cassetta';
+  tipo: 'menu' | 'cassetta' | 'sabato';
   language: string;
   titolo: string;
   /** Testo mostrato se Instagram non è collegato o non c'è ancora un post. */
@@ -48,7 +49,7 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
     let attivo = true;
     caricaPost().then((r) => {
       if (!attivo) return;
-      setPost(r ? r[tipo] : null);
+      setPost(r?.[tipo] ?? null);
       setEsempio(Boolean(r?.esempio));
       if (r?.fonte) setFonte(r.fonte);
       setStato('pronto');

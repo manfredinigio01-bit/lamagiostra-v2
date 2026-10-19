@@ -1,7 +1,8 @@
 import { whatsappLink } from '../lib/company';
 import InstagramPost from './InstagramPost';
 import AllergeniTabella from './AllergeniTabella';
-import { ShoppingBasket, Clock, Star, Utensils, CalendarDays, RefreshCw } from 'lucide-react';
+import { useState } from 'react';
+import { ShoppingBasket, Clock, Star, Utensils, CalendarDays, RefreshCw, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface Props {
   language: string;
@@ -64,6 +65,7 @@ const classici = [
 ];
 
 export default function INostriClassiciPage({ language }: Props) {
+  const [sabatoAperto, setSabatoAperto] = useState(false);
   return (
     <div className="min-h-screen bg-stone-50">
       <div className="relative bg-emerald-700 text-white py-12 sm:py-20 overflow-hidden">
@@ -149,9 +151,36 @@ export default function INostriClassiciPage({ language }: Props) {
                     ? 'Ogni sabato è possibile ordinare un menu completo e bilanciato, dall\'antipasto al dolce, pensato da noi apposta per il weekend.'
                     : 'Every Saturday you can order a complete, balanced menu, from starter to dessert, designed by us especially for the weekend.'}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSabatoAperto((a) => !a)}
+                  aria-expanded={sabatoAperto}
+                  aria-controls="menu-sabato"
+                  className="mt-4 inline-flex items-center gap-1.5 text-amber-800 font-semibold text-sm hover:underline"
+                >
+                  {sabatoAperto
+                    ? language === 'it' ? 'Chiudi il menu di sabato' : 'Close the Saturday menu'
+                    : language === 'it' ? 'Vedi il menu di sabato' : 'See the Saturday menu'}
+                  {sabatoAperto ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </button>
               </div>
             </div>
           </div>
+
+          {sabatoAperto && (
+            <div id="menu-sabato" className="mb-8 scroll-mt-24">
+              <InstagramPost
+                tipo="sabato"
+                language={language}
+                titolo={language === 'it' ? 'Il menu di questo sabato' : "This Saturday's menu"}
+                riserva={
+                  language === 'it'
+                    ? 'Il menu del sabato lo pubblichiamo ogni settimana su Facebook e Instagram: scrivici su WhatsApp per ordinarlo.'
+                    : 'We post the Saturday menu every week on Facebook and Instagram: message us on WhatsApp to order it.'
+                }
+              />
+            </div>
+          )}
 
           <div id="questa-settimana" className="grid md:grid-cols-2 gap-6 mb-8 scroll-mt-24">
             <InstagramPost
