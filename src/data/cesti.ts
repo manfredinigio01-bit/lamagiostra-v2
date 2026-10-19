@@ -29,8 +29,8 @@ export const CESTI_NATALE = {
       prezzo: 25,
       foto: '/cesti/assaggiami.webp',
       descrizione: {
-        it: 'Un primo assaggio della nostra bottega: pasta, farina, lenticchie e salsa di pomodoro per la tavola di tutti i giorni, più fichi caramellati e mandorle pralinate per chiudere con dolcezza.',
-        en: 'A first taste of our shop: pasta, flour, lentils and tomato sauce for everyday meals, plus caramelised figs and praline almonds for a sweet finish.',
+        it: 'Il cesto per scoprire la nostra bottega: tutto per un piatto di casa, pasta e lenticchie al pomodoro, e un finale dolce con fichi caramellati e mandorle pralinate. Piccolo nel prezzo, scelto con la stessa attenzione dei nostri cesti più grandi.',
+        en: 'The basket to discover our shop: everything for a home-cooked dish of pasta and lentils in tomato sauce, and a sweet finish with caramelised figs and praline almonds. Small in price, chosen with the same care as our larger baskets.',
       },
       prodotti: [
         'Bucatini di semola',
@@ -48,8 +48,8 @@ export const CESTI_NATALE = {
       prezzo: 50,
       foto: '/cesti/la-bottega.webp',
       descrizione: {
-        it: 'Il cesto per chi ama cucinare. Olio extravergine, riso, tagliolini all’uovo e funghi porcini secchi per un piatto di stagione, e per il dolce composta di albicocche, fichi caramellati, amaretti morbidi e cioccolato fondente.',
-        en: 'The basket for those who love to cook. Extra virgin olive oil, rice, egg tagliolini and dried porcini for a seasonal dish, and for dessert apricot compote, caramelised figs, soft amaretti and dark chocolate.',
+        it: 'Il cesto per chi ama cucinare: riso e porcini secchi per un risotto delle feste, tagliolini all’uovo per un secondo primo e un fine pasto goloso con amaretti, cioccolato fondente e composta di albicocche.',
+        en: 'The basket for those who love to cook: rice and dried porcini for a festive risotto, egg tagliolini for another first course, and a treat to finish with amaretti, dark chocolate and apricot compote.',
       },
       prodotti: [
         'Olio extravergine d’oliva (500 ml)',
@@ -68,8 +68,8 @@ export const CESTI_NATALE = {
       prezzo: 75,
       foto: '/cesti/la-dispensa.webp',
       descrizione: {
-        it: 'Una dispensa completa per le feste. Olio, riso, tagliolini all’uovo, lenticchie e salsa di pomodoro per la cucina di casa, pane carasau e filetti di acciughe per l’aperitivo, e a chiudere composta di frutti di bosco, torrone, paste di mandorla e mandorle pralinate.',
-        en: 'A full pantry for the holidays. Oil, rice, egg tagliolini, lentils and tomato sauce for home cooking, carasau bread and anchovy fillets for aperitivo, and to finish berry compote, nougat, almond pastries and praline almonds.',
+        it: 'Il cesto per chi riceve ospiti: pane carasau e acciughe per l’aperitivo, le lenticchie di Capodanno, riso e tagliolini per i pranzi in famiglia, e torrone e paste di mandorla per il dolce. Accompagna tutte le feste, dal primo brindisi all’ultimo.',
+        en: "The basket for those who entertain: carasau bread and anchovies for aperitivo, New Year's lentils, rice and tagliolini for family lunches, and nougat and almond pastries for dessert. It sees you through the holidays, from the first toast to the last.",
       },
       prodotti: [
         'Olio extravergine d’oliva (500 ml)',
@@ -93,8 +93,8 @@ export const CESTI_NATALE = {
       prezzo: 100,
       foto: '/cesti/la-magiostra.webp',
       descrizione: {
-        it: 'La nostra proposta più ricca, con diciassette prodotti scelti: dalle lasagne ai porcini secchi, due composte, torrone, paste di mandorla e amaretti, fino alla tisana biologica per concludere.',
-        en: 'Our richest basket, with seventeen chosen products: from lasagne to dried porcini, two compotes, nougat, almond pastries and amaretti, finishing with an organic herbal tea.',
+        it: 'La nostra proposta più ricca, per un regalo importante: le lasagne per il pranzo di Natale, riso e porcini per un risotto, una tavola dei dolci con torrone, paste di mandorla e amaretti, fino alla tisana della sera per chiudere le feste con calma.',
+        en: 'Our richest basket, for a special gift: lasagne for Christmas lunch, rice and porcini for a risotto, a dessert table with nougat, almond pastries and amaretti, and an evening herbal tea to end the holidays calmly.',
       },
       prodotti: [
         'Olio extravergine d’oliva (750 ml)',
