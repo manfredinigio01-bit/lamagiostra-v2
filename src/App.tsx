@@ -20,7 +20,7 @@ import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
 import { COMPANY, whatsappLink } from './lib/company';
 import { pageFromPath, pathFor, slugFromPath, type StaticPage } from './lib/routes';
-import { usePageMeta, useStructuredData, type DetailMeta } from './lib/seo';
+import { usePageMeta, useStructuredData, metaPersona, metaFornitore, type DetailMeta } from './lib/seo';
 
 const translations = {
   it: {
@@ -154,20 +154,8 @@ function App() {
   const t = translations[language as keyof typeof translations];
 
   const detailMeta = useMemo<DetailMeta | undefined>(() => {
-    if (member) {
-      return {
-        path: window.location.pathname,
-        it: { title: `${member.name} – Il nostro team – La Magiostra`, description: member.descrizione?.it ?? `${member.name}, ${member.role.toLowerCase()} a La Magiostra, Cremona.` },
-        en: { title: `${member.name} – Our team – La Magiostra`, description: member.descrizione?.en ?? `${member.name}, ${member.role_en.toLowerCase()} at La Magiostra, Cremona.` },
-      };
-    }
-    if (fornitore) {
-      return {
-        path: window.location.pathname,
-        it: { title: `${fornitore.name} – I nostri fornitori – La Magiostra`, description: fornitore.descrizione?.it ?? `${fornitore.name}, uno dei produttori che riforniscono La Magiostra a Cremona.` },
-        en: { title: `${fornitore.name} – Our suppliers – La Magiostra`, description: fornitore.descrizione?.en ?? `${fornitore.name}, one of the producers supplying La Magiostra in Cremona.` },
-      };
-    }
+    if (member) return metaPersona(member, window.location.pathname);
+    if (fornitore) return metaFornitore(fornitore, window.location.pathname);
     return undefined;
   }, [member, fornitore]);
 
