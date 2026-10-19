@@ -85,9 +85,13 @@ function piuRecente(posts: PostInstagram[], frasi: string[]): PostInstagram | un
     .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))[0];
 }
 
-/** Post del sabato: una frase del sabato, oppure "proposte della gastronomia" insieme a "sabato" nelle prime righe. */
+/** Post del sabato: nelle prime righe c'è "menu" (o "proposte della gastronomia") insieme a "sabato", senza altri giorni. */
+// Esempio reale: "MENÙ SPECIALE DI SABATO 17 OTTOBRE".
 export function eSabato(caption: string | undefined): boolean {
-  return iniziaCon(caption, FRASI_SABATO) || (iniziaCon(caption, FRASI_MENU) && iniziaCon(caption, ['sabato']) && !iniziaCon(caption, ['venerdi', 'giovedi', 'mercoledi', 'martedi']));
+  if (iniziaCon(caption, FRASI_SABATO)) return true;
+  const parlaDiMenu = iniziaCon(caption, ['menu', ...FRASI_MENU]);
+  const altriGiorni = iniziaCon(caption, ['venerdi', 'giovedi', 'mercoledi', 'martedi']);
+  return parlaDiMenu && iniziaCon(caption, ['sabato']) && !altriGiorni;
 }
 
 /** Sceglie menu, cassetta e menu del sabato più recenti, senza fidarsi dell'ordine in cui arrivano i post. */
