@@ -13,6 +13,8 @@ import { allPublicPaths, produttorePath } from './src/lib/routes';
 //  - aggiunge "X-Robots-Tag: noindex" a tutte le pagine (Google non lo indicizza)
 //  - non genera la sitemap e non la indica in robots.txt
 // Il canonical resta su www.lamagiostra.it, così l'eventuale contenuto duplicato punta al sito vero.
+const CF_ANALYTICS_TOKEN = 'a137604abd754720bcef602fe2033875';
+
 function seoFiles(siteUrl: string, prova: boolean): Plugin {
   let outDir = 'dist';
   return {
@@ -22,7 +24,23 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
     },
     transformIndexHtml() {
       if (!siteUrl) return [];
+      // Statistiche visite senza cookie (Cloudflare Web Analytics), solo sul sito ufficiale.
+      // Il token è pubblico: serve solo a dire a Cloudflare a quale sito appartengono le visite.
+      const statistiche = prova
+        ? []
+        : [
+            {
+              tag: 'script',
+              attrs: {
+                defer: true,
+                src: 'https://static.cloudflareinsights.com/beacon.min.js',
+                'data-cf-beacon': JSON.stringify({ token: CF_ANALYTICS_TOKEN }),
+              },
+              injectTo: 'body' as const,
+            },
+          ];
       return [
+        ...statistiche,
         { tag: 'meta', attrs: { property: 'og:url', content: siteUrl + '/' }, injectTo: 'head' },
         { tag: 'meta', attrs: { property: 'og:image', content: `${siteUrl}/og-image.jpg` }, injectTo: 'head' },
         { tag: 'meta', attrs: { name: 'twitter:image', content: `${siteUrl}/og-image.jpg` }, injectTo: 'head' },
