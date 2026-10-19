@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { COMPANY } from './company';
-import { pathFor, type Page, type StaticPage } from './routes';
+import { pathFor, PAGE_PATHS, type Page, type StaticPage } from './routes';
+import { fornitori, staff } from '../data/team';
 import { IS_PROVA } from './ambiente';
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/+$/, '') ?? '';
+// (Il ?. serve perché questo file viene letto anche durante il build, fuori dal browser.)
+const SITE_URL = (import.meta.env?.VITE_SITE_URL as string | undefined)?.replace(/\/+$/, '') ?? '';
 
 interface Meta {
   title: string;
@@ -131,6 +133,43 @@ export interface DetailMeta {
   path: string;
   it: Meta;
   en: Meta;
+}
+
+type Persona = (typeof staff)[number];
+type Fornitore = (typeof fornitori)[number];
+
+export function metaPersona(member: Persona, path: string): DetailMeta {
+  return {
+    path,
+    it: { title: `${member.name} – Il nostro team – La Magiostra`, description: member.descrizione?.it ?? `${member.name}, ${member.role.toLowerCase()} a La Magiostra, Cremona.` },
+    en: { title: `${member.name} – Our team – La Magiostra`, description: member.descrizione?.en ?? `${member.name}, ${member.role_en.toLowerCase()} at La Magiostra, Cremona.` },
+  };
+}
+
+export function metaFornitore(fornitore: Fornitore, path: string): DetailMeta {
+  return {
+    path,
+    it: { title: `${fornitore.name} – I nostri fornitori – La Magiostra`, description: fornitore.descrizione?.it ?? `${fornitore.name}, uno dei produttori che riforniscono La Magiostra a Cremona.` },
+    en: { title: `${fornitore.name} – Our suppliers – La Magiostra`, description: fornitore.descrizione?.en ?? `${fornitore.name}, one of the producers supplying La Magiostra in Cremona.` },
+  };
+}
+
+/**
+ * Titolo e descrizione (in italiano) di un indirizzo, per il build: così ogni pagina
+ * ha già nel file i suoi dati giusti, anche per chi non esegue JavaScript
+ * (anteprime di WhatsApp e Facebook, alcuni motori di ricerca).
+ */
+export function metaPerPercorso(path: string): Meta | undefined {
+  const pagina = (Object.keys(PAGE_PATHS) as StaticPage[]).find((k) => PAGE_PATHS[k] === path);
+  if (pagina) return META[pagina].it;
+  const m = /^\/(staff|fornitori)\/([^/]+)$/.exec(path);
+  if (!m) return undefined;
+  if (m[1] === 'staff') {
+    const member = staff.find((s) => s.slug === m[2]);
+    return member ? metaPersona(member, path).it : undefined;
+  }
+  const fornitore = fornitori.find((f) => f.slug === m[2]);
+  return fornitore ? metaFornitore(fornitore, path).it : undefined;
 }
 
 /** Aggiorna titolo, descrizione, lingua della pagina e indicazioni per i motori di ricerca. */
