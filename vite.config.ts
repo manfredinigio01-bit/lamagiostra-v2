@@ -40,7 +40,22 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
               injectTo: 'body' as const,
             },
           ];
+      // Nome del sito per Google (quello che compare sopra il risultato di ricerca).
+      // Solo nella home: le altre pagine lo tolgono in conMetaDellaPagina.
+      const nomeSito = {
+        tag: 'script',
+        attrs: { type: 'application/ld+json', id: 'ld-website' },
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'La Magiostra',
+          alternateName: ['Magiostra', 'La Magiostra Cremona'],
+          url: siteUrl + '/',
+        }),
+        injectTo: 'head' as const,
+      };
       return [
+        nomeSito,
         ...statistiche,
         { tag: 'meta', attrs: { property: 'og:url', content: siteUrl + '/' }, injectTo: 'head' },
         { tag: 'meta', attrs: { property: 'og:image', content: `${siteUrl}/og-image.jpg` }, injectTo: 'head' },
@@ -74,7 +89,7 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
           mkdirSync(dirname(file), { recursive: true });
           writeFileSync(file, conMetaDellaPagina(html, path, siteUrl));
         }
-        const nonTrovata = html.replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
+        const nonTrovata = html.replace(/\s*<script type="application\/ld\+json" id="ld-website">[^<]*<\/script>/, '').replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
         writeFileSync(resolve(outDir, '404.html'), nonTrovata);
       }
       if (!prova) return;
@@ -93,7 +108,7 @@ const attr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').rep
 // (senza, ogni pagina dichiarerebbe a Google di essere una copia della home).
 function conMetaDellaPagina(html: string, path: string, siteUrl: string): string {
   const meta = metaPerPercorso(path);
-  let out = html;
+  let out = html.replace(/\s*<script type="application\/ld\+json" id="ld-website">[^<]*<\/script>/, '');
   if (meta) {
     out = out
       .replace(/<title>[^<]*<\/title>/, `<title>${attr(meta.title)}</title>`)
