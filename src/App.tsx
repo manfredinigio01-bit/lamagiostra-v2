@@ -14,6 +14,7 @@ import PersonaPage from './components/PersonaPage';
 import ProduttorePage from './components/ProduttorePage';
 import ChiamaMenu from './components/ChiamaMenu';
 import Pagamenti from './components/Pagamenti';
+import Recensioni from './components/Recensioni';
 import MagiostraPage from './components/MagiostraPage';
 import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
@@ -459,6 +460,7 @@ function App() {
                   </div>
                 </div>
                 <Pagamenti language={language} className="mb-8" />
+                <Recensioni language={language} className="mb-8" />
                 <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                   <a
                     href={whatsappHref}

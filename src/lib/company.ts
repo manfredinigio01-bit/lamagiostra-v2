@@ -19,6 +19,8 @@ export const COMPANY = {
   instagram: 'https://www.instagram.com/lamagiostra/',
   facebook: 'https://www.facebook.com/LaMagiostra',
   mapsUrl: 'https://maps.google.com/?q=La+Magiostra,+Via+Grado+1,+26100+Cremona',
+  // Apre direttamente il modulo "Scrivi una recensione" della scheda Google de La Magiostra.
+  googleReviewUrl: 'https://search.google.com/local/writereview?placeid=ChIJ6y2C-3T-gEcRgxb6bMDfLvE',
   foundedYear: 1987,
   hours: {
     tueFri: '9:30-14:30 / 17:00-19:30',
