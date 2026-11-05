@@ -123,3 +123,35 @@ export const CESTI_NATALE = {
 export function cestiNataleVisibili(oggi = new Date()): boolean {
   return oggi <= new Date(`${CESTI_NATALE.visibileFinoA}T23:59:59`);
 }
+
+// Panettoni di Natale in vendita in bottega (stessa scadenza dei cesti: CESTI_NATALE.visibileFinoA).
+// Per aggiungere prezzo o foto: campi "prezzo" (numero, IVA inclusa) e "foto" (es. '/panettoni/classico.webp').
+export interface Panettone {
+  slug: string;
+  nome: Testo;
+  descrizione: Testo;
+  prezzo?: number;
+  foto?: string;
+}
+
+export const PANETTONI_NATALE = {
+  produttore: 'Binomio Lab',
+  produttoreSlug: 'binomio-lab',
+  panettoni: [
+    {
+      slug: 'classico',
+      nome: { it: 'Panettone classico', en: 'Classic panettone' },
+      descrizione: { it: 'La ricetta tradizionale.', en: 'The traditional recipe.' },
+    },
+    {
+      slug: 'albicocca-senza-lattosio',
+      nome: { it: 'Panettone all’albicocca senza lattosio', en: 'Lactose-free apricot panettone' },
+      descrizione: { it: 'Con canditi di albicocca, senza lattosio.', en: 'With candied apricot, lactose-free.' },
+    },
+    {
+      slug: 'vegano-cioccolato',
+      nome: { it: 'Panettone vegano al cioccolato', en: 'Vegan chocolate panettone' },
+      descrizione: { it: 'Vegano, al cioccolato.', en: 'Vegan, with chocolate.' },
+    },
+  ] as Panettone[],
+};
