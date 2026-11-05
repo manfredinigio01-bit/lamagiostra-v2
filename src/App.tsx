@@ -15,6 +15,7 @@ import ProduttorePage from './components/ProduttorePage';
 import ChiamaMenu from './components/ChiamaMenu';
 import Pagamenti from './components/Pagamenti';
 import Recensioni from './components/Recensioni';
+import CestiNataleHome from './components/CestiNataleHome';
 import MagiostraPage from './components/MagiostraPage';
 import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
@@ -300,6 +301,8 @@ function App() {
                 </div>
               </div>
             </section>
+
+            <CestiNataleHome language={language} onOpen={(sezione) => navigate('ricorrenze', sezione)} />
 
             <section id="about" className="py-14 sm:py-20 bg-cream">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
