@@ -3,7 +3,8 @@ import { dirname, resolve } from 'node:path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fornitori } from './src/data/team';
-import { allPublicPaths, produttorePath } from './src/lib/routes';
+import { allPublicPaths, produttorePath, raccontoPath } from './src/lib/routes';
+import { RACCONTI } from './src/data/racconti';
 import { metaPerPercorso } from './src/lib/seo';
 
 // Se in .env (o nelle variabili del hosting) c'è VITE_SITE_URL, ad esempio
@@ -49,7 +50,12 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
       if (existsSync(index)) {
         const html = readFileSync(index, 'utf8');
         // Sul sito di prova si aprono anche le schede dei fornitori senza descrizione.
-        const pagine = new Set([...allPublicPaths(), ...(prova ? fornitori.map((f) => produttorePath(f.slug)) : [])]);
+        // e la sezione Racconti con le bozze.
+        const pagine = new Set([
+          ...allPublicPaths(),
+          ...(prova ? fornitori.map((f) => produttorePath(f.slug)) : []),
+          ...(prova && RACCONTI.length > 0 ? ['/racconti', ...RACCONTI.map((r) => raccontoPath(r.slug))] : []),
+        ]);
         for (const path of pagine) {
           if (path === '/') continue;
           const file = resolve(outDir, `${path.slice(1)}.html`);
