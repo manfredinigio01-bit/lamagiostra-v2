@@ -1,6 +1,6 @@
 import { Users, Menu, X, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
-import { pathFor, type Page, type StaticPage } from '../lib/routes';
+import { pathFor, raccontiAttivi, type Page, type StaticPage } from '../lib/routes';
 import { whatsappLink } from '../lib/company';
 
 interface Props {
@@ -18,11 +18,12 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
 
   // Le pagine di approfondimento evidenziano la sezione da cui si arriva.
   const activeSection = (p: NavPage) =>
-    page === p || (p === 'staff' && page === 'persona') || (p === 'fornitori' && page === 'produttore');
+    page === p || (p === 'staff' && page === 'persona') || (p === 'fornitori' && page === 'produttore') || (p === 'racconti' && page === 'racconto');
 
+  // Ogni voce ha il suo "bottoncino" leggermente più scuro dello sfondo, così le voci restano staccate.
   const navLinkClass = (p: NavPage) =>
-    `relative whitespace-nowrap font-medium transition-colors hover:text-emerald-700 after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:rounded-full ${
-      activeSection(p) ? 'text-emerald-800 after:bg-emerald-700' : 'text-stone-600 after:bg-transparent'
+    `whitespace-nowrap text-[15px] 2xl:text-base font-medium px-2.5 2xl:px-3 py-1.5 rounded-full transition-colors ${
+      activeSection(p) ? 'bg-emerald-700 text-white' : 'bg-emerald-900/[0.06] text-stone-700 hover:bg-emerald-900/[0.12] hover:text-emerald-900'
     }`;
 
   const mobileLinkClass = (p: NavPage) =>
@@ -43,27 +44,29 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
     setMobileOpen(false);
   }
 
-  const labels: Record<'classici' | 'ricorrenze' | 'fornitori' | 'dove', string> = {
+  const labels: Record<'classici' | 'ricorrenze' | 'racconti' | 'fornitori' | 'dove', string> = {
     classici: it ? 'I Nostri Classici' : 'Our Classics',
     ricorrenze: it ? 'Ricorrenze' : 'Celebrations',
+    racconti: it ? 'Racconti' : 'Stories',
     fornitori: it ? 'Fornitori' : 'Suppliers',
     dove: it ? 'Come arrivare' : 'Find us',
   };
-  const navItems: NavPage[] = ['home', 'classici', 'ricorrenze', 'fornitori', 'dove'];
+  // "Racconti" compare solo quando c'è almeno un racconto (vedi src/data/racconti.ts).
+  const navItems: NavPage[] = ['home', 'classici', 'ricorrenze', ...(raccontiAttivi() ? (['racconti'] as NavPage[]) : []), 'fornitori', 'dove'];
   const labelFor = (p: NavPage) => (p === 'home' ? 'Home' : labels[p as keyof typeof labels]);
 
   return (
     <header className="bg-cream text-stone-800 sticky top-0 z-50 border-b border-emerald-900/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center gap-3 shrink-0">
             {/* Sorpresa: in home, toccando il sole si apre la pagina sul significato di "magiostra". */}
             <a
               href={page === 'home' ? pathFor('magiostra') : pathFor('home')}
               onClick={(e) => go(e, page === 'home' ? 'magiostra' : 'home')}
               aria-label={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : 'La Magiostra – Home'}
               title={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : undefined}
-              className="h-10 sm:h-12 block transition-transform duration-500 hover:rotate-20"
+              className="h-10 sm:h-12 block shrink-0 transition-transform duration-500 hover:rotate-20"
             >
               <img
                 src="/logo_magiostra_transparent.webp"
@@ -75,7 +78,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
           <a href={pathFor('home')} onClick={(e) => go(e, 'home')} className="flex items-center hover:opacity-80 transition-opacity">
             <div className="text-left">
               <p className="font-display text-lg sm:text-2xl font-bold leading-tight text-emerald-900 whitespace-nowrap">La Magiostra</p>
-              <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block lg:hidden xl:block">
+              <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block xl:hidden">
                 {it ? 'Negozio di alimentari dal 1987' : 'Grocery store since 1987'}
               </p>
             </div>
@@ -83,7 +86,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
           </div>
 
           <div className="flex items-center gap-4">
-            <nav className="hidden lg:flex gap-5 xl:gap-6 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
+            <nav className="hidden xl:flex gap-1.5 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
               {navItems.map((p) => (
                 <a
                   key={p}
@@ -98,13 +101,13 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               <a
                 href={`${pathFor('home')}#contact`}
                 onClick={(e) => go(e, 'home', 'contact')}
-                className="font-medium text-stone-600 hover:text-emerald-700 transition-colors"
+                className="whitespace-nowrap text-[15px] 2xl:text-base font-medium px-2.5 2xl:px-3 py-1.5 rounded-full transition-colors bg-emerald-900/[0.06] text-stone-700 hover:bg-emerald-900/[0.12] hover:text-emerald-900"
               >
                 {it ? 'Contatti' : 'Contact'}
               </a>
             </nav>
 
-            <div className="hidden lg:flex gap-1 items-center">
+            <div className="hidden xl:flex gap-1 items-center">
               <a
                 href={pathFor('staff')}
                 onClick={(e) => go(e, 'staff')}
@@ -134,7 +137,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
             </a>
 
             <button
-              className="lg:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors"
+              className="xl:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Menu"
               aria-expanded={mobileOpen}
@@ -146,7 +149,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden bg-cream border-t border-emerald-900/10 px-4 py-4 space-y-1">
+        <div className="xl:hidden bg-cream border-t border-emerald-900/10 px-4 py-4 space-y-1">
           {navItems.map((p) => (
             <a key={p} href={pathFor(p)} onClick={(e) => go(e, p)} className={mobileLinkClass(p)}>
               {labelFor(p)}

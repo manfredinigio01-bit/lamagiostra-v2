@@ -16,13 +16,16 @@ import ChiamaMenu from './components/ChiamaMenu';
 import Pagamenti from './components/Pagamenti';
 import Recensioni from './components/Recensioni';
 import CestiNataleHome from './components/CestiNataleHome';
+import RaccontiPage from './components/RaccontiPage';
+import RaccontoPage from './components/RaccontoPage';
+import { RACCONTI } from './data/racconti';
 import MagiostraPage from './components/MagiostraPage';
 import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
 import { COMPANY, whatsappLink } from './lib/company';
 import { pageFromPath, pathFor, slugFromPath, type StaticPage } from './lib/routes';
-import { usePageMeta, useStructuredData, metaPersona, metaFornitore, type DetailMeta } from './lib/seo';
+import { usePageMeta, useStructuredData, metaPersona, metaFornitore, metaRacconto, type DetailMeta } from './lib/seo';
 
 const translations = {
   it: {
@@ -153,13 +156,15 @@ function App() {
   const slug = slugFromPath(path);
   const member = page === 'persona' ? staff.find((s) => s.slug === slug) : undefined;
   const fornitore = page === 'produttore' ? fornitori.find((f) => f.slug === slug) : undefined;
+  const racconto = page === 'racconto' ? RACCONTI.find((r) => r.slug === slug) : undefined;
   const t = translations[language as keyof typeof translations];
 
   const detailMeta = useMemo<DetailMeta | undefined>(() => {
     if (member) return metaPersona(member, window.location.pathname);
     if (fornitore) return metaFornitore(fornitore, window.location.pathname);
+    if (racconto) return metaRacconto(racconto, window.location.pathname);
     return undefined;
-  }, [member, fornitore]);
+  }, [member, fornitore, racconto]);
 
   usePageMeta(page, language, detailMeta);
   useStructuredData();
@@ -212,6 +217,10 @@ function App() {
         return member ? <PersonaPage language={language} member={member} onBack={() => navigate('staff')} /> : null;
       case 'produttore':
         return fornitore ? <ProduttorePage language={language} fornitore={fornitore} onBack={() => navigate('fornitori')} /> : null;
+      case 'racconti':
+        return <RaccontiPage language={language} onOpen={openPath} />;
+      case 'racconto':
+        return racconto ? <RaccontoPage language={language} racconto={racconto} onBack={() => navigate('racconti')} /> : null;
       case 'dove':
         return <ComeArrivarePage language={language} />;
       case 'magiostra':
