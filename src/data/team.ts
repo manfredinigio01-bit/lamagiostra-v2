@@ -60,7 +60,7 @@ export const staff: StaffMember[] = [
 export const fornitori: Fornitore[] = [
   { slug: 'arete', name: 'Areté Cooperativa Sociale' },
   { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura', nota: { it: 'Carne bianca', en: 'White meat' } },
-  { slug: 'bio-pan', name: 'Bio-Pan', photo: '/fornitori/bio-pan.webp' },
+  { slug: 'bio-pan', name: 'Bio-Pan' },
   { slug: 'cascina-marasco', name: 'Cascina Marasco, coop. agricola sociale' },
   { slug: 'moronara', name: 'Az. Agr. Moronara' },
   { slug: 'forno-astori', name: 'Forno Astori' },
