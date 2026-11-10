@@ -20,9 +20,10 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
   const activeSection = (p: NavPage) =>
     page === p || (p === 'staff' && page === 'persona') || (p === 'fornitori' && page === 'produttore') || (p === 'racconti' && page === 'racconto');
 
+  // Ogni voce ha il suo "bottoncino" leggermente più scuro dello sfondo, così le voci restano staccate.
   const navLinkClass = (p: NavPage) =>
-    `relative whitespace-nowrap font-medium transition-colors hover:text-emerald-700 after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:rounded-full ${
-      activeSection(p) ? 'text-emerald-800 after:bg-emerald-700' : 'text-stone-600 after:bg-transparent'
+    `whitespace-nowrap text-[15px] 2xl:text-base font-medium px-2.5 2xl:px-3 py-1.5 rounded-full transition-colors ${
+      activeSection(p) ? 'bg-emerald-700 text-white' : 'bg-emerald-900/[0.06] text-stone-700 hover:bg-emerald-900/[0.12] hover:text-emerald-900'
     }`;
 
   const mobileLinkClass = (p: NavPage) =>
@@ -57,15 +58,15 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
   return (
     <header className="bg-cream text-stone-800 sticky top-0 z-50 border-b border-emerald-900/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center gap-3 shrink-0">
             {/* Sorpresa: in home, toccando il sole si apre la pagina sul significato di "magiostra". */}
             <a
               href={page === 'home' ? pathFor('magiostra') : pathFor('home')}
               onClick={(e) => go(e, page === 'home' ? 'magiostra' : 'home')}
               aria-label={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : 'La Magiostra – Home'}
               title={page === 'home' ? (it ? 'Cosa vuol dire magiostra?' : 'What does magiostra mean?') : undefined}
-              className="h-10 sm:h-12 block transition-transform duration-500 hover:rotate-20"
+              className="h-10 sm:h-12 block shrink-0 transition-transform duration-500 hover:rotate-20"
             >
               <img
                 src="/logo_magiostra_transparent.webp"
@@ -85,7 +86,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
           </div>
 
           <div className="flex items-center gap-4">
-            <nav className="hidden xl:flex gap-5 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
+            <nav className="hidden xl:flex gap-1.5 items-center" aria-label={it ? 'Menu principale' : 'Main menu'}>
               {navItems.map((p) => (
                 <a
                   key={p}
@@ -100,7 +101,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
               <a
                 href={`${pathFor('home')}#contact`}
                 onClick={(e) => go(e, 'home', 'contact')}
-                className="font-medium text-stone-600 hover:text-emerald-700 transition-colors"
+                className="whitespace-nowrap text-[15px] 2xl:text-base font-medium px-2.5 2xl:px-3 py-1.5 rounded-full transition-colors bg-emerald-900/[0.06] text-stone-700 hover:bg-emerald-900/[0.12] hover:text-emerald-900"
               >
                 {it ? 'Contatti' : 'Contact'}
               </a>
