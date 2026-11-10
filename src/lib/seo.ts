@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { COMPANY } from './company';
 import { pathFor, PAGE_PATHS, type Page, type StaticPage } from './routes';
 import { fornitori, staff } from '../data/team';
+import { RACCONTI, type Racconto } from '../data/racconti';
 import { IS_PROVA } from './ambiente';
 
 // (Il ?. serve perché questo file viene letto anche durante il build, fuori dal browser.)
@@ -13,7 +14,7 @@ interface Meta {
   noindex?: boolean;
 }
 
-const META: Record<Exclude<Page, 'persona' | 'produttore'>, { it: Meta; en: Meta }> = {
+const META: Record<Exclude<Page, 'persona' | 'produttore' | 'racconto'>, { it: Meta; en: Meta }> = {
   home: {
     it: {
       title: 'La Magiostra – Alimentari e gastronomia vegetariana e vegana a Cremona',
@@ -48,6 +49,16 @@ const META: Record<Exclude<Page, 'persona' | 'produttore'>, { it: Meta; en: Meta
       title: 'Celebrations: vegan cakes, gift baskets and gift cards – La Magiostra, Cremona',
       description:
         'Vegan birthday cakes to order, gift baskets and hampers, gift cards: made to order by La Magiostra in Cremona.',
+    },
+  },
+  racconti: {
+    it: {
+      title: 'Racconti dalla bottega: storie, ricette e foto – La Magiostra, Cremona',
+      description: 'Storie, ricette e foto dalla cucina e dal banco de La Magiostra: i nostri piatti vegetariani e vegani, i produttori e la vita in bottega.',
+    },
+    en: {
+      title: 'Stories from the shop: stories, recipes and photos – La Magiostra, Cremona',
+      description: 'Stories, recipes and photos from the kitchen and counter of La Magiostra: our vegetarian and vegan dishes, our producers and life in the shop.',
     },
   },
   fornitori: {
@@ -154,6 +165,14 @@ export function metaFornitore(fornitore: Fornitore, path: string): DetailMeta {
   };
 }
 
+export function metaRacconto(r: Racconto, path: string): DetailMeta {
+  return {
+    path,
+    it: { title: `${r.titolo.it} – Racconti – La Magiostra`, description: r.sommario.it },
+    en: { title: `${r.titolo.en} – Stories – La Magiostra`, description: r.sommario.en },
+  };
+}
+
 /**
  * Titolo e descrizione (in italiano) di un indirizzo, per il build: così ogni pagina
  * ha già nel file i suoi dati giusti, anche per chi non esegue JavaScript
@@ -162,8 +181,12 @@ export function metaFornitore(fornitore: Fornitore, path: string): DetailMeta {
 export function metaPerPercorso(path: string): Meta | undefined {
   const pagina = (Object.keys(PAGE_PATHS) as StaticPage[]).find((k) => PAGE_PATHS[k] === path);
   if (pagina) return META[pagina].it;
-  const m = /^\/(staff|fornitori)\/([^/]+)$/.exec(path);
+  const m = /^\/(staff|fornitori|racconti)\/([^/]+)$/.exec(path);
   if (!m) return undefined;
+  if (m[1] === 'racconti') {
+    const r = RACCONTI.find((x) => x.slug === m[2]);
+    return r ? metaRacconto(r, path).it : undefined;
+  }
   if (m[1] === 'staff') {
     const member = staff.find((s) => s.slug === m[2]);
     return member ? metaPersona(member, path).it : undefined;
@@ -176,7 +199,7 @@ export function metaPerPercorso(path: string): Meta | undefined {
 export function usePageMeta(page: Page, language: string, detail?: DetailMeta) {
   useEffect(() => {
     const lang = language === 'en' ? 'en' : 'it';
-    const isDetail = page === 'persona' || page === 'produttore';
+    const isDetail = page === 'persona' || page === 'produttore' || page === 'racconto';
     const meta = isDetail ? (detail ? detail[lang] : META['not-found'][lang]) : META[page][lang];
     document.documentElement.lang = lang;
     document.title = meta.title;
