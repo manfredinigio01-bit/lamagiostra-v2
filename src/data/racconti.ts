@@ -2,7 +2,7 @@
 //
 // COME AGGIUNGERE UN RACCONTO
 // 1. Metti le foto in public/racconti/ (formato .webp o .jpg, lato lungo ~1600 px).
-// 2. Copia uno dei racconti qui sotto e cambia i campi. Lo "slug" diventa l'indirizzo:
+// 2. Copia uno dei racconti (le ricette dei corsi sono in ricette-corsi.ts) e cambia i campi. Lo "slug" diventa l'indirizzo:
 //    slug 'farinata-di-ceci' → www.lamagiostra.it/racconti/farinata-di-ceci
 // 3. "bozza: true" = si vede solo sul sito di prova (v3). Toglilo per pubblicarlo.
 //
@@ -10,22 +10,35 @@
 // un racconto pubblicato (senza "bozza").
 // Il testo va diviso in paragrafi con una riga vuota (\n\n).
 
-import type { Testo } from './team';
+import { RICETTE_CORSI } from './ricette-corsi';
+
+/**
+ * Un testo del racconto: una stringa (solo italiano) oppure { it, en }.
+ * Sul sito in inglese, se manca "en", si mostra l'italiano.
+ */
+export type Txt = string | { it: string; en?: string };
+
+/** Riga di ingredienti o di passaggi: un testo, oppure un titoletto di gruppo (es. "Per la salsa"). */
+export type Riga = Txt | { gruppo: Txt };
 
 export type TipoRacconto = 'racconto' | 'ricetta' | 'foto';
 
 export interface FotoRacconto {
   src: string;
-  didascalia?: Testo;
+  didascalia?: Txt;
 }
 
 export interface Ricetta {
-  /** Es. { it: '4 persone', en: '4 people' } */
-  porzioni?: Testo;
-  /** Es. { it: '40 minuti', en: '40 minutes' } */
-  tempo?: Testo;
-  ingredienti: Testo[];
-  passaggi: Testo[];
+  /** Es. '4 persone' */
+  porzioni?: Txt;
+  /** Es. '40 minuti' */
+  tempo?: Txt;
+  ingredienti: Riga[];
+  passaggi: Riga[];
+  /** Strumenti che servono (facoltativo). */
+  strumenti?: Txt[];
+  /** Consigli, varianti, conservazione (facoltativo). */
+  note?: Txt;
 }
 
 export interface Racconto {
@@ -33,13 +46,15 @@ export interface Racconto {
   tipo: TipoRacconto;
   /** Data di pubblicazione, formato AAAA-MM-GG. */
   data: string;
-  titolo: Testo;
+  titolo: Txt;
   /** Una o due frasi: compaiono nella lista e nell'anteprima su Google e WhatsApp. */
-  sommario: Testo;
+  sommario: Txt;
+  /** Da quale corso di cucina viene (facoltativo). Es. 'I legumi – inverno' */
+  corso?: string;
   /** Foto principale. */
   copertina?: string;
   /** Il racconto, diviso in paragrafi con \n\n. */
-  testo?: Testo;
+  testo?: Txt;
   /** Altre foto, mostrate in galleria sotto il testo. */
   foto?: FotoRacconto[];
   /** Solo per le ricette. */
@@ -48,56 +63,15 @@ export interface Racconto {
   bozza?: boolean;
 }
 
-export const RACCONTI: Racconto[] = [
-  {
-    slug: 'esempio-racconto',
-    tipo: 'racconto',
-    data: '2026-11-10',
-    bozza: true,
-    titolo: { it: '[Esempio] Una mattina al banco della gastronomia', en: '[Example] A morning at the deli counter' },
-    sommario: {
-      it: 'Esempio di racconto: qui vanno una o due frasi che fanno venire voglia di leggere.',
-      en: 'Example story: one or two sentences that make people want to read on.',
-    },
-    copertina: '/banco_gastronomia.webp',
-    testo: {
-      it: 'Questo è un racconto di esempio, visibile solo sul sito di prova: serve a vedere come appare la pagina.\n\nQui va il testo vero: cosa è successo, chi c’era, cosa abbiamo cucinato e perché. Ogni riga vuota inizia un nuovo paragrafo.',
-      en: 'This is an example story, visible only on the test site: it shows how the page looks.\n\nThe real text goes here: what happened, who was there, what we cooked and why. Each empty line starts a new paragraph.',
-    },
-    foto: [
-      { src: '/foto_pane.webp', didascalia: { it: '[Didascalia della foto]', en: '[Photo caption]' } },
-      { src: '/bancone_frutta_e_verdura.webp', didascalia: { it: '[Didascalia della foto]', en: '[Photo caption]' } },
-    ],
-  },
-  {
-    slug: 'esempio-ricetta',
-    tipo: 'ricetta',
-    data: '2026-11-09',
-    bozza: true,
-    titolo: { it: '[Esempio] Titolo della ricetta', en: '[Example] Recipe title' },
-    sommario: {
-      it: 'Esempio di ricetta: due righe per raccontare il piatto e quando lo facciamo.',
-      en: 'Example recipe: two lines about the dish and when we make it.',
-    },
-    copertina: '/catering_fuori_porta.webp',
-    testo: {
-      it: 'Qui va la storia del piatto: da dove arriva la ricetta, quali ingredienti usiamo e da quali produttori.',
-      en: 'The story of the dish goes here: where the recipe comes from, which ingredients we use and from which producers.',
-    },
-    ricetta: {
-      porzioni: { it: '4 persone', en: '4 people' },
-      tempo: { it: '[tempo]', en: '[time]' },
-      ingredienti: [
-        { it: '[quantità] [ingrediente]', en: '[amount] [ingredient]' },
-        { it: '[quantità] [ingrediente]', en: '[amount] [ingredient]' },
-      ],
-      passaggi: [
-        { it: '[Primo passaggio]', en: '[First step]' },
-        { it: '[Secondo passaggio]', en: '[Second step]' },
-      ],
-    },
-  },
-];
+/** Il testo nella lingua giusta (italiano se manca l'inglese). */
+export function txt(x: Txt, language: string): string {
+  if (typeof x === 'string') return x;
+  return language === 'it' ? x.it : (x.en ?? x.it);
+}
+
+export const isGruppo = (r: Riga): r is { gruppo: Txt } => typeof r === 'object' && 'gruppo' in r;
+
+export const RACCONTI: Racconto[] = [...RICETTE_CORSI];
 
 export const raccontoPath = (slug: string) => `/racconti/${slug}`;
 
