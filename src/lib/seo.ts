@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { COMPANY } from './company';
 import { pathFor, PAGE_PATHS, type Page, type StaticPage } from './routes';
 import { fornitori, staff } from '../data/team';
-import { RACCONTI, type Racconto } from '../data/racconti';
+import { RACCONTI, txt, type Racconto } from '../data/racconti';
 import { IS_PROVA } from './ambiente';
 
 // (Il ?. serve perché questo file viene letto anche durante il build, fuori dal browser.)
@@ -168,8 +168,8 @@ export function metaFornitore(fornitore: Fornitore, path: string): DetailMeta {
 export function metaRacconto(r: Racconto, path: string): DetailMeta {
   return {
     path,
-    it: { title: `${r.titolo.it} – Racconti – La Magiostra`, description: r.sommario.it },
-    en: { title: `${r.titolo.en} – Stories – La Magiostra`, description: r.sommario.en },
+    it: { title: `${txt(r.titolo, 'it')} – Racconti – La Magiostra`, description: txt(r.sommario, 'it') },
+    en: { title: `${txt(r.titolo, 'en')} – Stories – La Magiostra`, description: txt(r.sommario, 'en') },
   };
 }
 

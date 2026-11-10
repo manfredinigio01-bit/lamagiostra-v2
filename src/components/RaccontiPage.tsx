@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { raccontiVisibili, raccontoPath, type TipoRacconto } from '../data/racconti';
+import { raccontiVisibili, raccontoPath, txt, type TipoRacconto } from '../data/racconti';
 import { IS_PROVA } from '../lib/ambiente';
 import { TIPI, dataLeggibile } from '../lib/racconti-ui';
 
@@ -8,7 +8,8 @@ interface Props {
   onOpen: (url: string) => void;
 }
 
-type Filtro = 'tutti' | TipoRacconto;
+/** 'tutti', un tipo (racconto/ricetta/foto) oppure 'corso:<nome del corso>'. */
+type Filtro = string;
 
 const PLURALI: Record<TipoRacconto, { it: string; en: string }> = {
   racconto: { it: 'Racconti', en: 'Stories' },
@@ -22,11 +23,18 @@ export default function RaccontiPage({ language, onOpen }: Props) {
   const tutti = raccontiVisibili(IS_PROVA);
   const [filtro, setFiltro] = useState<Filtro>('tutti');
   const tipiPresenti = (Object.keys(TIPI) as TipoRacconto[]).filter((t) => tutti.some((r) => r.tipo === t));
-  const lista = filtro === 'tutti' ? tutti : tutti.filter((r) => r.tipo === filtro);
+  const corsi = [...new Set(tutti.map((r) => r.corso).filter((c): c is string => Boolean(c)))];
+  const lista =
+    filtro === 'tutti'
+      ? tutti
+      : filtro.startsWith('corso:')
+        ? tutti.filter((r) => r.corso === filtro.slice(6))
+        : tutti.filter((r) => r.tipo === filtro);
 
   const filtri: { id: Filtro; label: string }[] = [
     { id: 'tutti', label: it ? 'Tutti' : 'All' },
-    ...tipiPresenti.map((t) => ({ id: t as Filtro, label: it ? PLURALI[t].it : PLURALI[t].en })),
+    ...(tipiPresenti.length > 1 ? tipiPresenti.map((t) => ({ id: t, label: it ? PLURALI[t].it : PLURALI[t].en })) : []),
+    ...corsi.map((c) => ({ id: `corso:${c}`, label: c })),
   ];
 
   return (
@@ -42,8 +50,8 @@ export default function RaccontiPage({ language, onOpen }: Props) {
             : 'Stories, recipes and photos of what we do every day: the dishes, the people and the producers.'}
         </p>
 
-        {tipiPresenti.length > 1 && (
-          <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label={it ? 'Filtra per tipo' : 'Filter by type'}>
+        {filtri.length > 2 && (
+          <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label={it ? 'Filtra i racconti' : 'Filter the stories'}>
             {filtri.map((f) => (
               <button
                 key={f.id}
@@ -92,8 +100,9 @@ export default function RaccontiPage({ language, onOpen }: Props) {
                     <span className="text-stone-400 normal-case tracking-normal font-normal">· {dataLeggibile(r.data, language)}</span>
                     {r.bozza && <span className="ml-auto bg-amber-100 text-amber-800 px-2 py-0.5 rounded normal-case tracking-normal">{it ? 'Bozza' : 'Draft'}</span>}
                   </p>
-                  <h2 className="text-xl font-bold text-emerald-950 mb-2 group-hover:text-emerald-700 transition-colors">{it ? r.titolo.it : r.titolo.en}</h2>
-                  <p className="text-stone-600">{it ? r.sommario.it : r.sommario.en}</p>
+                  <h2 className="text-xl font-bold text-emerald-950 mb-2 group-hover:text-emerald-700 transition-colors">{txt(r.titolo, language)}</h2>
+                  <p className="text-stone-600">{txt(r.sommario, language)}</p>
+                  {r.corso && <p className="mt-auto pt-3 text-sm text-stone-500">{it ? `Dal corso «${r.corso}»` : `From the class “${r.corso}”`}</p>}
                 </div>
               </a>
             );
