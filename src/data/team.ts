@@ -33,9 +33,25 @@ export interface StaffMember {
   descrizione?: Testo;
 }
 
+/** Certificato biologico UE del produttore, come risulta nel registro pubblico europeo TRACES. */
+export interface CertificatoBio {
+  /** Organismo di controllo, es. 'ICEA'. */
+  ente: string;
+  /** Codice dell'organismo di controllo, es. 'IT-BIO-006'. */
+  codiceEnte: string;
+  /** Numero del certificato (si può cercare nel registro TRACES). */
+  certificato: string;
+  /** Ragione sociale come scritta sul certificato. */
+  intestatario: string;
+  /** Data di scadenza del certificato, AAAA-MM-GG. */
+  scadenza: string;
+}
+
 export interface Fornitore {
   slug: string;
   name: string;
+  /** Certificazione biologica del produttore (lasciare vuoto se non certificato o non verificato). */
+  bio?: CertificatoBio;
   /** Facoltativa: senza foto le pagine mostrano un'icona al posto dell'immagine. */
   photo?: string;
   /** Presentazione dell'azienda. Per andare a capo tra un paragrafo e l'altro usa una riga vuota (\n\n). */
@@ -59,24 +75,24 @@ export const staff: StaffMember[] = [
 
 export const fornitori: Fornitore[] = [
   { slug: 'arete', name: 'Areté Cooperativa Sociale' },
-  { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura', nota: { it: 'Carne bianca', en: 'White meat' } },
-  { slug: 'bio-pan', name: 'Bio-Pan' },
+  { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura', nota: { it: 'Carne bianca', en: 'White meat' }, bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0114593.2026.002', intestatario: 'Az. Agr. Noi e la Natura di Bertoletti Antonio', scadenza: '2029-06-30' } },
+  { slug: 'bio-pan', name: 'Bio-Pan' , bio: { ente: 'CODEX', codiceEnte: 'IT-BIO-002', certificato: 'IT-BIO-002.380-0041558.2026.003', intestatario: 'Bio-Pan S.r.l. unipersonale', scadenza: '2029-09-23' } },
   { slug: 'cascina-marasco', name: 'Cascina Marasco, coop. agricola sociale' },
-  { slug: 'moronara', name: 'Az. Agr. Moronara' },
+  { slug: 'moronara', name: 'Az. Agr. Moronara' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0015537.2026.001', intestatario: 'Moronara Az. Agr. di Lodigiani Leonardo', scadenza: '2029-06-08' } },
   { slug: 'forno-astori', name: 'Forno Astori' },
-  { slug: 'nuova-olearia-scaligera', name: 'Nuova Olearia Scaligera' },
+  { slug: 'nuova-olearia-scaligera', name: 'Nuova Olearia Scaligera' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0038309.2025.001', intestatario: 'Nuova Olearia Scaligera S.r.l.', scadenza: '2028-10-03' } },
   { slug: 'officina-naturae', name: 'Officina Naturae', nota: { it: 'Cosmetica e detergenza naturale', en: 'Natural cosmetics and cleaning products' } },
-  { slug: 'monastero-negri', name: 'Azienda Monastero di Negri Alberto, soc. agricola', nota: { it: 'Uova', en: 'Eggs' } },
+  { slug: 'monastero-negri', name: 'Azienda Monastero di Negri Alberto, soc. agricola', nota: { it: 'Uova', en: 'Eggs' }, bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0005040.2026.002', intestatario: 'Azienda Monastero di Negri Alberto e C. S.a.s. – Società agricola', scadenza: '2029-08-03' } },
   { slug: 'allegri-daniele', name: 'Allegri Daniele', nota: { it: 'Pane', en: 'Bread' } },
-  { slug: 'mulino-sobrino', name: 'Mulino Sobrino' },
-  { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' },
+  { slug: 'mulino-sobrino', name: 'Mulino Sobrino' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0029945.2024.002', intestatario: 'Mulino Sobrino S.n.c. di Renzo Sobrino e C.', scadenza: '2027-09-02' } },
+  { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' , bio: { ente: 'QCertificazioni', codiceEnte: 'IT-BIO-014', certificato: 'IT-BIO-014.380-0106186.2025.001', intestatario: 'La Luna nel Pozzo dei F.lli Forti S.a.s.', scadenza: '2028-09-16' } },
   { slug: 'mediterranea', name: 'Mediterranea Srl' },
-  { slug: 'iris', name: 'Iris', nota: { it: 'Passate di pomodoro', en: 'Tomato passata' } },
-  { slug: 'columbro', name: 'Columbro', nota: { it: 'Pasta', en: 'Pasta' } },
+  { slug: 'iris', name: 'Iris', nota: { it: 'Passate di pomodoro', en: 'Tomato passata' }, bio: { ente: 'Bioagricert', codiceEnte: 'IT-BIO-007', certificato: 'IT-BIO-007.380-0048351.2026.002', intestatario: 'Iris Soc. Coop. Agricola', scadenza: '2029-07-20' } },
+  { slug: 'columbro', name: 'Columbro', nota: { it: 'Pasta', en: 'Pasta' }, bio: { ente: 'CCPB', codiceEnte: 'IT-BIO-009', certificato: 'IT-BIO-009.380-0003188.2026.002', intestatario: 'Pasta Iris S.r.l.', scadenza: '2029-09-11' } },
   { slug: 'binomio-lab', name: 'Binomio Lab' },
-  { slug: 'fattorie-san-lorenzo', name: 'Fattorie San Lorenzo', nota: { it: 'Carne rossa', en: 'Red meat' } },
+  { slug: 'fattorie-san-lorenzo', name: 'Fattorie San Lorenzo', nota: { it: 'Carne rossa', en: 'Red meat' }, bio: { ente: 'Bioagricert', codiceEnte: 'IT-BIO-007', certificato: 'IT-BIO-007.380-0063696.2026.003', intestatario: 'Fattorie San Lorenzo S.r.l. Società agricola', scadenza: '2027-02-12' } },
   { slug: 'maghenzani', name: 'Maghenzani', nota: { it: 'Frutta e verdura', en: 'Fruit and vegetables' } },
-  { slug: 'michelangelo-terrazzino', name: 'Michelangelo Terrazzino', nota: { it: 'Olio d’oliva', en: 'Olive oil' } },
+  { slug: 'michelangelo-terrazzino', name: 'Michelangelo Terrazzino', nota: { it: 'Olio d’oliva', en: 'Olive oil' }, bio: { ente: 'Suolo e Salute', codiceEnte: 'IT-BIO-004', certificato: 'IT-BIO-004.380-0007646.2025.003', intestatario: 'Azienda agricola Bio Terrazzino di Terrazzino Michelangelo', scadenza: '2028-09-28' } },
 ];
 
 /** Una persona ha la pagina di approfondimento solo se ha una descrizione. */
@@ -91,3 +107,8 @@ export const SUGGERIMENTI_FORNITORI: Testo[] = [
   { it: 'Come lavora', en: 'How they work' },
   { it: 'Quando lo trovi in bottega', en: 'When you find it in the shop' },
 ];
+
+/** true se il produttore ha un certificato biologico ancora valido oggi. */
+export function bioValido(f: Fornitore, oggi = new Date()): boolean {
+  return Boolean(f.bio && new Date(`${f.bio.scadenza}T23:59:59`) >= oggi);
+}

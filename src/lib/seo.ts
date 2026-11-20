@@ -17,14 +17,14 @@ interface Meta {
 const META: Record<Exclude<Page, 'persona' | 'produttore' | 'racconto'>, { it: Meta; en: Meta }> = {
   home: {
     it: {
-      title: 'La Magiostra – Alimentari e gastronomia vegetariana e vegana a Cremona',
+      title: 'La Magiostra – Alimentari biologici e gastronomia vegetariana e vegana a Cremona',
       description:
-        'Dal 1987 a Cremona: frutta e verdura fresca, pane, prodotti selezionati e gastronomia vegetariana e vegana fatta in casa. Via Grado 1. Vieni a trovarci o ordina su WhatsApp.',
+        'Dal 1987 a Cremona: prodotti biologici certificati di piccoli produttori, frutta e verdura fresca, pane e gastronomia vegetariana e vegana fatta in casa. Via Grado 1. Vieni a trovarci o ordina su WhatsApp.',
     },
     en: {
-      title: 'La Magiostra – Grocery and vegetarian & vegan deli in Cremona',
+      title: 'La Magiostra – Organic grocery and vegetarian & vegan deli in Cremona',
       description:
-        'Since 1987 in Cremona: fresh fruit and vegetables, bread, selected products and homemade vegetarian and vegan food. Via Grado 1. Visit us or order on WhatsApp.',
+        'Since 1987 in Cremona: certified organic products from small producers, fresh fruit and vegetables, bread and homemade vegetarian and vegan food. Via Grado 1. Visit us or order on WhatsApp.',
     },
   },
   classici: {
@@ -63,13 +63,13 @@ const META: Record<Exclude<Page, 'persona' | 'produttore' | 'racconto'>, { it: M
   },
   fornitori: {
     it: {
-      title: 'I nostri fornitori – La Magiostra, Cremona',
+      title: 'I nostri fornitori biologici – La Magiostra, Cremona',
       description:
-        'I produttori con cui lavoriamo ogni giorno: piccole aziende selezionate con cura per qualità della materia prima e rispetto della terra.',
+        'I produttori con cui lavoriamo ogni giorno, molti certificati biologici: per ognuno l’organismo di controllo che lo certifica. Piccole aziende scelte per la qualità della materia prima.',
     },
     en: {
-      title: 'Our suppliers – La Magiostra, Cremona',
-      description: 'The producers we work with every day: small farms and businesses chosen for the quality of their raw materials.',
+      title: 'Our organic suppliers – La Magiostra, Cremona',
+      description: 'The producers we work with every day, many of them certified organic, with the control body for each one. Small farms and businesses chosen for the quality of their raw materials.',
     },
   },
   staff: {
@@ -236,7 +236,7 @@ export function useStructuredData() {
       name: COMPANY.brand,
       legalName: COMPANY.legalName,
       description:
-        'Negozio di alimentari a Cremona dal 1987 con frutta e verdura fresca, pane, prodotti selezionati e gastronomia vegetariana e vegana.',
+        'Negozio di alimentari a Cremona dal 1987 con prodotti biologici certificati di piccoli produttori, frutta e verdura fresca, pane e gastronomia vegetariana e vegana.',
       address: {
         '@type': 'PostalAddress',
         streetAddress: COMPANY.street,
