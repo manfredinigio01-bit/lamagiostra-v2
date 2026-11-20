@@ -13,7 +13,7 @@ export default function CestiNatale({ language }: Props) {
   return (
     <>
       {cestiNataleVisibili() && (
-        <section id="cesti-natale" className="mt-12 sm:mt-20 scroll-mt-24" aria-labelledby="cesti-natale-titolo">
+        <section id="cesti-natale" className="scroll-mt-24" aria-labelledby="cesti-natale-titolo">
           <div className="text-center mb-8 sm:mb-12">
             <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-2">
               {it ? `Natale ${CESTI_NATALE.anno}` : `Christmas ${CESTI_NATALE.anno}`}
