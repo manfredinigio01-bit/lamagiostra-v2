@@ -74,19 +74,19 @@ export const staff: StaffMember[] = [
 ];
 
 export const fornitori: Fornitore[] = [
-  { slug: 'arete', name: 'Areté Cooperativa Sociale' },
+  { slug: 'arete', name: 'Areté Cooperativa Sociale' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0036391.2025.002', intestatario: 'Areté Cooperativa Sociale', scadenza: '2028-09-08' } },
   { slug: 'noi-e-la-natura', name: 'Az. Agr. Noi e la Natura', nota: { it: 'Carne bianca', en: 'White meat' }, bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0114593.2026.002', intestatario: 'Az. Agr. Noi e la Natura di Bertoletti Antonio', scadenza: '2029-06-30' } },
   { slug: 'bio-pan', name: 'Bio-Pan' , bio: { ente: 'CODEX', codiceEnte: 'IT-BIO-002', certificato: 'IT-BIO-002.380-0041558.2026.003', intestatario: 'Bio-Pan S.r.l. unipersonale', scadenza: '2029-09-23' } },
-  { slug: 'cascina-marasco', name: 'Cascina Marasco, coop. agricola sociale' },
+  { slug: 'cascina-marasco', name: 'Agropolis, coop. sociale (Cascina Marasco)' },
   { slug: 'moronara', name: 'Az. Agr. Moronara' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0015537.2026.001', intestatario: 'Moronara Az. Agr. di Lodigiani Leonardo', scadenza: '2029-06-08' } },
-  { slug: 'forno-astori', name: 'Forno Astori' },
+  { slug: 'forno-astori', name: 'Forno Astori' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0108783.2025.001', intestatario: 'Forno Astori S.r.l.', scadenza: '2028-10-24' } },
   { slug: 'nuova-olearia-scaligera', name: 'Nuova Olearia Scaligera' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0038309.2025.001', intestatario: 'Nuova Olearia Scaligera S.r.l.', scadenza: '2028-10-03' } },
   { slug: 'officina-naturae', name: 'Officina Naturae', nota: { it: 'Cosmetica e detergenza naturale', en: 'Natural cosmetics and cleaning products' } },
   { slug: 'monastero-negri', name: 'Azienda Monastero di Negri Alberto, soc. agricola', nota: { it: 'Uova', en: 'Eggs' }, bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0005040.2026.002', intestatario: 'Azienda Monastero di Negri Alberto e C. S.a.s. – Società agricola', scadenza: '2029-08-03' } },
   { slug: 'allegri-daniele', name: 'Allegri Daniele', nota: { it: 'Pane', en: 'Bread' } },
   { slug: 'mulino-sobrino', name: 'Mulino Sobrino' , bio: { ente: 'ICEA', codiceEnte: 'IT-BIO-006', certificato: 'IT-BIO-006.380-0029945.2024.002', intestatario: 'Mulino Sobrino S.n.c. di Renzo Sobrino e C.', scadenza: '2027-09-02' } },
   { slug: 'luna-nel-pozzo', name: 'La Luna nel Pozzo dei F.lli Forti' , bio: { ente: 'QCertificazioni', codiceEnte: 'IT-BIO-014', certificato: 'IT-BIO-014.380-0106186.2025.001', intestatario: 'La Luna nel Pozzo dei F.lli Forti S.a.s.', scadenza: '2028-09-16' } },
-  { slug: 'mediterranea', name: 'Mediterranea Srl' },
+  { slug: 'mediterranea', name: 'Mediterranea Srl' , bio: { ente: 'CSQA', codiceEnte: 'IT-BIO-021', certificato: 'IT-BIO-021.380-0059916.2026.001', intestatario: 'Mediterranea S.r.l.', scadenza: '2029-04-01' } },
   { slug: 'iris', name: 'Iris', nota: { it: 'Passate di pomodoro', en: 'Tomato passata' }, bio: { ente: 'Bioagricert', codiceEnte: 'IT-BIO-007', certificato: 'IT-BIO-007.380-0048351.2026.002', intestatario: 'Iris Soc. Coop. Agricola', scadenza: '2029-07-20' } },
   { slug: 'columbro', name: 'Columbro', nota: { it: 'Pasta', en: 'Pasta' }, bio: { ente: 'CCPB', codiceEnte: 'IT-BIO-009', certificato: 'IT-BIO-009.380-0003188.2026.002', intestatario: 'Pasta Iris S.r.l.', scadenza: '2029-09-11' } },
   { slug: 'binomio-lab', name: 'Binomio Lab' },
