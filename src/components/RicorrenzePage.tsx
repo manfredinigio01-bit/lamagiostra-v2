@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CestiNatale from './CestiNatale';
+import { cestiNataleVisibili } from '../data/cesti';
 import PanettoniNatale from './PanettoniNatale';
 import ChiamaMenu from './ChiamaMenu';
 import { whatsappLink } from '../lib/company';
@@ -93,7 +94,11 @@ export default function RicorrenzePage({ language }: Props) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
 
-        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+        <CestiNatale language={language} />
+
+        <PanettoniNatale language={language} />
+
+        <div className={`${cestiNataleVisibili() ? 'mt-12 sm:mt-20 ' : ''}grid md:grid-cols-3 gap-6 sm:gap-8`}>
           {serviziSpeciali.map((servizio, i) => {
             const Icon = servizio.icon;
             const isExpanded = expandedServizio === i;
@@ -147,9 +152,6 @@ export default function RicorrenzePage({ language }: Props) {
           })}
         </div>
 
-        <CestiNatale language={language} />
-
-        <PanettoniNatale language={language} />
 
         <div className="mt-10 sm:mt-16 bg-emerald-700 rounded-2xl p-6 sm:p-10 text-white text-center">
           <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-emerald-300" />

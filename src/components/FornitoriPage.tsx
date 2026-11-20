@@ -38,8 +38,13 @@ export default function FornitoriPage({ language, onOpen }: Props) {
           </h2>
           <p className="text-stone-700 leading-relaxed">
             {it
-              ? `Molti dei nostri produttori sono certificati biologici. Sotto il loro nome trovi l’organismo di controllo che li certifica, verificato nel registro europeo dei certificati biologici (per ora ${fornitori.filter((f) => bioValido(f)).length} produttori su ${fornitori.length}). Il negozio non ha una propria certificazione: i prodotti biologici sono certificati dai produttori, e i loro certificati te li mostriamo volentieri in bottega.`
-              : `Many of our producers are certified organic. Under their name you will find the control body that certifies them, checked in the EU register of organic certificates (so far ${fornitori.filter((f) => bioValido(f)).length} of ${fornitori.length} producers). The shop itself is not certified: organic products are certified by the producers, and we are happy to show you their certificates in the shop.`}
+              ? `La maggior parte dei nostri produttori è certificata biologica. Sotto il loro nome trovi l’organismo di controllo che li certifica, verificato nel registro europeo dei certificati biologici (per ora ${fornitori.filter((f) => bioValido(f)).length} produttori su ${fornitori.length}). Il negozio non ha una propria certificazione: i prodotti biologici sono certificati dai produttori, e i loro certificati te li mostriamo volentieri in bottega.`
+              : `Most of our producers are certified organic. Under their name you will find the control body that certifies them, checked in the EU register of organic certificates (so far ${fornitori.filter((f) => bioValido(f)).length} of ${fornitori.length} producers). The shop itself is not certified: organic products are certified by the producers, and we are happy to show you their certificates in the shop.`}
+          </p>
+          <p className="text-stone-700 leading-relaxed mt-3">
+            {it
+              ? 'Anche i produttori senza certificazione li scegliamo con la stessa cura: li conosciamo di persona, siamo andati a vedere come lavorano nei loro campi e laboratori, e sappiamo che cercano materie prime di alto livello. Per alcuni non certificarsi è una scelta: la certificazione porta vincoli che per un piccolo produttore pesano sulla quantità e sul modo di lavorare. Oggi il biologico si trova in quasi ogni supermercato e da solo non basta a dire la qualità: per noi conta sapere chi fa il prodotto e come lo fa.'
+              : 'We choose the producers without certification with the same care: we know them personally, we have visited their fields and workshops, and we know they look for top-quality raw materials. For some, not being certified is a choice: certification brings constraints that weigh on how much and how a small producer can work. Today organic products are in almost every supermarket, and the label alone is not enough to tell quality: what matters to us is knowing who makes a product and how.'}
           </p>
         </div>
       </section>
