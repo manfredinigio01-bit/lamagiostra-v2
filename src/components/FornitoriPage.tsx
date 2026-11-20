@@ -1,5 +1,5 @@
-import { ArrowRight, Leaf, Package } from 'lucide-react';
-import { fornitori, type Fornitore } from '../data/team';
+import { ArrowRight, BadgeCheck, Leaf, Package } from 'lucide-react';
+import { bioValido, fornitori, type Fornitore } from '../data/team';
 import { fornitoreApribile, produttorePath } from '../lib/routes';
 
 interface Props {
@@ -26,6 +26,20 @@ export default function FornitoriPage({ language, onOpen }: Props) {
             {it
               ? 'Collaboriamo con produttori selezionati che condividono i nostri valori di qualità, sostenibilità e rispetto per la terra.'
               : 'We work with selected producers who share our values of quality, sustainability and respect for the land.'}
+          </p>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
+        <div className="max-w-3xl mx-auto bg-white border border-emerald-900/10 rounded-2xl p-5 sm:p-7">
+          <h2 className="flex items-center gap-2 text-lg sm:text-xl font-bold text-emerald-900 mb-2">
+            <BadgeCheck className="w-6 h-6 text-emerald-700 shrink-0" aria-hidden="true" />
+            {it ? 'Prodotti biologici certificati' : 'Certified organic products'}
+          </h2>
+          <p className="text-stone-700 leading-relaxed">
+            {it
+              ? `Molti dei nostri produttori sono certificati biologici. Sotto il loro nome trovi l’organismo di controllo che li certifica, verificato nel registro europeo dei certificati biologici (per ora ${fornitori.filter((f) => bioValido(f)).length} produttori su ${fornitori.length}). Il negozio non ha una propria certificazione: i prodotti biologici sono certificati dai produttori, e i loro certificati te li mostriamo volentieri in bottega.`
+              : `Many of our producers are certified organic. Under their name you will find the control body that certifies them, checked in the EU register of organic certificates (so far ${fornitori.filter((f) => bioValido(f)).length} of ${fornitori.length} producers). The shop itself is not certified: organic products are certified by the producers, and we are happy to show you their certificates in the shop.`}
           </p>
         </div>
       </section>
@@ -86,6 +100,15 @@ function Scheda({ f, it, apribile }: { f: Fornitore; it: boolean; apribile: bool
       <div className="p-3 text-center">
         <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
         {f.nota && <p className="mt-1 text-stone-500 text-xs">{it ? f.nota.it : f.nota.en}</p>}
+        {f.bio && bioValido(f) && (
+          <p
+            className="mt-2 inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full"
+            title={`${it ? 'Certificato' : 'Certificate'} ${f.bio.certificato} – ${f.bio.intestatario}`}
+          >
+            <BadgeCheck className="w-3.5 h-3.5" aria-hidden="true" />
+            {it ? 'Bio' : 'Organic'} · {f.bio.ente} {f.bio.codiceEnte}
+          </p>
+        )}
         {apribile && (
           <p className="mt-1 inline-flex items-center gap-1 text-emerald-700 text-xs font-semibold">
             {it ? 'Scopri di più' : 'Learn more'}
