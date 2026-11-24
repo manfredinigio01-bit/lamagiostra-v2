@@ -19,12 +19,12 @@ const META: Record<Exclude<Page, 'persona' | 'produttore' | 'racconto'>, { it: M
     it: {
       title: 'La Magiostra – Alimentari biologici e gastronomia vegetariana e vegana a Cremona',
       description:
-        'Dal 1987 a Cremona: prodotti biologici certificati di piccoli produttori, frutta e verdura fresca, pane e gastronomia vegetariana e vegana fatta in casa. Via Grado 1. Vieni a trovarci o ordina su WhatsApp.',
+        'Bottega a Cremona dal 1987: prodotti biologici certificati di piccoli produttori, frutta e verdura fresca e gastronomia vegetariana e vegana. Via Grado 1.',
     },
     en: {
       title: 'La Magiostra – Organic grocery and vegetarian & vegan deli in Cremona',
       description:
-        'Since 1987 in Cremona: certified organic products from small producers, fresh fruit and vegetables, bread and homemade vegetarian and vegan food. Via Grado 1. Visit us or order on WhatsApp.',
+        'A shop in Cremona since 1987: certified organic products from small producers, fresh fruit and vegetables, and a vegetarian and vegan deli. Via Grado 1.',
     },
   },
   classici: {
@@ -250,6 +250,10 @@ export function useStructuredData() {
       foundingDate: String(COMPANY.foundedYear),
       ...(SITE_URL ? { url: SITE_URL, image: `${SITE_URL}/og-image.jpg` } : {}),
       sameAs: [COMPANY.instagram, COMPANY.facebook],
+      // Posizione esatta (dalla scheda Google) e link alla mappa: aiutano Google a collegare sito e scheda.
+      geo: { '@type': 'GeoCoordinates', latitude: 45.1404052, longitude: 10.0123068 },
+      hasMap: 'https://www.google.com/maps/place/?q=place_id:ChIJ6y2C-3T-gEcRgxb6bMDfLvE',
+      areaServed: { '@type': 'City', name: 'Cremona' },
       openingHoursSpecification: [
         { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:30', closes: '14:30' },
         { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '17:00', closes: '19:30' },
