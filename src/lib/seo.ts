@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { COMPANY } from './company';
-import { pathFor, PAGE_PATHS, type Page, type StaticPage } from './routes';
-import { fornitori, staff } from '../data/team';
-import { RACCONTI, txt, type Racconto } from '../data/racconti';
-import { IS_PROVA } from './ambiente';
+import { COMPANY } from './company.ts';
+import { pathFor, PAGE_PATHS, type Page, type StaticPage } from './routes.ts';
+import { fornitori, staff } from '../data/team.ts';
+import { RACCONTI, txt, type Racconto } from '../data/racconti.ts';
+import { IS_PROVA } from './ambiente.ts';
 
 // (Il ?. serve perché questo file viene letto anche durante il build, fuori dal browser.)
 const SITE_URL = (import.meta.env?.VITE_SITE_URL as string | undefined)?.replace(/\/+$/, '') ?? '';

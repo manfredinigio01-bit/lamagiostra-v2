@@ -10,7 +10,7 @@
 // un racconto pubblicato (senza "bozza").
 // Il testo va diviso in paragrafi con una riga vuota (\n\n).
 
-import { RICETTE_CORSI } from './ricette-corsi';
+import { RICETTE_CORSI } from './ricette-corsi.ts';
 
 /**
  * Un testo del racconto: una stringa (solo italiano) oppure { it, en }.
