@@ -112,9 +112,20 @@ const attr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').rep
 
 // Mette nel file della pagina titolo, descrizione, og e canonical giusti
 // (senza, ogni pagina dichiarerebbe a Google di essere una copia della home).
+// Foto grande in cima alla pagina (sfondo dichiarato nello stile): senza questo avviso il browser
+// la scopre solo dopo aver eseguito il programma, circa 3 secondi più tardi su un telefono.
+const FOTO_IN_CIMA: Record<string, string> = {
+  '/fornitori': '/bancone_frutta_e_verdura-sfondo.webp',
+  '/i-nostri-classici': '/banco_gastronomia-sfondo.webp',
+  '/ricorrenze': '/tavoli_pranzo_mobile-sfondo.webp',
+};
+
 function conMetaDellaPagina(html: string, path: string, siteUrl: string): string {
   const meta = metaPerPercorso(path);
   let out = html.replace(/\s*<script type="application\/ld\+json" id="ld-website">[^<]*<\/script>/, '');
+  // la foto principale della home serve solo nella home: nelle altre pagine sarebbe un download inutile
+  out = out.replace(/\s*<link rel="preload" as="image" href="\/tavoli_pranzo(_mobile)?\.webp"[^>]*>/g, '');
+  if (FOTO_IN_CIMA[path]) out = out.replace('</head>', `    <link rel="preload" as="image" href="${FOTO_IN_CIMA[path]}" fetchpriority="high" />\n  </head>`);
   if (meta) {
     out = out
       .replace(/<title>[^<]*<\/title>/, `<title>${attr(meta.title)}</title>`)

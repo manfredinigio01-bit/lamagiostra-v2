@@ -13,7 +13,7 @@ export default function FornitoriPage({ language, onOpen }: Props) {
   return (
     <div className="min-h-screen bg-stone-50">
       <section className="relative bg-emerald-700 text-white py-12 sm:py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/bancone_frutta_e_verdura.webp')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0 bg-[url('/bancone_frutta_e_verdura-sfondo.webp')] bg-cover bg-center opacity-20" />
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-emerald-500/30 border border-emerald-400/40 text-emerald-200 text-sm font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
             <Package className="w-4 h-4" />
