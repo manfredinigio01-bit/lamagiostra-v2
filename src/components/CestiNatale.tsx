@@ -1,5 +1,5 @@
 import { Check, MessageCircle, ShoppingBasket } from 'lucide-react';
-import { CESTI_NATALE, cestiNataleVisibili } from '../data/cesti';
+import { CESTI_NATALE, cestiNataleVisibili, srcSetCesto } from '../data/cesti';
 import { whatsappLink } from '../lib/company';
 
 interface Props {
@@ -35,6 +35,8 @@ export default function CestiNatale({ language }: Props) {
                 <div className="aspect-4/3 md:aspect-4/5 bg-stone-100 overflow-hidden">
                   <img
                     src={c.foto}
+                    srcSet={srcSetCesto(c.foto)}
+                    sizes="(min-width: 1024px) 320px, (min-width: 768px) 45vw, 92vw"
                     alt={it ? `Cesto di Natale ${c.nome}` : `${c.nome} Christmas basket`}
                     loading="lazy"
                     decoding="async"
