@@ -2,10 +2,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { fornitori } from './src/data/team';
-import { allPublicPaths, produttorePath, raccontoPath } from './src/lib/routes';
-import { RACCONTI } from './src/data/racconti';
-import { metaPerPercorso } from './src/lib/seo';
+import { fornitori } from './src/data/team.ts';
+import { allPublicPaths, produttorePath, raccontoPath } from './src/lib/routes.ts';
+import { RACCONTI } from './src/data/racconti.ts';
+import { metaPerPercorso } from './src/lib/seo.ts';
 
 // Se in .env (o nelle variabili del hosting) c'è VITE_SITE_URL, ad esempio
 // https://www.lamagiostra.it, il build genera sitemap.xml, robots.txt con la sitemap

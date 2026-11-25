@@ -51,7 +51,7 @@
 Il sito statico ha pochissimo da attaccare. Il rischio reale è che qualcuno entri in un account.
 
 - **Autenticazione a due fattori** attiva su Cloudflare, GitHub, Squarespace e sull'e-mail usata per accedere (fatto il 9 ottobre 2026). Codici di recupero conservati fuori dal computer.
-- **GitHub**: *Dependabot security updates* attivo (*Settings → Code security*). La protezione del ramo `main` (obbligo di pull request) **non è applicabile**: sui repository privati GitHub la attiva solo con un'organizzazione a pagamento (GitHub Team). Per questo ci si affida all'autenticazione a due fattori e al merge sempre manuale. Se in futuro il repository passa a un'organizzazione Team, riattivare il ruleset *Proteggi main*.
+- **GitHub**: *Dependabot security updates* attivo (*Settings → Code security*). Questo repository (`lamagiostra-v2`) è **pubblico**: GitHub permette gratis di proteggere il ramo `main` (*Settings → Rules → Rulesets*: obbligo di pull request e del controllo "Controllo build" verde). La nota precedente ("non applicabile") valeva per il vecchio repository privato `lamagiostra-website1`.
 - **Posta**: il dominio non invia e-mail. Per impedire che qualcuno spedisca messaggi falsi a nome di `@lamagiostra.it`, su Cloudflare (*DNS → Records*) vanno due record `TXT`:
   - nome `@`, contenuto `v=spf1 -all`
   - nome `_dmarc`, contenuto `v=DMARC1; p=reject;`
