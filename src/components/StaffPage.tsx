@@ -14,7 +14,7 @@ export default function StaffPage({ language, onOpen }: Props) {
         <div className="max-w-4xl mx-auto text-center">
           <Users className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 text-emerald-300" />
           <h1 className="text-3xl sm:text-5xl font-bold mb-4">
-            {language === 'it' ? 'Il Nostro Team' : 'Our Team'}
+            {language === 'it' ? 'Il nostro team' : 'Our Team'}
           </h1>
         </div>
       </div>

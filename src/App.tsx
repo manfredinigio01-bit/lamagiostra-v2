@@ -72,7 +72,7 @@ const translations = {
     galleryTitle: 'Il nostro negozio',
     galleryDesc: 'Uno sguardo alla nostra bottega, al banco gastronomia, alla frutta e verdura fresca e ai nostri tavolini.',
     galleryTavolini: 'I nostri tavolini',
-    galleryGastronomia: 'Banco Gastronomia',
+    galleryGastronomia: 'Banco gastronomia',
     galleryCassetta: 'La cassetta del venerdì',
     galleryFrutta: 'Frutta e verdura',
     galleryEsterno: 'Il negozio',
@@ -148,10 +148,11 @@ function scrollToHashOrTop() {
   }, 0);
 }
 
-function App() {
+/** initialPath serve solo durante il build, quando le pagine vengono preparate in anticipo (strumenti/prerender.mjs). */
+function App({ initialPath }: { initialPath?: string } = {}) {
   const [language, setLanguage] = useState('it');
   // L'indirizzo nella barra decide quale pagina mostrare.
-  const [path, setPath] = useState(() => window.location.pathname);
+  const [path, setPath] = useState(() => initialPath ?? window.location.pathname);
   const page = pageFromPath(path);
   const slug = slugFromPath(path);
   const member = page === 'persona' ? staff.find((s) => s.slug === slug) : undefined;
@@ -160,11 +161,11 @@ function App() {
   const t = translations[language as keyof typeof translations];
 
   const detailMeta = useMemo<DetailMeta | undefined>(() => {
-    if (member) return metaPersona(member, window.location.pathname);
-    if (fornitore) return metaFornitore(fornitore, window.location.pathname);
-    if (racconto) return metaRacconto(racconto, window.location.pathname);
+    if (member) return metaPersona(member, path);
+    if (fornitore) return metaFornitore(fornitore, path);
+    if (racconto) return metaRacconto(racconto, path);
     return undefined;
-  }, [member, fornitore, racconto]);
+  }, [member, fornitore, racconto, path]);
 
   usePageMeta(page, language, detailMeta);
   useStructuredData();

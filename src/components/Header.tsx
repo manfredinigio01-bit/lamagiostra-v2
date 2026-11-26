@@ -45,7 +45,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
   }
 
   const labels: Record<'classici' | 'ricorrenze' | 'racconti' | 'fornitori' | 'dove', string> = {
-    classici: it ? 'I Nostri Classici' : 'Our Classics',
+    classici: it ? 'I nostri classici' : 'Our Classics',
     ricorrenze: it ? 'Ricorrenze' : 'Celebrations',
     racconti: it ? 'Racconti' : 'Stories',
     fornitori: it ? 'Fornitori' : 'Suppliers',

@@ -20,7 +20,7 @@ export default function FornitoriPage({ language, onOpen }: Props) {
             {it ? 'Produttori locali' : 'Local producers'}
           </div>
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {it ? 'I Nostri Fornitori' : 'Our Suppliers'}
+            {it ? 'I nostri fornitori' : 'Our Suppliers'}
           </h1>
           <p className="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {it

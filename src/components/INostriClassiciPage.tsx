@@ -75,7 +75,7 @@ export default function INostriClassiciPage({ language }: Props) {
             {language === 'it' ? 'La tradizione della bottega' : 'The store tradition'}
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold mb-4">
-            {language === 'it' ? 'I Nostri Classici' : 'Our Classics'}
+            {language === 'it' ? 'I nostri classici' : 'Our Classics'}
           </h1>
           <p className="text-emerald-200 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
             {language === 'it'

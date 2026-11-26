@@ -35,6 +35,10 @@ export default function OptimizedImage({ src, alt, className = '', style, priori
       <div
         className={`absolute inset-0 bg-stone-200 animate-pulse transition-opacity duration-500 ${loaded ? 'opacity-0' : 'opacity-100'}`}
       />
+      {/* Per chi non esegue JavaScript (alcuni motori di ricerca, anteprime): la foto c'è lo stesso. */}
+      <noscript>
+        <img src={src} alt={alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+      </noscript>
       {inView && (
         <img
           src={src}
