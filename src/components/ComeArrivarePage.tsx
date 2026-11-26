@@ -118,7 +118,7 @@ export default function ComeArrivarePage({ language }: Props) {
                 <dt className="font-semibold">{it ? 'Sabato' : 'Saturday'}</dt>
                 <dd className="text-right whitespace-nowrap">{COMPANY.hours.sat.replace('-', '–')}</dd>
               </div>
-              <div className="flex justify-between gap-4 text-stone-500">
+              <div className="flex justify-between gap-4 text-stone-600">
                 <dt className="font-semibold">{it ? 'Domenica e lunedì' : 'Sunday and Monday'}</dt>
                 <dd className="text-right">{it ? 'Chiuso' : 'Closed'}</dd>
               </div>
@@ -129,14 +129,14 @@ export default function ComeArrivarePage({ language }: Props) {
                 className="inline-flex items-center gap-2 text-emerald-800 font-semibold hover:underline"
               >
                 <Phone className="w-5 h-5" />
-                {COMPANY.mobile.display} <span className="font-normal text-stone-500">({it ? 'cellulare' : 'mobile'})</span>
+                {COMPANY.mobile.display} <span className="font-normal text-stone-600">({it ? 'cellulare' : 'mobile'})</span>
               </a>
               <a
                 href={`tel:${COMPANY.landline.tel}`}
                 className="inline-flex items-center gap-2 text-emerald-800 font-semibold hover:underline"
               >
                 <Phone className="w-5 h-5" />
-                {COMPANY.landline.display} <span className="font-normal text-stone-500">({it ? 'negozio' : 'shop'})</span>
+                {COMPANY.landline.display} <span className="font-normal text-stone-600">({it ? 'negozio' : 'shop'})</span>
               </a>
               <a
                 href={whatsappLink(language, {

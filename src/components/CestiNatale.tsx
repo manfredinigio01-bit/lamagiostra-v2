@@ -49,7 +49,7 @@ export default function CestiNatale({ language }: Props) {
                     <p className="text-2xl font-bold text-red-700 whitespace-nowrap">{c.prezzo} €</p>
                   </div>
                   <p className="text-stone-600 text-sm leading-relaxed mb-4">{it ? c.descrizione.it : c.descrizione.en}</p>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-stone-600 mb-2">
                     {it ? `Cosa contiene · ${c.prodotti.length} prodotti` : `What's inside · ${c.prodotti.length} products`}
                   </p>
                   <ul className="space-y-1 text-sm text-stone-700 mb-5">

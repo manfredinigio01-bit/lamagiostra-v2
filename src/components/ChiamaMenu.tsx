@@ -65,7 +65,7 @@ export default function ChiamaMenu({ language, className, children }: Props) {
             >
               <v.icona className="w-5 h-5 text-emerald-700 shrink-0" aria-hidden="true" />
               <span className="flex flex-col leading-tight">
-                <span className="text-xs text-stone-500 font-medium">{v.etichetta}</span>
+                <span className="text-xs text-stone-600 font-medium">{v.etichetta}</span>
                 <span className="font-semibold whitespace-nowrap">{v.numero}</span>
               </span>
             </a>

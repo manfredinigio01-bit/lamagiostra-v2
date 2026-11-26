@@ -37,6 +37,13 @@ Non c'è un'area riservata e non servono password per il sito: serve solo l'acce
 - **Il sito è rotto dopo una modifica**: su GitHub apri la pull request che l'ha causato e premi *Revert*. Si crea una nuova pull request che annulla la modifica: uniscila. In alternativa, su Cloudflare nel menu (…) delle pubblicazioni precedenti cerca la voce per tornare a una versione vecchia.
 - **Non so cosa ho rotto**: non insistere con altre modifiche. Annulla l'ultima (*Revert*) e chiedi aiuto.
 
+## Pagine già pronte (dal 26 novembre 2026)
+
+`npm run build` non si limita più a preparare il programma: alla fine (`strumenti/prerender.mjs`) scrive dentro ogni pagina il testo già disegnato. Così chi non esegue JavaScript (alcuni motori di ricerca, ChatGPT, Perplexity, le anteprime dei link) legge orari, prodotti, fornitori e allergeni; nel browser il sito riprende vita da solo.
+- Se il build si ferma con "prerender: … è quasi vuota" o "manca <div id="root"></div>", una pagina non si disegna: non pubblicare, cercare l'errore.
+- Nel codice delle pagine non leggere `window` o `document` mentre la pagina si disegna: solo dentro `useEffect` o nei clic (durante il build non esistono).
+- Cose che dipendono dalla data (cesti di Natale visibili fino a…, certificati bio scaduti) vengono fotografate al momento del build: dopo la scadenza il browser corregge da solo, ma conviene una pubblicazione qualsiasi per aggiornare anche il testo per Google.
+
 ## Cosa non toccare
 
 - `wrangler.jsonc` (collegamento con Cloudflare) e `public/_headers` (sicurezza), salvo indicazione di chi sa farlo.

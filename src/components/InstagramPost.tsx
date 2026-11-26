@@ -110,7 +110,7 @@ export default function InstagramPost({ tipo, language, titolo, riserva }: Props
               {aperto ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
           )}
-          <p className="mt-4 text-sm text-stone-500">
+          <p className="mt-4 text-sm text-stone-600">
             {it ? 'Pubblicato il' : 'Posted on'} {data} ·{' '}
             <a href={post.link} target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-semibold hover:underline">
               {fonte === 'instagram'

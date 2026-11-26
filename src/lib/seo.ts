@@ -43,7 +43,7 @@ const META: Record<Exclude<Page, 'persona' | 'produttore' | 'racconto'>, { it: M
     it: {
       title: 'Ricorrenze: torte vegane, cesti regalo e gift card – La Magiostra, Cremona',
       description:
-        'Torte di compleanno vegane su ordinazione, cesti e confezioni regalo, gift card: le idee de La Magiostra per le tue ricorrenze a Cremona.',
+        'Torte di compleanno vegane su ordinazione, cesti e confezioni regalo, gift card: le idee di La Magiostra per le tue ricorrenze a Cremona.',
     },
     en: {
       title: 'Celebrations: vegan cakes, gift baskets and gift cards – La Magiostra, Cremona',
@@ -54,7 +54,7 @@ const META: Record<Exclude<Page, 'persona' | 'produttore' | 'racconto'>, { it: M
   racconti: {
     it: {
       title: 'Racconti dalla bottega: storie, ricette e foto – La Magiostra, Cremona',
-      description: 'Storie, ricette e foto dalla cucina e dal banco de La Magiostra: i nostri piatti vegetariani e vegani, i produttori e la vita in bottega.',
+      description: 'Storie, ricette e foto dalla cucina e dal banco di La Magiostra: i nostri piatti vegetariani e vegani, i produttori e la vita in bottega.',
     },
     en: {
       title: 'Stories from the shop: stories, recipes and photos – La Magiostra, Cremona',
