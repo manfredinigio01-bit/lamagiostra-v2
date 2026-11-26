@@ -93,7 +93,7 @@ export default function INostriClassiciPage({ language }: Props) {
               {language === 'it' ? 'La proposta della settimana' : 'This week\'s offer'}
             </h2>
           </div>
-          <p className="text-stone-500 text-base mb-8 max-w-2xl">
+          <p className="text-stone-600 text-base mb-8 max-w-2xl">
             {language === 'it'
               ? 'Il banco gastronomia cambia ogni settimana, seguendo la stagione e quello che porta il territorio, ad eccezione di alcuni piatti classici che ci contraddistinguono, disponibili ogni giorno.'
               : 'Our deli counter changes every week, following the season and what the land brings, except for a few classic dishes that define us, available every day.'}
@@ -108,7 +108,7 @@ export default function INostriClassiciPage({ language }: Props) {
                 <h3 className="font-bold text-emerald-800 text-lg mb-2">
                   {language === 'it' ? 'I piatti cambiano ogni settimana' : 'Dishes change every week'}
                 </h3>
-                <p className="text-stone-500 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   {language === 'it'
                     ? 'Ogni giorno nuove proposte di gastronomia vegetariana e vegana, secondo stagionalità e disponibilità di materie prime.'
                     : 'New vegetarian and vegan dishes every day, following the seasons and the availability of ingredients.'}
@@ -127,9 +127,9 @@ export default function INostriClassiciPage({ language }: Props) {
                 <h3 className="font-bold text-emerald-800 text-lg mb-2">
                   {language === 'it' ? 'Proposta del pranzo' : 'Lunch of the day'}
                 </h3>
-                <p className="text-stone-500 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   {language === 'it'
-                    ? 'Da martedì a sabato, a pranzo, un menù diverso: piatti caldi e freddi dal banco gastronomia, da mangiare qui o portare in ufficio e a casa.'
+                    ? 'Da martedì a sabato, a pranzo, un menu diverso: piatti caldi e freddi dal banco gastronomia, da mangiare qui o portare in ufficio e a casa.'
                     : 'From Tuesday to Saturday, a different lunch menu: hot and cold dishes from the deli counter, to eat here or take to the office or home.'}
                 </p>
               </div>
@@ -146,7 +146,7 @@ export default function INostriClassiciPage({ language }: Props) {
                 <h3 className="font-bold text-emerald-800 text-lg mb-2">
                   {language === 'it' ? 'Il menu del sabato' : 'The Saturday menu'}
                 </h3>
-                <p className="text-stone-500 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   {language === 'it'
                     ? 'Ogni sabato è possibile ordinare un menu completo e bilanciato, dall\'antipasto al dolce, pensato da noi apposta per il weekend.'
                     : 'Every Saturday you can order a complete, balanced menu, from starter to dessert, designed by us especially for the weekend.'}
@@ -205,7 +205,7 @@ export default function INostriClassiciPage({ language }: Props) {
             />
           </div>
 
-          <p className="-mt-4 mb-8 text-sm text-stone-500">
+          <p className="-mt-4 mb-8 text-sm text-stone-600">
             {language === 'it' ? 'Allergie o intolleranze? ' : 'Allergies or intolerances? '}
             <a href="#allergeni" className="text-emerald-700 font-semibold hover:underline">
               {language === 'it' ? 'Leggi gli allergeni ↓' : 'Read about allergens ↓'}

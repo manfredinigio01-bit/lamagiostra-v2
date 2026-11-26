@@ -6,9 +6,9 @@ export function LegalLayout({ title, subtitle, updated, children }: { title: str
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-xs border border-stone-100 p-6 sm:p-8 md:p-12">
           <h1 className="text-2xl sm:text-3xl font-bold text-emerald-900 mb-2">{title}</h1>
-          <p className="text-stone-500 text-sm mb-8">{subtitle}</p>
+          <p className="text-stone-600 text-sm mb-8">{subtitle}</p>
           {children}
-          <p className="text-stone-500 text-xs border-t border-stone-100 pt-6">{updated}</p>
+          <p className="text-stone-600 text-xs border-t border-stone-100 pt-6">{updated}</p>
         </div>
       </div>
     </div>

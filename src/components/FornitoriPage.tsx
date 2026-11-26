@@ -104,7 +104,7 @@ function Scheda({ f, it, apribile }: { f: Fornitore; it: boolean; apribile: bool
       </div>
       <div className="p-3 text-center">
         <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
-        {f.nota && <p className="mt-1 text-stone-500 text-xs">{it ? f.nota.it : f.nota.en}</p>}
+        {f.nota && <p className="mt-1 text-stone-600 text-xs">{it ? f.nota.it : f.nota.en}</p>}
         {f.bio && bioValido(f) && (
           <p
             className="mt-2 inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full"

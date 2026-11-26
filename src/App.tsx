@@ -30,56 +30,56 @@ import { usePageMeta, useStructuredData, metaPersona, metaFornitore, metaRaccont
 const translations = {
   it: {
     home: 'Home',
-    about: 'Chi Siamo',
+    about: 'Chi siamo',
     products: 'Prodotti',
     gallery: 'Galleria',
     contact: 'Contatti',
     welcome: 'Benvenuti a La Magiostra',
     tagline: 'Dal 1987 a Cremona: prodotti biologici di piccoli produttori, frutta e verdura fresca di stagione e preparazioni vegetariane e vegane fatte nel nostro laboratorio.',
     getInTouch: 'Contattaci',
-    ourStory: 'La Nostra Storia',
+    ourStory: 'La nostra storia',
     storyText1: 'La Magiostra nasce nel 1987 come spaccio agricolo della Cooperativa Iris, di cui Chiara è socia lavoratrice. Nel 1995 la cooperativa cede il negozio e Chiara ne diventa la titolare.',
     storyText2: 'Negli anni Novanta è il primo negozio biologico di Cremona, dedicato alla sana alimentazione e al rispetto dell\'ambiente. Ancora oggi sceglie piccoli produttori conosciuti di persona, molti dei quali certificati biologici: nella pagina Fornitori trovi chi li certifica, e i certificati te li mostriamo in bottega. Frutta, verdura e pane arrivano freschi ogni mattina, e in cucina usiamo le materie prime degli stessi produttori.',
     storyText3: 'Nel 2018 arriva la cucina: i prodotti del negozio si trasformano in piatti vegetariani e vegani, e in poco tempo La Magiostra diventa un punto di riferimento a Cremona per questa cucina. Chi ci frequenta da anni ci riconosce soprattutto disponibilità, ascolto e attenzione.',
-    communityFirst: 'Comunità al Centro',
+    communityFirst: 'Comunità al centro',
     communityDesc: 'Al servizio di Cremona dal 1987',
-    qualityFocus: 'Impegno di Qualità',
+    qualityFocus: 'Impegno di qualità',
     qualityDesc: 'Fornitori selezionati con cura',
-    organic: 'Qualità e Selezione',
+    organic: 'Qualità e selezione',
     organicDesc: 'Prodotti selezionati con cura',
-    freshDaily: 'Fresco Ogni Giorno',
+    freshDaily: 'Fresco ogni giorno',
     freshDesc: 'Piatti pronti fatti in casa',
-    whatWe: 'Cosa Offriamo',
+    whatWe: 'Cosa offriamo',
     organicProducts: 'Pane fresco',
     organicProductsDesc: 'Un\'ampia selezione di prodotti di qualità, dalle basi di cucina agli articoli speciali. Collaboriamo con fornitori di fiducia che condividono il nostro impegno per la qualità e la sostenibilità.',
-    gastronomy: 'Gastronomia e Piatti Pronti',
-    gastronomyDesc: 'Al banco della gastronomia troverete ogni giorno i nostri grandi classici: farinata di ceci, hummus di ceci, budini di miglio e insalata russa. Ogni giorno condividiamo su Facebook, Instagram e WhatsApp le proposte della settimana. Il venerdì pubblichiamo la nostra cassetta di frutta e verdura, il sabato un menù speciale.',
-    freshProduce: 'Frutta e Verdura Fresca',
+    gastronomy: 'Gastronomia e piatti pronti',
+    gastronomyDesc: 'Al banco della gastronomia troverete ogni giorno i nostri grandi classici: farinata di ceci, hummus di ceci, budini di miglio e insalata russa. Ogni giorno condividiamo su Facebook, Instagram e WhatsApp le proposte della settimana. Il venerdì pubblichiamo la nostra cassetta di frutta e verdura, il sabato un menu speciale.',
+    freshProduce: 'Frutta e verdura fresca',
     freshProduceDesc: 'Frutta e verdura di stagione, scelte con cura da produttori locali di fiducia. Ogni articolo deve rispettare i nostri standard di freschezza e sapore.',
     visitUs: 'Vieni a trovarci o contattaci',
     location: 'Indirizzo',
     phone: 'Telefono',
     email: 'Email',
-    hours: 'Orari di Apertura',
-    orderNow: 'Ordina Ora su WhatsApp',
+    hours: 'Orari di apertura',
+    orderNow: 'Ordina su WhatsApp',
     tuesdayFriday: 'Martedì - Venerdì:',
     saturday: 'Sabato:',
     closedSunday: 'Domenica e Lunedì: Chiuso',
     pioneering: 'Negozio di alimentari a Cremona dal 1987',
     mobile: 'Mobile / WhatsApp:',
-    landline: 'Telefono Fisso:',
-    followUs: 'Seguici sui Social',
-    galleryTitle: 'Il Nostro Negozio',
+    landline: 'Telefono fisso:',
+    followUs: 'Seguici sui social',
+    galleryTitle: 'Il nostro negozio',
     galleryDesc: 'Uno sguardo alla nostra bottega, al banco gastronomia, alla frutta e verdura fresca e ai nostri tavolini.',
-    galleryTavolini: 'I Nostri Tavolini',
+    galleryTavolini: 'I nostri tavolini',
     galleryGastronomia: 'Banco Gastronomia',
-    galleryCassetta: 'La Cassetta del Venerdì',
-    galleryFrutta: 'Frutta e Verdura',
-    galleryEsterno: 'Il Negozio',
-    cassettaLabel: 'Ogni Venerdì',
-    cookingCourses: 'Corsi di Cucina in Bottega',
+    galleryCassetta: 'La cassetta del venerdì',
+    galleryFrutta: 'Frutta e verdura',
+    galleryEsterno: 'Il negozio',
+    cassettaLabel: 'Ogni venerdì',
+    cookingCourses: 'Corsi di cucina in bottega',
     cookingCoursesDesc: 'Impara a cucinare direttamente nella nostra bottega con Chiara e il nostro staff. Corsi pratici e conviviali dedicati alla cucina vegetariana e vegana, con ingredienti freschi selezionati da noi. Un\'esperienza unica da condividere con amici e familiari.',
-    catering: 'Catering Fuori Porta',
+    catering: 'Catering fuori porta',
     cateringDesc: 'Portiamo la nostra cucina dove vuoi tu. Organizziamo piccoli catering per eventi privati, aziendali e ricorrenze. Menu su misura con i nostri piatti vegetariani e vegani, preparati con cura e passione per ogni occasione.',
   },
   en: {
@@ -326,15 +326,15 @@ function App() {
                     <div className="relative rounded-2xl overflow-hidden aspect-3/4">
                       <OptimizedImage
                         src="/foto_chiara_il_boss.webp"
-                        alt={language === 'it' ? 'Chiara, titolare de La Magiostra' : 'Chiara, owner of La Magiostra'}
+                        alt={language === 'it' ? 'Chiara, titolare di La Magiostra' : 'Chiara, owner of La Magiostra'}
                         className="absolute inset-0 w-full h-full"
                         style={{ objectPosition: '50% 30%' }}
                       />
                     </div>
                     <figcaption className="mt-3">
                       <span className="font-display font-bold text-lg text-emerald-900">Chiara</span>
-                      <span className="block text-stone-500 text-sm">
-                        {language === 'it' ? 'Titolare de La Magiostra' : 'Owner of La Magiostra'}
+                      <span className="block text-stone-600 text-sm">
+                        {language === 'it' ? 'Titolare di La Magiostra' : 'Owner of La Magiostra'}
                       </span>
                     </figcaption>
                   </figure>
@@ -391,11 +391,11 @@ function App() {
                     onClick={(e) => { e.preventDefault(); navigate('classici'); }}
                     className="block bg-white rounded-2xl border border-emerald-900/10 overflow-hidden hover:border-emerald-700/40 transition-colors"
                   >
-                    <OptimizedImage src="/banco_gastronomia.webp" alt={language === 'it' ? 'I Nostri Classici' : 'Our Classics'} className="w-full h-56 sm:h-72" />
+                    <OptimizedImage src="/banco_gastronomia.webp" alt={language === 'it' ? 'I nostri classici' : 'Our Classics'} className="w-full h-56 sm:h-72" />
                     <div className="p-5">
                       <h3 className="flex items-center gap-2 text-xl font-bold text-emerald-900 mb-2">
                         <ShoppingBasket className="w-5 h-5 text-emerald-700" />
-                        {language === 'it' ? 'I Nostri Classici' : 'Our Classics'}
+                        {language === 'it' ? 'I nostri classici' : 'Our Classics'}
                       </h3>
                       <p className="text-stone-600 text-sm leading-relaxed mb-3">
                         {language === 'it'
@@ -415,7 +415,16 @@ function App() {
                         <ChefHat className="w-5 h-5 text-emerald-700" />
                         {t.cookingCourses}
                       </h3>
-                      <p className="text-stone-600 text-sm leading-relaxed">{t.cookingCoursesDesc}</p>
+                      <p className="text-stone-600 text-sm leading-relaxed mb-4">{t.cookingCoursesDesc}</p>
+                      <a
+                        href={whatsappLink(language, { it: 'Ciao! Vorrei informazioni sui prossimi corsi di cucina in bottega.', en: 'Hi! I would like information about your next cooking courses.' })}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 min-h-11 px-4 rounded-lg border border-emerald-700 text-emerald-800 font-semibold text-sm hover:bg-emerald-50 transition-colors"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        {language === 'it' ? 'Chiedi su WhatsApp' : 'Ask on WhatsApp'}
+                      </a>
                     </div>
                   </div>
 
@@ -423,7 +432,16 @@ function App() {
                     <OptimizedImage src="/catering_fuori_porta.webp" alt={t.catering} className="w-full h-56 sm:h-72" />
                     <div className="p-5">
                       <h3 className="text-xl font-bold text-emerald-900 mb-2">{t.catering}</h3>
-                      <p className="text-stone-600 text-sm leading-relaxed">{t.cateringDesc}</p>
+                      <p className="text-stone-600 text-sm leading-relaxed mb-4">{t.cateringDesc}</p>
+                      <a
+                        href={whatsappLink(language, { it: 'Ciao! Vorrei informazioni per un catering.', en: 'Hi! I would like information about catering.' })}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 min-h-11 px-4 rounded-lg border border-emerald-700 text-emerald-800 font-semibold text-sm hover:bg-emerald-50 transition-colors"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        {language === 'it' ? 'Chiedi su WhatsApp' : 'Ask on WhatsApp'}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -451,9 +469,9 @@ function App() {
                   <div className="bg-cream border border-emerald-900/10 p-6 rounded-2xl">
                     <Phone className="w-6 h-6 mb-3 text-emerald-700" />
                     <h3 className="text-lg font-bold text-emerald-900 mb-2">{t.phone}</h3>
-                    <p className="text-stone-500 text-sm font-semibold">{t.mobile}</p>
+                    <p className="text-stone-600 text-sm font-semibold">{t.mobile}</p>
                     <a href={`tel:${COMPANY.mobile.tel}`} className="text-stone-700 hover:text-emerald-800 transition-colors block mb-2">{COMPANY.mobile.display}</a>
-                    <p className="text-stone-500 text-sm font-semibold">{t.landline}</p>
+                    <p className="text-stone-600 text-sm font-semibold">{t.landline}</p>
                     <a href={`tel:${COMPANY.landline.tel}`} className="text-stone-700 hover:text-emerald-800 transition-colors block">{COMPANY.landline.display}</a>
                   </div>
                   <div className="bg-cream border border-emerald-900/10 p-6 rounded-2xl">
@@ -488,7 +506,7 @@ function App() {
                     className="w-full inline-flex items-center justify-center gap-2 border border-emerald-700 text-emerald-800 px-6 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
                   />
                   <div className="flex items-center gap-3 sm:ml-auto">
-                    <span className="text-stone-500 text-sm font-semibold">{t.followUs}</span>
+                    <span className="text-stone-600 text-sm font-semibold">{t.followUs}</span>
                     <a href={COMPANY.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-emerald-700 hover:text-emerald-900 transition-colors">
                       <Instagram className="w-7 h-7" />
                     </a>
