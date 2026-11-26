@@ -45,7 +45,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
   }
 
   const labels: Record<'classici' | 'ricorrenze' | 'racconti' | 'fornitori' | 'dove', string> = {
-    classici: it ? 'I Nostri Classici' : 'Our Classics',
+    classici: it ? 'I nostri classici' : 'Our Classics',
     ricorrenze: it ? 'Ricorrenze' : 'Celebrations',
     racconti: it ? 'Racconti' : 'Stories',
     fornitori: it ? 'Fornitori' : 'Suppliers',
@@ -78,7 +78,7 @@ export default function Header({ language, page, onNavigate, onLanguageChange }:
           <a href={pathFor('home')} onClick={(e) => go(e, 'home')} className="flex items-center hover:opacity-80 transition-opacity">
             <div className="text-left">
               <p className="font-display text-lg sm:text-2xl font-bold leading-tight text-emerald-900 whitespace-nowrap">La Magiostra</p>
-              <p className="text-stone-500 text-xs sm:text-sm whitespace-nowrap hidden sm:block xl:hidden">
+              <p className="text-stone-600 text-xs sm:text-sm whitespace-nowrap hidden sm:block xl:hidden">
                 {it ? 'Negozio di alimentari dal 1987' : 'Grocery store since 1987'}
               </p>
             </div>

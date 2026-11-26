@@ -32,18 +32,18 @@ export default function Footer({ language, tagline, onNavigate }: Props) {
             </p>
             <p>
               {COMPANY.street}, {COMPANY.postalCode} {COMPANY.city} ({COMPANY.province}) —{' '}
-              <a href={`mailto:${COMPANY.email}`} className="hover:text-white transition-colors underline">
+              <a href={`mailto:${COMPANY.email}`} className="inline-block py-1 hover:text-white transition-colors underline">
                 {COMPANY.email}
               </a>
             </p>
             {COMPANY.pec && <p>PEC: {COMPANY.pec}</p>}
           </div>
           <div className="flex items-center gap-4 text-xs text-emerald-200">
-            <a href={pathFor('privacy')} onClick={(e) => go(e, 'privacy')} className="hover:text-white transition-colors underline">
+            <a href={pathFor('privacy')} onClick={(e) => go(e, 'privacy')} className="inline-block py-1.5 hover:text-white transition-colors underline">
               Privacy Policy
             </a>
             <span aria-hidden="true">·</span>
-            <a href={pathFor('cookie')} onClick={(e) => go(e, 'cookie')} className="hover:text-white transition-colors underline">
+            <a href={pathFor('cookie')} onClick={(e) => go(e, 'cookie')} className="inline-block py-1.5 hover:text-white transition-colors underline">
               Cookie Policy
             </a>
           </div>

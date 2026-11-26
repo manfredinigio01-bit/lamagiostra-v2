@@ -54,7 +54,7 @@ export default function MagiostraPage({ language, onHome }: Props) {
               <h1 className="font-display text-4xl sm:text-6xl font-bold text-emerald-950 leading-none mb-2">
                 magiostra
               </h1>
-              <p className="text-stone-500 italic mb-5">
+              <p className="text-stone-600 italic mb-5">
                 {it ? 's.f., dialetto cremonese e lombardo' : 'noun (f.), Cremonese and Lombard dialect'}
               </p>
               <p className="text-2xl sm:text-3xl text-stone-800">

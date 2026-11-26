@@ -90,7 +90,7 @@ export default function RaccontoPage({ language, racconto: r, onBack }: Props) {
         <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold uppercase tracking-wider text-emerald-700 mb-3">
           <Icona className="w-4 h-4" aria-hidden="true" />
           {it ? tipo.it : tipo.en}
-          <span className="text-stone-500 normal-case tracking-normal font-normal">· {dataLeggibile(r.data, language)}</span>
+          <span className="text-stone-600 normal-case tracking-normal font-normal">· {dataLeggibile(r.data, language)}</span>
         </p>
         <h1 className="text-3xl sm:text-5xl font-bold text-emerald-950 mb-4 leading-tight">{t(r.titolo)}</h1>
         <p className="text-lg sm:text-xl text-stone-600 mb-6">{t(r.sommario)}</p>
@@ -198,7 +198,7 @@ export default function RaccontoPage({ language, racconto: r, onBack }: Props) {
           </div>
         )}
 
-        {!it && <p className="text-sm text-stone-500 mb-8">This recipe is currently available in Italian only.</p>}
+        {!it && <p className="text-sm text-stone-600 mb-8">This recipe is currently available in Italian only.</p>}
 
         <div className="border-t border-emerald-900/10 pt-8 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
           <p className="text-stone-700">{it ? 'Ti è venuta voglia di assaggiare? Passa in bottega o scrivici.' : 'Feel like tasting it? Drop by the shop or message us.'}</p>

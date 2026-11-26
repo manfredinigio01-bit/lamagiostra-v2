@@ -20,7 +20,7 @@ export default function FornitoriPage({ language, onOpen }: Props) {
             {it ? 'Produttori locali' : 'Local producers'}
           </div>
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {it ? 'I Nostri Fornitori' : 'Our Suppliers'}
+            {it ? 'I nostri fornitori' : 'Our Suppliers'}
           </h1>
           <p className="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {it
@@ -104,7 +104,7 @@ function Scheda({ f, it, apribile }: { f: Fornitore; it: boolean; apribile: bool
       </div>
       <div className="p-3 text-center">
         <p className="font-semibold text-stone-800 text-sm leading-tight">{f.name}</p>
-        {f.nota && <p className="mt-1 text-stone-500 text-xs">{it ? f.nota.it : f.nota.en}</p>}
+        {f.nota && <p className="mt-1 text-stone-600 text-xs">{it ? f.nota.it : f.nota.en}</p>}
         {f.bio && bioValido(f) && (
           <p
             className="mt-2 inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full"

@@ -102,7 +102,7 @@ export default function RaccontiPage({ language, onOpen }: Props) {
                   </p>
                   <h2 className="text-xl font-bold text-emerald-950 mb-2 group-hover:text-emerald-700 transition-colors">{txt(r.titolo, language)}</h2>
                   <p className="text-stone-600">{txt(r.sommario, language)}</p>
-                  {r.corso && <p className="mt-auto pt-3 text-sm text-stone-500">{it ? `Dal corso «${r.corso}»` : `From the class “${r.corso}”`}</p>}
+                  {r.corso && <p className="mt-auto pt-3 text-sm text-stone-600">{it ? `Dal corso «${r.corso}»` : `From the class “${r.corso}”`}</p>}
                 </div>
               </a>
             );

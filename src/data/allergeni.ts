@@ -28,6 +28,8 @@ export type Allergene = keyof typeof ALLERGENI;
 /** Allergeni usati nel nostro laboratorio: compaiono in alcuni piatti, non in tutti. */
 export const ALLERGENI_LABORATORIO: Allergene[] = [
   'glutine',
+  'uova',
+  'latte',
   'soia',
   'senape',
   'sesamo',
