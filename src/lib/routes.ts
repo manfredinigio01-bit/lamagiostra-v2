@@ -1,8 +1,8 @@
 // Percorsi del sito. Ogni pagina ha un indirizzo vero (es. /fornitori), così
 // funzionano i link condivisi, il pulsante "indietro" e i motori di ricerca.
-import { fornitori, haScheda, staff, type Fornitore } from '../data/team';
-import { IS_PROVA } from './ambiente';
-import { raccontiPubblicati, raccontiVisibili, raccontoPath } from '../data/racconti';
+import { fornitori, haScheda, staff, type Fornitore } from '../data/team.ts';
+import { IS_PROVA } from './ambiente.ts';
+import { raccontiPubblicati, raccontiVisibili, raccontoPath } from '../data/racconti.ts';
 
 export { raccontoPath };
 

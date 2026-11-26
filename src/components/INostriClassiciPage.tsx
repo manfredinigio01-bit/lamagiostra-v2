@@ -69,7 +69,7 @@ export default function INostriClassiciPage({ language }: Props) {
   return (
     <div className="min-h-screen bg-stone-50">
       <div className="relative bg-emerald-700 text-white py-12 sm:py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/banco_gastronomia.webp')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0 bg-[url('/banco_gastronomia-sfondo.webp')] bg-cover bg-center opacity-20" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block bg-emerald-500/30 border border-emerald-300/40 text-emerald-200 text-xs sm:text-sm font-semibold tracking-widest uppercase px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
             {language === 'it' ? 'La tradizione della bottega' : 'The store tradition'}

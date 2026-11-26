@@ -155,3 +155,8 @@ export const PANETTONI_NATALE = {
     },
   ] as Panettone[],
 };
+
+/** Versioni più piccole della stessa foto (create da strumenti/foto.py): il browser sceglie la più leggera che basta. */
+export function srcSetCesto(foto: string): string {
+  return `${foto.replace(/\.webp$/, '-400.webp')} 400w, ${foto.replace(/\.webp$/, '-600.webp')} 600w, ${foto} 800w`;
+}

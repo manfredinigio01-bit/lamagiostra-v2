@@ -2,10 +2,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { fornitori } from './src/data/team';
-import { allPublicPaths, produttorePath, raccontoPath } from './src/lib/routes';
-import { RACCONTI } from './src/data/racconti';
-import { metaPerPercorso } from './src/lib/seo';
+import { fornitori } from './src/data/team.ts';
+import { allPublicPaths, produttorePath, raccontoPath } from './src/lib/routes.ts';
+import { RACCONTI } from './src/data/racconti.ts';
+import { metaPerPercorso } from './src/lib/seo.ts';
 
 // Se in .env (o nelle variabili del hosting) c'è VITE_SITE_URL, ad esempio
 // https://www.lamagiostra.it, il build genera sitemap.xml, robots.txt con la sitemap
@@ -15,6 +15,8 @@ import { metaPerPercorso } from './src/lib/seo';
 //  - aggiunge "X-Robots-Tag: noindex" a tutte le pagine (Google non lo indicizza)
 //  - non genera la sitemap e non la indica in robots.txt
 // Il canonical resta su www.lamagiostra.it, così l'eventuale contenuto duplicato punta al sito vero.
+const CF_ANALYTICS_TOKEN = 'a137604abd754720bcef602fe2033875';
+
 function seoFiles(siteUrl: string, prova: boolean): Plugin {
   let outDir = 'dist';
   return {
@@ -24,7 +26,38 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
     },
     transformIndexHtml() {
       if (!siteUrl) return [];
+      // Statistiche visite senza cookie (Cloudflare Web Analytics), solo sul sito ufficiale.
+      // Il token è pubblico: serve solo a dire a Cloudflare a quale sito appartengono le visite.
+      const statistiche = prova
+        ? []
+        : [
+            {
+              tag: 'script',
+              attrs: {
+                defer: true,
+                src: 'https://static.cloudflareinsights.com/beacon.min.js',
+                'data-cf-beacon': JSON.stringify({ token: CF_ANALYTICS_TOKEN }),
+              },
+              injectTo: 'body' as const,
+            },
+          ];
+      // Nome del sito per Google (quello che compare sopra il risultato di ricerca).
+      // Solo nella home: le altre pagine lo tolgono in conMetaDellaPagina.
+      const nomeSito = {
+        tag: 'script',
+        attrs: { type: 'application/ld+json', id: 'ld-website' },
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'La Magiostra',
+          alternateName: ['Magiostra', 'La Magiostra Cremona'],
+          url: siteUrl + '/',
+        }),
+        injectTo: 'head' as const,
+      };
       return [
+        nomeSito,
+        ...statistiche,
         { tag: 'meta', attrs: { property: 'og:url', content: siteUrl + '/' }, injectTo: 'head' },
         { tag: 'meta', attrs: { property: 'og:image', content: `${siteUrl}/og-image.jpg` }, injectTo: 'head' },
         { tag: 'meta', attrs: { name: 'twitter:image', content: `${siteUrl}/og-image.jpg` }, injectTo: 'head' },
@@ -62,7 +95,7 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
           mkdirSync(dirname(file), { recursive: true });
           writeFileSync(file, conMetaDellaPagina(html, path, siteUrl));
         }
-        const nonTrovata = html.replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
+        const nonTrovata = html.replace(/\s*<script type="application\/ld\+json" id="ld-website">[^<]*<\/script>/, '').replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
         writeFileSync(resolve(outDir, '404.html'), nonTrovata);
       }
       if (!prova) return;
@@ -79,9 +112,20 @@ const attr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').rep
 
 // Mette nel file della pagina titolo, descrizione, og e canonical giusti
 // (senza, ogni pagina dichiarerebbe a Google di essere una copia della home).
+// Foto grande in cima alla pagina (sfondo dichiarato nello stile): senza questo avviso il browser
+// la scopre solo dopo aver eseguito il programma, circa 3 secondi più tardi su un telefono.
+const FOTO_IN_CIMA: Record<string, string> = {
+  '/fornitori': '/bancone_frutta_e_verdura-sfondo.webp',
+  '/i-nostri-classici': '/banco_gastronomia-sfondo.webp',
+  '/ricorrenze': '/tavoli_pranzo_mobile-sfondo.webp',
+};
+
 function conMetaDellaPagina(html: string, path: string, siteUrl: string): string {
   const meta = metaPerPercorso(path);
-  let out = html;
+  let out = html.replace(/\s*<script type="application\/ld\+json" id="ld-website">[^<]*<\/script>/, '');
+  // la foto principale della home serve solo nella home: nelle altre pagine sarebbe un download inutile
+  out = out.replace(/\s*<link rel="preload" as="image" href="\/tavoli_pranzo(_mobile)?\.webp"[^>]*>/g, '');
+  if (FOTO_IN_CIMA[path]) out = out.replace('</head>', `    <link rel="preload" as="image" href="${FOTO_IN_CIMA[path]}" fetchpriority="high" />\n  </head>`);
   if (meta) {
     out = out
       .replace(/<title>[^<]*<\/title>/, `<title>${attr(meta.title)}</title>`)

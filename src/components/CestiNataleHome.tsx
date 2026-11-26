@@ -1,5 +1,5 @@
 import { Gift, MessageCircle } from 'lucide-react';
-import { CESTI_NATALE, PANETTONI_NATALE, cestiNataleVisibili } from '../data/cesti';
+import { CESTI_NATALE, PANETTONI_NATALE, cestiNataleVisibili, srcSetCesto } from '../data/cesti';
 import { pathFor } from '../lib/routes';
 import { whatsappLink } from '../lib/company';
 
@@ -91,7 +91,7 @@ export default function CestiNataleHome({ language, onOpen }: Props) {
           >
             {cesti.map((c) => (
               <figure key={c.slug} className="relative overflow-hidden rounded-xl bg-stone-200">
-                <img src={c.foto} alt="" loading="lazy" decoding="async" className="w-full aspect-4/3 object-cover" />
+                <img src={c.foto} srcSet={srcSetCesto(c.foto)} sizes="(min-width: 1024px) 280px, 45vw" alt="" loading="lazy" decoding="async" className="w-full aspect-4/3 object-cover" />
                 <figcaption className="absolute bottom-2 left-2 bg-white/90 text-stone-800 text-xs sm:text-sm font-semibold px-2 sm:px-2.5 py-1 rounded-md whitespace-nowrap">
                   {c.nome} · {c.prezzo} €
                 </figcaption>

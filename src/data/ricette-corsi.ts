@@ -2,7 +2,7 @@
 // Sono tutte in bozza (si vedono solo sulla v3) finché non arrivano le foto:
 // per pubblicarne una, aggiungi "copertina" e togli "bozza: true".
 
-import type { Racconto } from './racconti';
+import type { Racconto } from './racconti.ts';
 
 const DATA = '2026-11-10';
 
