@@ -1,5 +1,8 @@
-import { whatsappLink } from '../lib/company';
+import { COMPANY, whatsappLink } from '../lib/company';
+
+const COMPANY_HAS_CHANNEL = Boolean(COMPANY.whatsappChannel);
 import InstagramPost from './InstagramPost';
+import CanaleWhatsApp from './CanaleWhatsApp';
 import AllergeniTabella from './AllergeniTabella';
 import { useState } from 'react';
 import { ShoppingBasket, Clock, Star, Utensils, CalendarDays, RefreshCw, ChevronDown, ChevronUp } from 'lucide-react';
@@ -204,6 +207,12 @@ export default function INostriClassiciPage({ language }: Props) {
               }
             />
           </div>
+
+          {COMPANY_HAS_CHANNEL && (
+            <div className="-mt-2 mb-8">
+              <CanaleWhatsApp language={language} />
+            </div>
+          )}
 
           <p className="-mt-4 mb-8 text-sm text-stone-600">
             {language === 'it' ? 'Allergie o intolleranze? ' : 'Allergies or intolerances? '}
