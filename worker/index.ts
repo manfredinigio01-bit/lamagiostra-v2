@@ -2,6 +2,7 @@
 // - /api/social (e il vecchio /api/instagram): l'ultimo post del menu e della cassetta, letti
 //   dall'API ufficiale di Meta. È il server a parlare con Meta, non il browser dei visitatori:
 //   nessun cookie o tracciamento di Meta sul sito.
+// - /api/etichette/*: archivio dell'app Etichette con il PIN del negozio (vedi etichette.ts).
 // - Tutto il resto: i file del sito, come prima.
 //
 // Configurazione su Cloudflare (Settings → Variables and secrets). Basta UNA delle due fonti:
@@ -13,13 +14,14 @@
 //   rinnovato ogni giorno.
 
 import { esempio, scegliPost, type PostInstagram, type Risposta } from './instagram';
+import { apiEtichette, type EnvEtichette } from './etichette';
 
 interface KV {
   get(key: string): Promise<string | null>;
   put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
 }
 
-interface Env {
+interface Env extends EnvEtichette {
   ASSETS: { fetch(request: Request): Promise<Response> };
   FB_PAGE_ID?: string;
   FB_TOKEN?: string;
@@ -161,6 +163,7 @@ export default {
       if (request.method !== 'GET' && request.method !== 'HEAD') return new Response(null, { status: 405 });
       return apiSocial(request, env, ctx);
     }
+    if (pathname.startsWith('/api/etichette/')) return apiEtichette(request, env, pathname);
     if (pathname.startsWith('/api/')) return new Response('Not found', { status: 404 });
     return env.ASSETS.fetch(request);
   },
