@@ -514,6 +514,11 @@ function App({ initialPath }: { initialPath?: string } = {}) {
                     <a href={COMPANY.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-emerald-700 hover:text-emerald-900 transition-colors">
                       <Facebook className="w-7 h-7" />
                     </a>
+                    {COMPANY.whatsappChannel && (
+                      <a href={COMPANY.whatsappChannel} target="_blank" rel="noopener noreferrer" aria-label={language === 'it' ? 'Canale WhatsApp' : 'WhatsApp channel'} className="text-emerald-700 hover:text-emerald-900 transition-colors">
+                        <MessageCircle className="w-7 h-7" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

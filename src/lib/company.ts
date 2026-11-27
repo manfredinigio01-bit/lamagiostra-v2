@@ -18,6 +18,9 @@ export const COMPANY = {
   landline: { display: '+39 0372 21415', tel: '+39037221415' },
   instagram: 'https://www.instagram.com/lamagiostra/',
   facebook: 'https://www.facebook.com/LaMagiostra',
+  // Canale WhatsApp (menu della settimana, cassetta): incollare qui il link "Condividi" del canale,
+  // es. 'https://whatsapp.com/channel/0029Va...'. Vuoto = il sito non mostra niente.
+  whatsappChannel: '' as string,
   mapsUrl: 'https://maps.google.com/?q=La+Magiostra,+Via+Grado+1,+26100+Cremona',
   // Apre direttamente il modulo "Scrivi una recensione" della scheda Google de La Magiostra.
   googleReviewUrl: 'https://search.google.com/local/writereview?placeid=ChIJ6y2C-3T-gEcRgxb6bMDfLvE',

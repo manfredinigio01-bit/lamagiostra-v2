@@ -249,7 +249,7 @@ export function useStructuredData() {
       email: COMPANY.email,
       foundingDate: String(COMPANY.foundedYear),
       ...(SITE_URL ? { url: SITE_URL, image: `${SITE_URL}/og-image.jpg` } : {}),
-      sameAs: [COMPANY.instagram, COMPANY.facebook],
+      sameAs: [COMPANY.instagram, COMPANY.facebook, ...(COMPANY.whatsappChannel ? [COMPANY.whatsappChannel] : [])],
       // Posizione esatta (dalla scheda Google) e link alla mappa: aiutano Google a collegare sito e scheda.
       geo: { '@type': 'GeoCoordinates', latitude: 45.1404052, longitude: 10.0123068 },
       hasMap: 'https://www.google.com/maps/place/?q=place_id:ChIJ6y2C-3T-gEcRgxb6bMDfLvE',
