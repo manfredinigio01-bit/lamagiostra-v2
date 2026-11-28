@@ -1,24 +1,38 @@
 import { useEffect, useRef, useState } from 'react';
 import { Instagram, Facebook, MessageCircle, X } from 'lucide-react';
 import { COMPANY } from '../lib/company';
+import { PERCORSO_QR } from '../lib/routes';
 
 // Popup di benvenuto per chi arriva dal QR code stampato (volantini, cartoncini in negozio).
-// Il QR porta a www.lamagiostra.it/?qr=1: solo in quel caso si apre il popup con i social.
-// Chi arriva da Google o scrivendo l'indirizzo non lo vede mai.
+// Il QR porta a www.lamagiostra.it/benvenuto (vedi PERCORSO_QR): solo lì si apre il popup con i social.
+// Funziona anche ?qr=1 su qualsiasi pagina. Chi arriva da Google o scrivendo l'indirizzo non lo vede mai.
 const PARAMETRO = 'qr';
+
+/** Toglie il segnale del QR dall'indirizzo (porta /benvenuto alla home), così ricaricando
+ *  o condividendo la pagina il popup non ricompare. */
+function pulisciIndirizzo() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete(PARAMETRO);
+  const percorso = url.pathname.replace(/\/+$/, '') === PERCORSO_QR ? '/' : url.pathname;
+  window.history.replaceState(window.history.state, '', percorso + url.search + url.hash);
+}
 
 export default function BenvenutoQr({ language }: { language: string }) {
   const [aperto, setAperto] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
   const it = language === 'it';
+  const chiudi = () => {
+    pulisciIndirizzo();
+    setAperto(false);
+  };
 
-  // All'apertura: se c'è ?qr=1 mostra il popup e toglie il parametro dall'indirizzo,
-  // così ricaricando o condividendo la pagina il popup non ricompare.
+  // All'apertura: se si arriva dal QR mostra il popup. L'indirizzo /benvenuto resta finché
+  // il popup è aperto, così le statistiche di Cloudflare registrano la visita dal QR.
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (!url.searchParams.has(PARAMETRO)) return;
-    url.searchParams.delete(PARAMETRO);
-    window.history.replaceState(window.history.state, '', url.pathname + url.search + url.hash);
+    const dalQr = url.pathname.replace(/\/+$/, '') === PERCORSO_QR || url.searchParams.has(PARAMETRO);
+    if (!dalQr) return;
+    if (url.searchParams.has(PARAMETRO)) pulisciIndirizzo();
     setAperto(true);
   }, []);
 
@@ -26,7 +40,7 @@ export default function BenvenutoQr({ language }: { language: string }) {
     if (!aperto) return;
     boxRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setAperto(false);
+      if (e.key === 'Escape') chiudi();
     };
     const overflowPrima = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -68,7 +82,7 @@ export default function BenvenutoQr({ language }: { language: string }) {
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4"
       onClick={(e) => {
-        if (e.target === e.currentTarget) setAperto(false);
+        if (e.target === e.currentTarget) chiudi();
       }}
     >
       <div
@@ -81,7 +95,7 @@ export default function BenvenutoQr({ language }: { language: string }) {
       >
         <button
           type="button"
-          onClick={() => setAperto(false)}
+          onClick={() => chiudi()}
           aria-label={it ? 'Chiudi' : 'Close'}
           className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full text-stone-600 hover:bg-stone-200 hover:text-stone-900"
         >
@@ -118,7 +132,7 @@ export default function BenvenutoQr({ language }: { language: string }) {
 
         <button
           type="button"
-          onClick={() => setAperto(false)}
+          onClick={() => chiudi()}
           className="mx-auto mt-5 block min-h-11 px-4 font-semibold text-emerald-800 underline underline-offset-4 hover:text-emerald-950"
         >
           {it ? 'Continua sul sito' : 'Continue to the website'}

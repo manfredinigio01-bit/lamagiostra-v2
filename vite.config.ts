@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fornitori } from './src/data/team.ts';
-import { allPublicPaths, produttorePath, raccontoPath } from './src/lib/routes.ts';
+import { allPublicPaths, produttorePath, raccontoPath, PERCORSO_QR } from './src/lib/routes.ts';
 import { RACCONTI } from './src/data/racconti.ts';
 import { metaPerPercorso } from './src/lib/seo.ts';
 
@@ -95,6 +95,8 @@ function seoFiles(siteUrl: string, prova: boolean): Plugin {
           mkdirSync(dirname(file), { recursive: true });
           writeFileSync(file, conMetaDellaPagina(html, path, siteUrl));
         }
+        // Pagina dei QR code stampati: una copia della home (il canonical resta sulla home, niente sitemap).
+        writeFileSync(resolve(outDir, `${PERCORSO_QR.slice(1)}.html`), html);
         const nonTrovata = html.replace(/\s*<script type="application\/ld\+json" id="ld-website">[^<]*<\/script>/, '').replace('<head>', '<head>\n    <meta name="robots" content="noindex" />');
         writeFileSync(resolve(outDir, '404.html'), nonTrovata);
       }
