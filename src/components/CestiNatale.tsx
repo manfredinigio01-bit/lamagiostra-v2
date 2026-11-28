@@ -1,4 +1,4 @@
-import { Check, MessageCircle, ShoppingBasket } from 'lucide-react';
+import { Check, MessageCircle, ShoppingBasket, Truck } from 'lucide-react';
 import { CESTI_NATALE, cestiNataleVisibili, srcSetCesto } from '../data/cesti';
 import { whatsappLink } from '../lib/company';
 
@@ -24,6 +24,18 @@ export default function CestiNatale({ language }: Props) {
             <p className="text-stone-600 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
               {it ? CESTI_NATALE.intro.it : CESTI_NATALE.intro.en}
             </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto mb-8 sm:mb-10 flex gap-4 items-start bg-emerald-50 border border-emerald-200 rounded-2xl p-5 sm:p-6">
+            <Truck className="w-8 h-8 text-emerald-700 shrink-0" aria-hidden="true" />
+            <div>
+              <p className="font-bold text-emerald-900 text-lg mb-1">
+                {it ? CESTI_NATALE.spedizioni.titolo.it : CESTI_NATALE.spedizioni.titolo.en}
+              </p>
+              <p className="text-stone-700 leading-relaxed">
+                {it ? CESTI_NATALE.spedizioni.testo.it : CESTI_NATALE.spedizioni.testo.en}
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -62,8 +74,8 @@ export default function CestiNatale({ language }: Props) {
                   </ul>
                   <a
                     href={whatsappLink(language, {
-                      it: `Ciao! Vorrei ordinare il cesto di Natale «${c.nome}» (${c.prezzo} €). Quantità: `,
-                      en: `Hi! I would like to order the «${c.nome}» Christmas basket (€${c.prezzo}). Quantity: `,
+                      it: `Ciao! Vorrei ordinare il cesto di Natale «${c.nome}» (${c.prezzo} €).\nQuantità: \nRitiro in bottega o spedizione (città): `,
+                      en: `Hi! I would like to order the «${c.nome}» Christmas basket (€${c.prezzo}).\nQuantity: \nCollect at the shop or ship to (city/country): `,
                     })}
                     target="_blank"
                     rel="noopener noreferrer"
