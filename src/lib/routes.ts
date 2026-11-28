@@ -63,6 +63,11 @@ export const PUBLIC_PAGES: StaticPage[] = [
   'cookie',
 ];
 
+/** Indirizzo dei QR code stampati (cartoncini, volantini): mostra la home con il popup dei social.
+ *  NON TOGLIERE né rinominare: i QR già stampati puntano qui. Ha un indirizzo suo (non ?qr=1)
+ *  così le statistiche di Cloudflare contano a parte chi arriva dal QR (pagina "/benvenuto"). */
+export const PERCORSO_QR = '/benvenuto';
+
 export function pathFor(page: StaticPage): string {
   return PAGE_PATHS[page];
 }
@@ -101,6 +106,7 @@ export function pageFromPath(pathname: string): Page {
     if (m[1] === 'racconti') return raccontiVisibili(IS_PROVA).some((r) => r.slug === slug) ? 'racconto' : 'not-found';
     return fornitori.some((f) => f.slug === slug && fornitoreApribile(f)) ? 'produttore' : 'not-found';
   }
+  if (path === PERCORSO_QR) return 'home';
   const entry = (Object.entries(PAGE_PATHS) as [StaticPage, string][]).find(([, p]) => p === path);
   if (entry?.[0] === 'racconti' && !raccontiAttivi()) return 'not-found';
   return entry ? entry[0] : 'not-found';
