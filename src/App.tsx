@@ -23,6 +23,7 @@ import MagiostraPage from './components/MagiostraPage';
 import ComeArrivarePage from './components/ComeArrivarePage';
 import { fornitori, staff } from './data/team';
 import BannerProva from './components/BannerProva';
+import BenvenutoQr from './components/BenvenutoQr';
 import { COMPANY, whatsappLink } from './lib/company';
 import { pageFromPath, pathFor, slugFromPath, type StaticPage } from './lib/routes';
 import { usePageMeta, useStructuredData, metaPersona, metaFornitore, metaRacconto, type DetailMeta } from './lib/seo';
@@ -542,6 +543,7 @@ function App({ initialPath }: { initialPath?: string } = {}) {
       />
       <main id="main">{renderPage()}</main>
       <Footer language={language} tagline={t.pioneering} onNavigate={navigate} />
+      <BenvenutoQr language={language} />
     </div>
   );
 }
