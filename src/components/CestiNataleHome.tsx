@@ -1,4 +1,4 @@
-import { Gift, MessageCircle } from 'lucide-react';
+import { Gift, MessageCircle, Truck } from 'lucide-react';
 import { CESTI_NATALE, PANETTONI_NATALE, cestiNataleVisibili, srcSetCesto } from '../data/cesti';
 import { pathFor } from '../lib/routes';
 import { whatsappLink } from '../lib/company';
@@ -35,10 +35,14 @@ export default function CestiNataleHome({ language, onOpen }: Props) {
             <h2 id="cesti-home-titolo" className="text-3xl sm:text-4xl font-bold text-emerald-900 mb-3">
               {it ? 'Cesti regalo e panettoni di Natale' : 'Christmas gift baskets and panettoni'}
             </h2>
-            <p className="text-stone-700 text-lg mb-6">
+            <p className="text-stone-700 text-lg mb-4">
               {it
                 ? `${cesti.length} cesti pronti, da ${da} a ${a} €, con i prodotti dei nostri produttori. Oppure lo componiamo insieme a te. Per privati e aziende.`
                 : `${cesti.length} ready-made baskets, from €${da} to €${a}, with products from our producers. Or we build one with you. For individuals and companies.`}
+            </p>
+            <p className="flex items-start gap-2 text-emerald-900 font-semibold mb-6">
+              <Truck className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+              {it ? 'Spediamo in tutta Italia e, su richiesta, anche in Europa.' : 'We ship all over Italy and, on request, across Europe.'}
             </p>
             <p className="text-stone-700 mb-6 border-t border-emerald-900/10 pt-4">
               {it ? 'In bottega anche i panettoni di ' : 'In the shop, also panettoni by '}
