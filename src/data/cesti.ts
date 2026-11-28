@@ -22,6 +22,14 @@ export const CESTI_NATALE = {
     it: 'Da anni ricerchiamo e selezioniamo i migliori produttori. Ogni anno cerchiamo di trasferire questa cura nella selezione dei prodotti anche nei cesti natalizi.',
     en: 'For years we have been seeking out and selecting the best producers. Every year we try to bring the same care in choosing products to our Christmas baskets.',
   },
+  /** Spedizioni dei cesti (in home e nella pagina Ricorrenze). */
+  spedizioni: {
+    titolo: { it: 'Spediamo in tutta Italia', en: 'We ship all over Italy' },
+    testo: {
+      it: 'I cesti si possono ritirare in bottega oppure li spediamo dove vuoi tu, in tutta Italia e su richiesta anche in Europa. Scrivici la destinazione e ti diciamo costi e tempi di consegna.',
+      en: 'Collect your basket at the shop or we ship it wherever you like, all over Italy and on request across Europe. Tell us the destination and we will give you the cost and delivery time.',
+    },
+  },
   cesti: [
     {
       slug: 'assaggiami',
